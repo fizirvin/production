@@ -1,5 +1,11 @@
 import React from 'react'
 
 export default function Moldes() {
-  return <div>moldes</div>
+  console.log('cambia')
+  return (
+    <div>
+      moldes
+      <input type="date" onChange={(e) => console.log(e.target.value)}></input>
+    </div>
+  )
 }
