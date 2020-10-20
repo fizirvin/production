@@ -4,20 +4,20 @@ const query = {
             total    
             items{
                 _id
-        number
-        firstname
-        lastname
-        gender
-        entry
-        department
-        area
-        team
-        position
-        active
-        createdAt
-        updatedAt
-        user
-        picture_URL
+                number
+                firstname
+                lastname
+                gender
+                entry
+                department
+                area
+                team
+                position
+                active
+                createdAt
+                updatedAt
+                user
+                picture_URL
             }
         }
     }`
