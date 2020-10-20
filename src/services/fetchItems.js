@@ -13,5 +13,5 @@ export default async function fetchItems(items, query) {
 
   if (!data) return { status: false, data: 'algo pasó' }
   if (data.errors) return { status: false, data: data.errors[0].message }
-  return { status: true, data: data.data[items] }
+  return { status: true, data: data.data[items].items }
 }

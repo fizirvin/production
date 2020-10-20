@@ -52,7 +52,7 @@ const removeSuccess = (id) => {
 
 export const fetchModels = () => async (dispatch) => {
   dispatch(request())
-  const { status, data } = await fetchItems('parts', query)
+  const { status, data } = await fetchItems('models', query)
 
   if (!status) {
     dispatch(requestFailure(data))

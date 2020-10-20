@@ -1,10 +1,16 @@
 const query = {
   query: `query {
-        parts {
-            _id
-            partNumber
-            partName
-            family
+        models{
+            total
+            items {
+                _id
+                number
+                name
+                family
+                user
+                createdAt
+                updatedAt
+            }
         }
     }`
 }

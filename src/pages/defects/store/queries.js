@@ -1,10 +1,16 @@
 const query = {
   query: `query {
         defects{
-            _id
-            defectName
-            defectCode
-            isInjection
+            total
+            items{
+                _id
+                name
+                code
+                injection
+                user
+                createdAt
+                updatedAt
+            }
         }
     }`
 }

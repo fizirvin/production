@@ -1,11 +1,19 @@
 const query = {
-  query: `query {
+  query: `
+    query {
         issues{
-            _id
-            issueName
-            issueCode
+            total
+            items{
+                _id
+                name
+                code
+                user
+                createdAt
+                updatedAt
+            }
         }
-    }`
+    }
+`
 }
 
 export default query

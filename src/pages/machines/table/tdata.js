@@ -1,9 +1,4 @@
-export const keys = [
-  'machineNumber',
-  'machineSerial',
-  'closingForce',
-  'spindleDiameter'
-]
+export const keys = ['number', 'serial', 'closingForce', 'spindleDiameter']
 
 export const header_keys = ['num', 'ser', 'force', 'spind']
 

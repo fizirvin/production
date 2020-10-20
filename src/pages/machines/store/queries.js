@@ -1,11 +1,17 @@
 const query = {
   query: `query {
         machines{
-            _id
-            machineNumber
-            machineSerial
-            closingForce
-            spindleDiameter
+            total
+            items{
+                _id
+                number
+                serial
+                closingForce
+                spindleDiameter
+                user
+                createdAt
+                updatedAt
+            }
         }
     }`
 }

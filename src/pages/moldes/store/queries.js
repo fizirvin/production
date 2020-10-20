@@ -1,26 +1,24 @@
 const query = {
   query: `query {
         moldes{
-            _id
-            moldeNumber
-            moldeSerial
-            cavities
-            lifecycles
-            tcycles
-            shot
-            quantity
-            active
+            total
+            items{
+                _id
+                number
+                serial
+                cavities
+                lifecycles
+                percent
+                tcycles
+                shot
+                quantity
+                active
+                user
+                createdAt
+                updatedAt
+            }
         }
     }`
 }
 
-const tcyclesQuery = {
-  query: `query {
-        tcycles{
-            molde
-            tcycles
-        }
-    }`
-}
-
-export { query, tcyclesQuery }
+export { query }

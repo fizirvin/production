@@ -1,17 +1,17 @@
 const query = {
   query: `query {
-        materials{
+        shots{
             total    
             items{
                 _id
-                number
-                manufacturer
-                description
-                acronym
-                identification
-                type
-                unit
-                color
+                molde
+                date
+                shift
+                quantity
+                end
+                shiftEnd
+                active
+                comments
                 user
                 createdAt
                 updatedAt

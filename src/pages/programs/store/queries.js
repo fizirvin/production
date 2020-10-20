@@ -1,27 +1,19 @@
 const query = {
   query: `query {
         programs{
-            _id
-            machineNumber{
+            total
+            items{
                 _id
-                machineNumber
-                machineSerial
+                machine
+                molde
+                model
+                time
+                cycles
+                capacity
+                user
+                createdAt
+                updatedAt
             }
-            moldeNumber{
-                _id
-                moldeNumber
-                moldeSerial
-                cavities
-            }
-            partNumber{
-                _id
-                partNumber
-                partName
-                family
-            }
-            cycleTime
-            cycles
-            capacity
         }
     }`
 }

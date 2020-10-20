@@ -1,12 +1,13 @@
 export const keys = [
   'number',
-  'manufacturer',
-  'description',
-  'acronym',
-  'color',
-  'identification',
-  'type',
-  'unit'
+  'serial',
+  'cavities',
+  'lifecycles',
+  'tcycles',
+  'percent',
+  'shot',
+  'quantity',
+  'active'
 ]
 export const header_keys = [
   'num',
@@ -25,7 +26,7 @@ export const header_data = [
   'cavities',
   'Lifecycles',
   'TCycles',
-  '&',
+  '%',
   'Shot',
   'Quanity',
   'Active'
