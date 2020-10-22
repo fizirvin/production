@@ -59,7 +59,7 @@ export const fetchMachines = () => async (dispatch) => {
     return 'se ejecutó la acción pero falló'
   } else {
     dispatch(fetchSuccess(data))
-    return 'se ejecutó la acción con éxito'
+    return 'se ejecutó con éxito'
   }
 }
 
