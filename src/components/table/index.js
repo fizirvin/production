@@ -1,34 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-// export const THeadings = styled.th`
-//   width: 100%;
-//   height: 100%;
-//   background-color: white;
-// `
-// const H1 = styled.h1(
-//   {
-//     fontSize: 20
-//   },
-//   (props) => ({ color: props.color })
-// )
-
-// export const Button = styled.button`
-//   color: ${(props) => (props.primary ? 'hotpink' : 'turquoise')};
-//   background-color: red;
-// `
-
-// export const Button2 = styled.button((props) => ({ color: props.color }), {
-//   fontSize: 20
-// })
-
-// const H2 = styled.h1(
-//   {
-//     fontSize: 20
-//   },
-//   (props) => ({ color: props.color })
-// )
-
 export const Table = styled.table`
   border-spacing: 1px;
   border: solid 1px;

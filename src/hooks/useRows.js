@@ -1,7 +1,7 @@
 import React from 'react'
 import { TD } from 'components'
 
-export default function useRoutes(items, keys, headers) {
+export default function useRows(items, keys, headers, active) {
   const rows = items.map((item, index) => {
     const data = keys.map((key, ind) => {
       return (
@@ -15,6 +15,11 @@ export default function useRoutes(items, keys, headers) {
       <tr key={item._id}>
         <TD headers={'id'}>{index + 1}</TD>
         {data}
+        {active && (
+          <TD headers="act">
+            <input type="checkbox" defaultChecked={item[active]}></input>
+          </TD>
+        )}
         <TD headers={'add'}>button</TD>
       </tr>
     )

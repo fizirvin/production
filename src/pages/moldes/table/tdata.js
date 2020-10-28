@@ -6,8 +6,7 @@ export const keys = [
   'tcycles',
   'percent',
   'shot',
-  'quantity',
-  'active'
+  'quantity'
 ]
 export const header_keys = [
   'num',

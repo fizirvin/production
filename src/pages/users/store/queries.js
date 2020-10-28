@@ -1,13 +1,14 @@
 const query = {
   query: `query {
-        users{
-            _id
-            shortCat
-            fullUat
-            fullCat
-            active
-            level
-            name
+            users{
+            total
+            items{
+                _id
+                active
+                level
+                name
+                createdAt
+            }
         }
     }`
 }

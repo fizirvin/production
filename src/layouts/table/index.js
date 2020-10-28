@@ -7,12 +7,18 @@ export default function TableComponent({
   items,
   keys,
   header_keys,
-  header_data
+  header_data,
+  active
 }) {
   return (
     <Table>
       <TableHeader header_data={header_data} header_keys={header_keys} />
-      <TableBody items={items} keys={keys} header_keys={header_keys} />
+      <TableBody
+        items={items}
+        keys={keys}
+        header_keys={header_keys}
+        active={active}
+      />
     </Table>
   )
 }
