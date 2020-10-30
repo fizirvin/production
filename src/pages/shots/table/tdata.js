@@ -5,7 +5,6 @@ export const keys = [
   'end',
   'shiftEnd',
   'quantity',
-  'active',
   'comments'
 ]
 export const header_keys = [
@@ -15,8 +14,8 @@ export const header_keys = [
   'end',
   'shie',
   'qua',
-  'sta',
-  'comm'
+  'comm',
+  'act'
 ]
 export const header_data = [
   'Molde',
@@ -25,6 +24,6 @@ export const header_data = [
   'End Date',
   'End Shift',
   'Quantity',
-  'Status',
-  'Comments'
+  'Comments',
+  'Status'
 ]

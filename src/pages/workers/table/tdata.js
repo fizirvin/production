@@ -7,8 +7,7 @@ export const keys = [
   'department',
   'area',
   'team',
-  'position',
-  'active'
+  'position'
 ]
 export const header_keys = [
   'num',
@@ -20,7 +19,7 @@ export const header_keys = [
   'are',
   'team',
   'pos',
-  'sta'
+  'act'
 ]
 export const header_data = [
   'Number',

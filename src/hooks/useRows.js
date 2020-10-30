@@ -17,7 +17,7 @@ export default function useRows(items, keys, headers, active) {
         {data}
         {active && (
           <TD headers="act">
-            <input type="checkbox" defaultChecked={item[active]}></input>
+            <input type="checkbox" readOnly checked={item[active]}></input>
           </TD>
         )}
         <TD headers={'add'}>button</TD>
