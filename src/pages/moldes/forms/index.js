@@ -1,5 +1,6 @@
 import AddMolde from './add'
 import RemoveMolde from './remove'
 import UpdateMolde from './update'
+import formReducer from './formReducer'
 
-export { AddMolde, RemoveMolde, UpdateMolde }
+export { AddMolde, formReducer, RemoveMolde, UpdateMolde }

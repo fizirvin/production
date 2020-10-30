@@ -1,4 +1,12 @@
-import { NUMBER_INPUT } from './formActions'
+import {
+  NUMBER_INPUT,
+  SERIAL_INPUT,
+  CAVITIES_INPUT,
+  LIFECYCLES_INPUT,
+  TCYCLES_INPUT,
+  SHOT_INPUT,
+  QUANTITY_INPUT
+} from './formActions'
 
 const initialState = {
   number: '',
@@ -10,46 +18,46 @@ const initialState = {
   quantity: 0
 }
 
-const reducer = (state = initialState, action) => {
+const formReducer = (state = initialState, action) => {
   switch (action.type) {
     case NUMBER_INPUT:
       return {
         ...state,
         number: action.payload
       }
-    case REQUEST_FAILURE_MOLDES:
+    case SERIAL_INPUT:
       return {
         ...state,
-        error: action.payload,
-        loading: false
+        serial: action.payload
       }
-    case FETCH_SUCCESS_MOLDES:
+    case CAVITIES_INPUT:
       return {
-        error: '',
-        loading: false,
-        items: action.payload
+        ...state,
+        cavities: action.payload
       }
-    case UPDATE_SUCCESS_MOLDES:
-      const item = action.payload
-      let items = [...state.items]
-      items[items.findIndex((el) => el._id === item._id)] = item
+    case LIFECYCLES_INPUT:
       return {
-        error: '',
-        loading: false,
-        items: items
+        ...state,
+        lifecycles: action.payload
       }
-    case REMOVE_SUCCESS_MOLDES:
-      const removeItems = [...state.items].filter(
-        (items) => items._id !== action.payload
-      )
+    case TCYCLES_INPUT:
       return {
-        error: '',
-        loading: false,
-        items: removeItems
+        ...state,
+        tcycles: action.payload
+      }
+    case SHOT_INPUT:
+      return {
+        ...state,
+        shot: action.payload
+      }
+    case QUANTITY_INPUT:
+      return {
+        ...state,
+        quantity: action.payload
       }
     default:
       return state
   }
 }
 
-export default reducer
+export default formReducer

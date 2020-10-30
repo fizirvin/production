@@ -3,7 +3,7 @@ import { reducer as defects } from 'pages/defects'
 import { reducer as issues } from 'pages/issues'
 import { reducer as machines } from 'pages/machines'
 import { reducer as materials } from 'pages/material'
-import { reducer as moldes } from 'pages/moldes'
+import { reducer as moldes, formReducer as moldesForm } from 'pages/moldes'
 import { reducer as models } from 'pages/parts'
 import { reducer as programs } from 'pages/programs'
 import { reducer as shots } from 'pages/shots'
@@ -20,7 +20,8 @@ const reducers = combineReducers({
   programs,
   shots,
   profiles,
-  users
+  users,
+  moldesForm
 })
 
 export default reducers
