@@ -13,8 +13,6 @@ const Connect = ({ profiles, fetchProfiles }) => {
     }
   }, [items, fetchProfiles])
 
-  console.log(items)
-
   return (
     <>
       {loading && <Spinner />}

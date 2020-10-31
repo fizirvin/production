@@ -1,20 +1,18 @@
 import React from 'react'
+import ConnectedTextInput from './input'
 
-export default function InputTextComponent({ label, name, value, action }) {
-  console.log('yo soy', name)
+export default function InputTextComponent({ input, reducer, label, name }) {
   return (
     <tr>
       <td>
         <label>{label}: </label>
       </td>
       <td>
-        <input
-          type="text"
+        <ConnectedTextInput
+          input={input}
+          reducer={reducer}
           name={name}
-          value={value}
-          onChange={(e) => action(e.target.name, e.target.value)}
-          required
-        ></input>
+        ></ConnectedTextInput>
       </td>
     </tr>
   )

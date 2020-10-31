@@ -13,8 +13,6 @@ const Connect = ({ shots, fetchShots }) => {
     }
   }, [items, fetchShots])
 
-  console.log(items)
-
   return (
     <>
       {loading && <Spinner />}

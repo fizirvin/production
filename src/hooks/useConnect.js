@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
 
-export default function useConnect(store) {
-  const { loading, items, error } = useSelector((state) => state[store])
+export default function useConnect(reducer, input) {
+  const { value } = useSelector((state) => state[reducer][input])
 
   console.log('estoy conectado')
-  return { loading, items, error }
+  return { value }
 }

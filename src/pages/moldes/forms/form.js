@@ -1,6 +1,4 @@
 import React from 'react'
-import ConnectedInput from 'layouts/input/input'
-import { useSelector } from 'react-redux'
 import {
   FormComponent,
   InputNumberComponent,
@@ -18,62 +16,49 @@ import {
 } from './formActions'
 export default function Form() {
   return (
-    <FormComponent title={'Add New Injection Mold'}>
-      {/* <InputTextComponent
-        label={'Mold Number'}
-        name={NUMBER_INPUT}
-        value={number}
-        action={changeText}
-      /> */}
-      <ConnectedInput
+    <FormComponent title={'Add New Injection Mold'} to={'/molds'}>
+      <InputTextComponent
         reducer={'moldesForm'}
         input={'number'}
         label={'Mold Number'}
         name={NUMBER_INPUT}
       />
-      <ConnectedInput
+      <InputTextComponent
         reducer={'moldesForm'}
         input={'serial'}
         label={'Mold Serial'}
         name={SERIAL_INPUT}
       />
-
-      {/* <InputTextComponent
-        label={'Mold Serial'}
-        name={SERIAL_INPUT}
-        value={serial}
-        action={changeText}
-      />
       <InputNumberComponent
         label={'Cavities'}
         name={CAVITIES_INPUT}
-        value={cavities}
-        action={changeNumber}
+        reducer={'moldesForm'}
+        input={'cavities'}
       />
       <InputNumberComponent
         label={'Lifecycles'}
         name={LIFECYCLES_INPUT}
-        value={lifecycles}
-        action={changeNumber}
+        reducer={'moldesForm'}
+        input={'lifecycles'}
       />
       <InputNumberComponent
         label={'Total Cycles'}
         name={TCYCLES_INPUT}
-        value={tcycles}
-        action={changeNumber}
+        reducer={'moldesForm'}
+        input={'tcycles'}
       />
       <InputNumberComponent
         label={'Shot'}
         name={SHOT_INPUT}
-        value={shot}
-        action={changeNumber}
+        reducer={'moldesForm'}
+        input={'shot'}
       />
       <InputNumberComponent
         label={'Quantity'}
         name={QUANTITY_INPUT}
-        value={quantity}
-        action={changeNumber}
-      /> */}
+        reducer={'moldesForm'}
+        input={'quantity'}
+      />
     </FormComponent>
   )
 }
