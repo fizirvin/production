@@ -1,6 +1,8 @@
 import { query } from './queries'
 import { newMolde, updateMolde, removeMolde } from './mutations'
 import { fetchItems } from 'services'
+import { database } from 'config'
+const { url, options } = database
 
 export const REQUEST_MOLDES = 'REQUEST_MOLDES'
 export const REQUEST_FAILURE_MOLDES = 'REQUEST_FAILURE_MOLDES'
@@ -63,6 +65,7 @@ export const fetchMoldes = () => async (dispatch) => {
 
 export const addMolde = (input) => async (dispatch) => {
   dispatch(request())
+  input.user = '5edde9dfd3888a26048cdd20'
   newMolde.variables = { input }
   const { status, data } = await fetchItems('newMolde', newMolde)
 

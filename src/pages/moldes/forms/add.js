@@ -1,6 +1,6 @@
 import React from 'react'
-import Form from './form'
+import Connect from './connect'
 
 export default function AddMolde() {
-  return <Form />
+  return <Connect />
 }

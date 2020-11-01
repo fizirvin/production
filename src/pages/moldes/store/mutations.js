@@ -3,14 +3,18 @@ const newMolde = {
     NewMolde( $input: NewMolde ){
         newMolde(input: $input){
             _id
-            moldeNumber
-            moldeSerial
+            number
+            serial
             cavities
             lifecycles
+            percent
             tcycles
             shot
             quantity
             active
+            user
+            createdAt
+            updatedAt
         }
     }`
 }

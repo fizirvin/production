@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
 
-export default function useConnect(reducer, input) {
-  const { value } = useSelector((state) => state[reducer][input])
+export default function useConnect(reducer) {
+  const { moldesForm } = useSelector((state) => state)
 
   console.log('estoy conectado')
-  return { value }
+  return { moldesForm }
 }

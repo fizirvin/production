@@ -14,9 +14,15 @@ import {
   SHOT_INPUT,
   QUANTITY_INPUT
 } from './formActions'
-export default function Form() {
+import Controls from './controls'
+
+export default function Form({ loading, onSubmit }) {
   return (
-    <FormComponent title={'Add New Injection Mold'} to={'/molds'}>
+    <FormComponent
+      title={'Add New Injection Mold'}
+      to={'/molds'}
+      controls={<Controls loading={loading} to="/molds" onSubmit={onSubmit} />}
+    >
       <InputTextComponent
         reducer={'moldesForm'}
         input={'number'}
@@ -46,6 +52,7 @@ export default function Form() {
         name={TCYCLES_INPUT}
         reducer={'moldesForm'}
         input={'tcycles'}
+        min="1"
       />
       <InputNumberComponent
         label={'Shot'}

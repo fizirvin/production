@@ -10,6 +10,7 @@ export default function ConnectedNumberInput({
   console.log('yo soy', name)
   const dispatch = useDispatch()
   const value = useSelector((state) => state[reducer][input])
+
   return (
     <input
       type="number"

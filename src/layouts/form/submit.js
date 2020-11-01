@@ -1,14 +1,17 @@
 import React from 'react'
-import Spinner from 'components/spinner'
-import { useSelector } from 'react-redux'
+import useConnect from 'hooks/useConnect'
 
-export default function SubmitComponent() {
-  const loading = useSelector((state) => state.moldes.loading)
+export default function SubmitComponent({ onSubmit, loading }) {
+  const { moldesForm } = useConnect('moldesForm')
 
-  console.log('soy submit')
+  function submit() {
+    console.log('soy submit')
+    onSubmit(moldesForm)
+  }
+
   return (
     <button type="submit" disabled={loading}>
-      Submit {loading && <Spinner />}
+      Submit
     </button>
   )
 }
