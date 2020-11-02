@@ -5,7 +5,7 @@ import Spinner from 'components/spinner'
 import Table from './table'
 
 const Connect = ({ issues, fetchIssues }) => {
-  const { loading, error, items } = issues
+  const { loading, message, items } = issues
 
   useEffect(() => {
     if (items.length === 0) {
@@ -16,7 +16,7 @@ const Connect = ({ issues, fetchIssues }) => {
   return (
     <>
       {loading && <Spinner />}
-      {error && <div>{error}</div>}
+      {message && <div>{message}</div>}
       {items.length > 0 && <Table items={items} />}
     </>
   )

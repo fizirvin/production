@@ -7,7 +7,7 @@ import {
 } from './actions'
 
 const initialState = {
-  error: '',
+  message: '',
   loading: false,
   items: []
 }
@@ -22,12 +22,12 @@ const reducer = (state = initialState, action) => {
     case REQUEST_FAILURE_MATERIALS:
       return {
         ...state,
-        error: action.payload,
+        message: action.payload,
         loading: false
       }
     case FETCH_SUCCESS_MATERIALS:
       return {
-        error: '',
+        message: '',
         loading: false,
         items: action.payload
       }
@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
       let items = [...state.items]
       items[items.findIndex((el) => el._id === item._id)] = item
       return {
-        error: '',
+        message: '',
         loading: false,
         items: items
       }
@@ -45,7 +45,7 @@ const reducer = (state = initialState, action) => {
         (items) => items._id !== action.payload
       )
       return {
-        error: '',
+        message: '',
         loading: false,
         items: removeItems
       }

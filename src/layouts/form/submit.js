@@ -10,8 +10,8 @@ export default function SubmitComponent({ onSubmit, loading }) {
   }
 
   return (
-    <button type="submit" disabled={loading}>
-      Submit
+    <button type="submit" disabled={loading} onClick={submit}>
+      {loading ? 'Loading' : 'Submit'}
     </button>
   )
 }

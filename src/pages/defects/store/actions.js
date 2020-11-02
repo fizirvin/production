@@ -15,10 +15,10 @@ const request = () => {
   }
 }
 
-const requestFailure = (error) => {
+const requestFailure = (message) => {
   return {
     type: REQUEST_FAILURE_DEFECTS,
-    payload: error
+    payload: message
   }
 }
 

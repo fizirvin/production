@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { onInteger, onKey } from 'helpers'
 
 export default function ConnectedNumberInput({
   reducer,
@@ -16,9 +17,11 @@ export default function ConnectedNumberInput({
       type="number"
       name={name}
       value={value}
-      onChange={(e) =>
-        dispatch({ type: e.target.name, payload: e.target.value })
-      }
+      onKeyUp={(e) => onKey(e)}
+      onChange={(e) => {
+        const integerNum = onInteger(e.target.value, value, e)
+        dispatch({ type: e.target.name, payload: integerNum })
+      }}
       min={min}
       required
     ></input>

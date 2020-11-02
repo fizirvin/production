@@ -40,6 +40,7 @@ export default function Form({ loading, onSubmit }) {
         name={CAVITIES_INPUT}
         reducer={'moldesForm'}
         input={'cavities'}
+        min={0}
       />
       <InputNumberComponent
         label={'Lifecycles'}

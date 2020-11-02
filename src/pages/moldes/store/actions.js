@@ -1,8 +1,6 @@
 import { query } from './queries'
 import { newMolde, updateMolde, removeMolde } from './mutations'
 import { fetchItems } from 'services'
-import { database } from 'config'
-const { url, options } = database
 
 export const REQUEST_MOLDES = 'REQUEST_MOLDES'
 export const REQUEST_FAILURE_MOLDES = 'REQUEST_FAILURE_MOLDES'
@@ -17,10 +15,10 @@ const request = () => {
   }
 }
 
-const requestFailure = (error) => {
+const requestFailure = (message) => {
   return {
     type: REQUEST_FAILURE_MOLDES,
-    payload: error
+    payload: message
   }
 }
 

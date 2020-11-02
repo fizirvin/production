@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function Fetching(fetch, store) {
-  const { loading, items, error } = useSelector((state) => state[store])
+  const { loading, items, message } = useSelector((state) => state[store])
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -13,6 +13,6 @@ export default function Fetching(fetch, store) {
   }, [dispatch, fetch])
 
   console.log('me rendericé yo Fetching')
-  const message = 'holaaa'
-  return { message, loading, items, error }
+  const messages = 'holaaa'
+  return { messages, loading, items, message }
 }

@@ -14,7 +14,6 @@ const newMolde = {
             active
             user
             createdAt
-            updatedAt
         }
     }`
 }
