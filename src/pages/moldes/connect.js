@@ -13,8 +13,6 @@ const Connect = ({ moldes, fetchMoldes }) => {
     }
   }, [items, fetchMoldes])
 
-  console.log('yo soy connect de moldes')
-
   return (
     <>
       {loading && <Spinner />}

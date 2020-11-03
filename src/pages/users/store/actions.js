@@ -52,12 +52,12 @@ const removeSuccess = (id) => {
 
 export const fetchUsers = () => async (dispatch) => {
   dispatch(request())
-  const { status, data } = await fetchItems('users', query)
+  const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data))
+    dispatch(fetchSuccess(data.users.items))
   }
 }
 

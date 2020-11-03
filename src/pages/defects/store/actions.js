@@ -9,6 +9,8 @@ export const ADD_SUCCESS_DEFECTS = 'ADD_SUCCESS_DEFECTS'
 export const UPDATE_SUCCESS_DEFECTS = 'UPDATE_SUCCESS_DEFECTS'
 export const REMOVE_SUCCESS_DEFECTS = 'REMOVE_SUCCESS_DEFECTS'
 
+export const CLEAN_MESSAGE_DEFECTS = 'CLEAN_MESSAGE_DEFECTS'
+
 const request = () => {
   return {
     type: REQUEST_DEFECTS
@@ -52,24 +54,25 @@ const removeSuccess = (id) => {
 
 export const fetchDefects = () => async (dispatch) => {
   dispatch(request())
-  const { status, data } = await fetchItems('defects', query)
+  const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data))
+    dispatch(fetchSuccess(data.defects.items))
   }
 }
 
 export const addDefect = (input) => async (dispatch) => {
   dispatch(request())
   newDefect.variables = { input }
-  const { status, data } = await fetchItems('newDefect', newDefect)
+  const { status, data } = await fetchItems(newDefect)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(addSuccess(data))
+    const { newDefect } = data
+    dispatch(addSuccess(newDefect))
   }
 }
 

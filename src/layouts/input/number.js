@@ -8,7 +8,6 @@ export default function InputNumberComponent({
   name,
   min
 }) {
-  console.log('yo soy el componente total', name)
   return (
     <tr>
       <td>

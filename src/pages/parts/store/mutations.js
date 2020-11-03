@@ -1,11 +1,13 @@
-const newPartNumber = {
+const newModel = {
   query: `mutation
-    NewPartNumber( $input: NewPartNumber ){
-        newPartNumber(input: $input){
+  NewModel( $input: NewModel ){
+    newModel(input: $input){
             _id
-            partNumber
-            partName
+            number
+            name
             family
+            user
+            createdAt
         }
     }`
 }
@@ -34,4 +36,4 @@ const removeModel = {
       }`
 }
 
-export { newPartNumber, removeModel, updatePartNumber }
+export { newModel, removeModel, updatePartNumber }

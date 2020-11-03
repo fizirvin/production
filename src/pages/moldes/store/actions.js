@@ -9,6 +9,8 @@ export const ADD_SUCCESS_MOLDES = 'ADD_SUCCESS_MOLDES'
 export const UPDATE_SUCCESS_MOLDES = 'UPDATE_SUCCESS_MOLDES'
 export const REMOVE_SUCCESS_MOLDES = 'REMOVE_SUCCESS_MOLDES'
 
+export const CLEAN_MESSAGE_MOLDES = 'CLEAN_MESSAGE_MOLDES'
+
 const request = () => {
   return {
     type: REQUEST_MOLDES
@@ -52,25 +54,25 @@ const removeSuccess = (id) => {
 
 export const fetchMoldes = () => async (dispatch) => {
   dispatch(request())
-  const { status, data } = await fetchItems('moldes', query)
+  const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data))
+    dispatch(fetchSuccess(data.moldes.items))
   }
 }
 
 export const addMolde = (input) => async (dispatch) => {
   dispatch(request())
-  input.user = '5edde9dfd3888a26048cdd20'
   newMolde.variables = { input }
-  const { status, data } = await fetchItems('newMolde', newMolde)
+  const { status, data } = await fetchItems(newMolde)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(addSuccess(data))
+    const { newMolde } = data
+    dispatch(addSuccess(newMolde))
   }
 }
 

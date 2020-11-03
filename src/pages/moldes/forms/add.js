@@ -1,6 +1,6 @@
 import React from 'react'
-import Connect from './connect'
+import Portal from './portal'
 
 export default function AddMolde() {
-  return <Connect />
+  return <Portal />
 }

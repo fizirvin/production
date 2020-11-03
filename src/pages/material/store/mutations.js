@@ -11,6 +11,9 @@ const newMaterial = {
             type
             unit
             color
+            user
+            createdAt
+                
         }
     }`
 }

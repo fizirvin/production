@@ -3,9 +3,11 @@ const newDefect = {
     NewDefect( $input: NewDefect ){
         newDefect(input: $input){
             _id
-            defectName
-            defectCode
-            isInjection
+            name
+            code
+            injection
+            user
+            createdAt
         }
     }`
 }

@@ -1,0 +1,51 @@
+import React from 'react'
+import {
+  FormComponent,
+  InputTextComponent,
+  InputRadioComponent,
+  Controls
+} from 'layouts'
+
+import {
+  NAME_INPUT_DEFECT,
+  CODE_INPUT_DEFECT,
+  INJECTION_INPUT_DEFECT,
+  CLEAN_INPUTS_DEFECT
+} from './formActions'
+
+export default function Form({ onSubmit }) {
+  return (
+    <FormComponent
+      title={'Add New Injection Defect'}
+      to={'/defects'}
+      controls={
+        <Controls
+          form={'defectsForm'}
+          load={'defects'}
+          to="/defects"
+          name={CLEAN_INPUTS_DEFECT}
+          onSubmit={onSubmit}
+        />
+      }
+    >
+      <InputTextComponent
+        reducer={'defectsForm'}
+        input={'code'}
+        label={'Defect Code'}
+        name={CODE_INPUT_DEFECT}
+      />
+      <InputTextComponent
+        reducer={'defectsForm'}
+        input={'name'}
+        label={'Defect Name'}
+        name={NAME_INPUT_DEFECT}
+      />
+      <InputRadioComponent
+        reducer={'defectsForm'}
+        input={'injection'}
+        label={'Injection Area Defect?'}
+        name={INJECTION_INPUT_DEFECT}
+      />
+    </FormComponent>
+  )
+}

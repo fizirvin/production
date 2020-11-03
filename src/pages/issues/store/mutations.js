@@ -3,8 +3,11 @@ const newIssue = {
     NewIssue( $input: NewIssue ){
         newIssue(input: $input){
             _id
-            issueName
-            issueCode
+            name
+            code
+            user
+            createdAt
+                
         }
     }`
 }

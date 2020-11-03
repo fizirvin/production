@@ -9,6 +9,8 @@ export const ADD_SUCCESS_MATERIALS = 'ADD_SUCCESS_MATERIALS'
 export const UPDATE_SUCCESS_MATERIALS = 'UPDATE_SUCCESS_MATERIALS'
 export const REMOVE_SUCCESS_MATERIALS = 'REMOVE_SUCCESS_MATERIALS'
 
+export const CLEAN_MESSAGE_MATERIALS = 'CLEAN_MESSAGE_MATERIALS'
+
 const request = () => {
   return {
     type: REQUEST_MATERIALS
@@ -52,24 +54,25 @@ const removeSuccess = (id) => {
 
 export const fetchMaterials = () => async (dispatch) => {
   dispatch(request())
-  const { status, data } = await fetchItems('materials', query)
+  const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data))
+    dispatch(fetchSuccess(data.materials.items))
   }
 }
 
 export const addMaterial = (input) => async (dispatch) => {
   dispatch(request())
   newMaterial.variables = { input }
-  const { status, data } = await fetchItems('newMaterial', newMaterial)
+  const { status, data } = await fetchItems(newMaterial)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(addSuccess(data))
+    const { newMaterial } = data
+    dispatch(addSuccess(newMaterial))
   }
 }
 

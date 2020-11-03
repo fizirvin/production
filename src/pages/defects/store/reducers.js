@@ -3,7 +3,9 @@ import {
   REQUEST_FAILURE_DEFECTS,
   FETCH_SUCCESS_DEFECTS,
   UPDATE_SUCCESS_DEFECTS,
-  REMOVE_SUCCESS_DEFECTS
+  REMOVE_SUCCESS_DEFECTS,
+  CLEAN_MESSAGE_DEFECTS,
+  ADD_SUCCESS_DEFECTS
 } from './actions'
 
 const initialState = {
@@ -31,14 +33,22 @@ const reducer = (state = initialState, action) => {
         loading: false,
         items: action.payload
       }
+    case ADD_SUCCESS_DEFECTS:
+      const newItem = action.payload
+      const items = [...state.items, newItem]
+      return {
+        message: 'New Injection Defect added correctly',
+        loading: false,
+        items: items
+      }
     case UPDATE_SUCCESS_DEFECTS:
       const item = action.payload
-      let items = [...state.items]
-      items[items.findIndex((el) => el._id === item._id)] = item
+      let updatedItems = [...state.items]
+      updatedItems[updatedItems.findIndex((el) => el._id === item._id)] = item
       return {
         message: '',
         loading: false,
-        items: items
+        items: updatedItems
       }
     case REMOVE_SUCCESS_DEFECTS:
       const removeItems = [...state.items].filter(
@@ -48,6 +58,11 @@ const reducer = (state = initialState, action) => {
         message: '',
         loading: false,
         items: removeItems
+      }
+    case CLEAN_MESSAGE_DEFECTS:
+      return {
+        ...state,
+        message: ''
       }
     default:
       return state

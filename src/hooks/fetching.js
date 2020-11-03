@@ -6,13 +6,11 @@ export default function Fetching(fetch, store) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('aplicando el effect')
     dispatch(fetch()).then((response) => {
       console.log(response)
     })
   }, [dispatch, fetch])
 
-  console.log('me rendericé yo Fetching')
   const messages = 'holaaa'
   return { messages, loading, items, message }
 }

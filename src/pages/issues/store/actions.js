@@ -9,6 +9,8 @@ export const ADD_SUCCESS_ISSUES = 'ADD_SUCCESS_ISSUES'
 export const UPDATE_SUCCESS_ISSUES = 'UPDATE_SUCCESS_ISSUES'
 export const REMOVE_SUCCESS_ISSUES = 'REMOVE_SUCCESS_ISSUES'
 
+export const CLEAN_MESSAGE_ISSUES = 'CLEAN_MESSAGE_ISSUES'
+
 const request = () => {
   return {
     type: REQUEST_ISSUES
@@ -52,24 +54,25 @@ const removeSuccess = (id) => {
 
 export const fetchIssues = () => async (dispatch) => {
   dispatch(request())
-  const { status, data } = await fetchItems('issues', query)
+  const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data))
+    dispatch(fetchSuccess(data.issues.items))
   }
 }
 
-export const addDefect = (input) => async (dispatch) => {
+export const addIssue = (input) => async (dispatch) => {
   dispatch(request())
   newIssue.variables = { input }
-  const { status, data } = await fetchItems('newIssue', newIssue)
+  const { status, data } = await fetchItems(newIssue)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(addSuccess(data))
+    const { newIssue } = data
+    dispatch(addSuccess(newIssue))
   }
 }
 

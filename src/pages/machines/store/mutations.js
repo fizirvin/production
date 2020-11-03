@@ -3,10 +3,12 @@ const newMachine = {
     NewMachine( $input: NewMachine ){
         newMachine(input: $input){
             _id
-            machineNumber
-            machineSerial
+            number
+            serial
             closingForce
             spindleDiameter
+            user
+            createdAt    
         }
     }`
 }

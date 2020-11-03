@@ -2,68 +2,77 @@ import React from 'react'
 import {
   FormComponent,
   InputNumberComponent,
-  InputTextComponent
+  InputTextComponent,
+  Controls
 } from 'layouts'
 
 import {
-  NUMBER_INPUT,
-  SERIAL_INPUT,
-  CAVITIES_INPUT,
-  LIFECYCLES_INPUT,
-  TCYCLES_INPUT,
-  SHOT_INPUT,
-  QUANTITY_INPUT
+  NUMBER_INPUT_MOLDE,
+  SERIAL_INPUT_MOLDE,
+  CAVITIES_INPUT_MOLDE,
+  LIFECYCLES_INPUT_MOLDE,
+  TCYCLES_INPUT_MOLDE,
+  SHOT_INPUT_MOLDE,
+  QUANTITY_INPUT_MOLDE,
+  CLEAN_INPUTS_MOLDE
 } from './formActions'
-import Controls from './controls'
 
-export default function Form({ loading, onSubmit }) {
+export default function Form({ onSubmit }) {
   return (
     <FormComponent
       title={'Add New Injection Mold'}
       to={'/molds'}
-      controls={<Controls loading={loading} to="/molds" onSubmit={onSubmit} />}
+      controls={
+        <Controls
+          form={'moldesForm'}
+          load={'moldes'}
+          to="/molds"
+          name={CLEAN_INPUTS_MOLDE}
+          onSubmit={onSubmit}
+        />
+      }
     >
       <InputTextComponent
         reducer={'moldesForm'}
         input={'number'}
         label={'Mold Number'}
-        name={NUMBER_INPUT}
+        name={NUMBER_INPUT_MOLDE}
       />
       <InputTextComponent
         reducer={'moldesForm'}
         input={'serial'}
         label={'Mold Serial'}
-        name={SERIAL_INPUT}
+        name={SERIAL_INPUT_MOLDE}
       />
       <InputNumberComponent
         label={'Cavities'}
-        name={CAVITIES_INPUT}
+        name={CAVITIES_INPUT_MOLDE}
         reducer={'moldesForm'}
         input={'cavities'}
         min={0}
       />
       <InputNumberComponent
         label={'Lifecycles'}
-        name={LIFECYCLES_INPUT}
+        name={LIFECYCLES_INPUT_MOLDE}
         reducer={'moldesForm'}
         input={'lifecycles'}
       />
       <InputNumberComponent
         label={'Total Cycles'}
-        name={TCYCLES_INPUT}
+        name={TCYCLES_INPUT_MOLDE}
         reducer={'moldesForm'}
         input={'tcycles'}
         min="1"
       />
       <InputNumberComponent
         label={'Shot'}
-        name={SHOT_INPUT}
+        name={SHOT_INPUT_MOLDE}
         reducer={'moldesForm'}
         input={'shot'}
       />
       <InputNumberComponent
         label={'Quantity'}
-        name={QUANTITY_INPUT}
+        name={QUANTITY_INPUT_MOLDE}
         reducer={'moldesForm'}
         input={'quantity'}
       />

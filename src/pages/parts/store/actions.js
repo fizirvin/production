@@ -1,5 +1,5 @@
 import query from './queries'
-import { newPartNumber, updatePartNumber, removeModel } from './mutations'
+import { newModel, updatePartNumber, removeModel } from './mutations'
 import { fetchItems } from 'services'
 
 export const REQUEST_MODELS = 'REQUEST_MODELS'
@@ -8,6 +8,8 @@ export const FETCH_SUCCESS_MODELS = 'FETCH_SUCCESS_MODELS'
 export const ADD_SUCCESS_MODELS = 'ADD_SUCCESS_MODELS'
 export const UPDATE_SUCCESS_MODELS = 'UPDATE_SUCCESS_MODELS'
 export const REMOVE_SUCCESS_MODELS = 'REMOVE_SUCCESS_MODELS'
+
+export const CLEAN_MESSAGE_MODELS = 'CLEAN_MESSAGE_MODELS'
 
 const request = () => {
   return {
@@ -52,24 +54,25 @@ const removeSuccess = (id) => {
 
 export const fetchModels = () => async (dispatch) => {
   dispatch(request())
-  const { status, data } = await fetchItems('models', query)
+  const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data))
+    dispatch(fetchSuccess(data.models.items))
   }
 }
 
-export const addMolde = (input) => async (dispatch) => {
+export const addModel = (input) => async (dispatch) => {
   dispatch(request())
-  newPartNumber.variables = { input }
-  const { status, data } = await fetchItems('newPartNumber', newPartNumber)
+  newModel.variables = { input }
+  const { status, data } = await fetchItems(newModel)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(addSuccess(data))
+    const { newModel } = data
+    dispatch(addSuccess(newModel))
   }
 }
 

@@ -1,4 +1,3 @@
-import CancelComponent from './form/cancel'
 import Header from './header'
 import Icon from './header/icon'
 import Layout from './layout'
@@ -9,19 +8,22 @@ import PortalComponent from './portal'
 import FormComponent from './form'
 import InputTextComponent from './input'
 import InputNumberComponent from './input/number'
-import SubmitComponent from './form/submit'
+import InputRadioComponent from './input/radio'
+import Controls from './form/controls'
+import Message from './message'
 
 export {
-  CancelComponent,
+  Controls,
   Header,
   Icon,
   FormComponent,
   InputNumberComponent,
   InputTextComponent,
+  InputRadioComponent,
   Layout,
   Logo,
+  Message,
   Nav,
   PortalComponent,
-  SubmitComponent,
   TableComponent
 }

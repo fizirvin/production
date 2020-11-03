@@ -9,6 +9,8 @@ export const ADD_SUCCESS_MACHINES = 'ADD_SUCCESS_MACHINES'
 export const UPDATE_SUCCESS_MACHINES = 'UPDATE_SUCCESS_MACHINES'
 export const REMOVE_SUCCESS_MACHINES = 'REMOVE_SUCCESS_MACHNES'
 
+export const CLEAN_MESSAGE_MACHINES = 'CLEAN_MESSAGE_MACHINES'
+
 const request = () => {
   return {
     type: REQUEST_MACHINES
@@ -52,13 +54,13 @@ const removeSuccess = (id) => {
 
 export const fetchMachines = () => async (dispatch) => {
   dispatch(request())
-  const { status, data } = await fetchItems('machines', query)
+  const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
     return 'se ejecutó la acción pero falló'
   } else {
-    dispatch(fetchSuccess(data))
+    dispatch(fetchSuccess(data.machines.items))
     return 'se ejecutó con éxito'
   }
 }
@@ -66,12 +68,13 @@ export const fetchMachines = () => async (dispatch) => {
 export const addMachine = (input) => async (dispatch) => {
   dispatch(request())
   newMachine.variables = { input }
-  const { status, data } = await fetchItems('newMachine', newMachine)
+  const { status, data } = await fetchItems(newMachine)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(addSuccess(data))
+    const { newMachine } = data
+    dispatch(addSuccess(newMachine))
   }
 }
 

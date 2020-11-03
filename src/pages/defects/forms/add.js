@@ -1,5 +1,6 @@
 import React from 'react'
+import Portal from './portal'
 
 export default function AddDefect() {
-  return <div>add defect</div>
+  return <Portal />
 }

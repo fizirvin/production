@@ -1,5 +1,6 @@
 import React from 'react'
+import Portal from './portal'
 
 export default function AddModel() {
-  return <div>add model</div>
+  return <Portal />
 }

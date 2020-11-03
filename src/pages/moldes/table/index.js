@@ -3,7 +3,6 @@ import { TableComponent } from 'layouts'
 import { keys, header_keys, header_data } from './tdata'
 
 export default function Table({ items }) {
-  console.log('soy la tabla de moldes')
   return (
     <TableComponent
       items={items}

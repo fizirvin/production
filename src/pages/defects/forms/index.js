@@ -1,5 +1,6 @@
 import AddDefect from './add'
 import RemoveDefect from './remove'
-import UpdateDefect from './remove'
+import UpdateDefect from './update'
+import formReducer from './formReducer'
 
-export { AddDefect, RemoveDefect, UpdateDefect }
+export { AddDefect, formReducer, RemoveDefect, UpdateDefect }
