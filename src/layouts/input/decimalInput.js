@@ -1,12 +1,13 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { onInteger, onKey } from 'helpers'
+import { onDecimal, onKeyDecimal } from 'helpers'
 
-export default function ConnectedNumberInput({
+export default function ConnectedDecimalInput({
   reducer,
   input,
   name,
-  min = '0'
+  min = '0',
+  step = '.01'
 }) {
   const dispatch = useDispatch()
   const value = useSelector((state) => state[reducer][input])
@@ -16,12 +17,13 @@ export default function ConnectedNumberInput({
       type="number"
       name={name}
       value={value}
-      onKeyUp={(e) => onKey(e)}
+      onKeyUp={(e) => onKeyDecimal(e)}
       onChange={(e) => {
-        const integerNum = onInteger(e.target.value, value, e)
-        dispatch({ type: e.target.name, payload: integerNum })
+        const decimalNum = onDecimal(e.target.value)
+        dispatch({ type: e.target.name, payload: decimalNum })
       }}
       min={min}
+      step={step}
       required
     ></input>
   )

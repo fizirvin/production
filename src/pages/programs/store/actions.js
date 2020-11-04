@@ -9,6 +9,8 @@ export const ADD_SUCCESS_PROGRAMS = 'ADD_SUCCESS_PROGRAMS'
 export const UPDATE_SUCCESS_PROGRAMS = 'UPDATE_SUCCESS_PROGRAMS'
 export const REMOVE_SUCCESS_PROGRAMS = 'REMOVE_SUCCESS_PROGRAMS'
 
+export const CLEAN_MESSAGE_PROGRAMS = 'CLEAN_MESSAGE_PROGRAMS'
+
 const request = () => {
   return {
     type: REQUEST_PROGRAMS
@@ -64,12 +66,13 @@ export const fetchPrograms = () => async (dispatch) => {
 export const addProgram = (input) => async (dispatch) => {
   dispatch(request())
   newProgram.variables = { input }
-  const { status, data } = await fetchItems('newProgram', newProgram)
+  const { status, data } = await fetchItems(newProgram)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(addSuccess(data))
+    const { newProgram } = data
+    dispatch(addSuccess(newProgram))
   }
 }
 

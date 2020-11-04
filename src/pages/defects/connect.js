@@ -7,6 +7,7 @@ import Table from './table'
 const Connect = ({ defects, fetchDefects }) => {
   const { loading, message, items } = defects
 
+  console.log('soy defects')
   useEffect(() => {
     if (items.length === 0) {
       fetchDefects()

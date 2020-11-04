@@ -1,20 +1,22 @@
 import { combineReducers } from 'redux'
-import { reducer as defects, formReducer as defectsForm } from 'pages/defects'
-import { reducer as issues, formReducer as issuesForm } from 'pages/issues'
-import {
-  reducer as machines,
-  formReducer as machinesForm
-} from 'pages/machines'
-import {
-  reducer as materials,
-  formReducer as materialsForm
-} from 'pages/material'
-import { reducer as moldes, formReducer as moldesForm } from 'pages/moldes'
-import { reducer as models, formReducer as modelsForm } from 'pages/parts'
-import { reducer as programs } from 'pages/programs'
-import { reducer as shots } from 'pages/shots'
-import { reducer as profiles } from 'pages/workers'
-import { reducer as users } from 'pages/users'
+
+import defects from 'pages/defects/store/reducers'
+import defectsForm from 'pages/defects/forms/formReducer'
+import issues from 'pages/issues/store/reducers'
+import issuesForm from 'pages/issues/forms/formReducer'
+import machines from 'pages/machines/store/reducers'
+import machinesForm from 'pages/machines/forms/formReducer'
+import materials from 'pages/material/store/reducers'
+import materialsForm from 'pages/material/forms/formReducer'
+import moldes from 'pages/moldes/store/reducers'
+import moldesForm from 'pages/moldes/forms/formReducer'
+import models from 'pages/parts/store/reducers'
+import modelsForm from 'pages/parts/forms/formReducer'
+import programs from 'pages/programs/store/reducers'
+import programsForm from 'pages/programs/forms/formReducer'
+import shots from 'pages/shots/store/reducers'
+import profiles from 'pages/workers/store/reducers'
+import users from 'pages/users/store/reducers'
 import user from './userReducer'
 
 const reducers = combineReducers({
@@ -34,6 +36,7 @@ const reducers = combineReducers({
   machinesForm,
   materialsForm,
   modelsForm,
+  programsForm,
   user
 })
 

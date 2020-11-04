@@ -9,6 +9,8 @@ export const ADD_SUCCESS_SHOTS = 'ADD_SUCCESS_SHOTS'
 export const UPDATE_SUCCESS_SHOTS = 'UPDATE_SUCCESS_SHOTS'
 export const REMOVE_SUCCESS_SHOTS = 'REMOVE_SUCCESS_SHOTS'
 
+export const CLEAN_MESSAGE_SHOTS = 'CLEAN_MESSAGE_SHOTS'
+
 const request = () => {
   return {
     type: REQUEST_SHOTS
@@ -64,12 +66,13 @@ export const fetchShots = () => async (dispatch) => {
 export const addMaterial = (input) => async (dispatch) => {
   dispatch(request())
   newMaterial.variables = { input }
-  const { status, data } = await fetchItems('newMaterial', newMaterial)
+  const { status, data } = await fetchItems(newMaterial)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(addSuccess(data))
+    const { newMaterial } = data
+    dispatch(addSuccess(newMaterial))
   }
 }
 

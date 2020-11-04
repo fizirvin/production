@@ -2,7 +2,6 @@ import Calendar from './calendar'
 import Home from './home'
 import Production from './production'
 
-import Defects, { AddDefect, RemoveDefect, UpdateDefect } from './defects'
 import Issues, { AddIssue, RemoveIssue, UpdateIssue } from './issues'
 import Machines, { AddMachine, RemoveMachine, UpdateMachine } from './machines'
 import Materials, {
@@ -17,6 +16,8 @@ import Reports, { AddReport, RemoveReport, UpdateReport } from './reports'
 import Shots, { AddShot, RemoveShot, UpdateShot } from './shots'
 import Users, { AddUser, RemoveUser, UpdateUser } from './users'
 import Workers, { AddWorker, RemoveWorker, UpdateWorker } from './workers'
+
+import Defects, { AddDefect, RemoveDefect, UpdateDefect } from './defects'
 
 export {
   Calendar,

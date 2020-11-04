@@ -3,10 +3,10 @@ import { BrowserRouter, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './redux'
 import { Layout } from 'layouts'
-import useRoutes from 'hooks/routes'
+import { renderRoutes } from 'containers'
 
 export default function App() {
-  const { routes } = useRoutes()
+  const { routes } = renderRoutes()
 
   return (
     <Provider store={store}>

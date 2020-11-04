@@ -1,7 +1,7 @@
 import React from 'react'
 import { TD } from 'components'
 
-export default function useRows(items, keys, headers, active) {
+export default function renderRows(items, keys, headers, active) {
   const rows = items.map((item, index) => {
     const data = keys.map((key, ind) => {
       return (

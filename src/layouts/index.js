@@ -9,6 +9,8 @@ import FormComponent from './form'
 import InputTextComponent from './input'
 import InputNumberComponent from './input/number'
 import InputRadioComponent from './input/radio'
+import InputSelectComponent from './input/select'
+import InputDecimalComponent from './input/decimal'
 import Controls from './form/controls'
 import Message from './message'
 
@@ -20,6 +22,8 @@ export {
   InputNumberComponent,
   InputTextComponent,
   InputRadioComponent,
+  InputSelectComponent,
+  InputDecimalComponent,
   Layout,
   Logo,
   Message,

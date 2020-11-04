@@ -3,25 +3,14 @@ const newProgram = {
     NewProgram( $input: NewProgram ){
         newProgram(input: $input){
             _id
-            machineNumber {
-                _id
-                machineNumber
-                machineSerial
-            }
-            moldeNumber {
-                _id
-                moldeNumber
-                moldeSerial
-                cavities
-            }
-            partNumber {
-                _id
-                partNumber
-                partName
-            }
-            cycleTime
+            machine
+            molde
+            model
+            time
             cycles
             capacity
+            user
+            createdAt
         }
     }`
 }
