@@ -1,12 +1,14 @@
 import React from 'react'
-import ConnectedTextInput from './input'
+import ConnectedTextAreaInput from './textareaInput'
 
-export default function InputTextComponent({
+export default function InputTextAreaComponent({
   input,
   reducer,
   label,
   name,
-  length
+  length,
+  rows,
+  cols
 }) {
   return (
     <tr>
@@ -14,12 +16,14 @@ export default function InputTextComponent({
         <label>{label}: </label>
       </td>
       <td>
-        <ConnectedTextInput
+        <ConnectedTextAreaInput
           input={input}
           reducer={reducer}
           name={name}
           length={length}
-        ></ConnectedTextInput>
+          rows={rows}
+          cols={cols}
+        ></ConnectedTextAreaInput>
       </td>
     </tr>
   )

@@ -1,5 +1,5 @@
 import query from './queries'
-import { newMaterial, updateMaterial, removeMaterial } from './mutations'
+import { newShot, updateMaterial, removeMaterial } from './mutations'
 import { fetchItems } from 'services'
 
 export const REQUEST_SHOTS = 'REQUEST_SHOTS'
@@ -63,16 +63,16 @@ export const fetchShots = () => async (dispatch) => {
   }
 }
 
-export const addMaterial = (input) => async (dispatch) => {
+export const addShot = (input) => async (dispatch) => {
   dispatch(request())
-  newMaterial.variables = { input }
-  const { status, data } = await fetchItems(newMaterial)
+  newShot.variables = { input }
+  const { status, data } = await fetchItems(newShot)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    const { newMaterial } = data
-    dispatch(addSuccess(newMaterial))
+    const { newShot } = data
+    dispatch(addSuccess(newShot))
   }
 }
 

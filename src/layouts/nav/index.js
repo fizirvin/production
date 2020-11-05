@@ -79,6 +79,9 @@ export default function Nav() {
                 <Link to={'/production'}>Production Data</Link>
               </Item>
               <Item>
+                <Link to={'/shots/add'}>Add Shot</Link>
+              </Item>
+              <Item>
                 <Link to={'/reports/add'}>Add Report</Link>
               </Item>
             </SubMenu>

@@ -1,16 +1,18 @@
-const newMaterial = {
+const newShot = {
   query: `mutation
-    NewMaterial( $input: NewMaterial ){
-        newMaterial(input: $input){
+    NewShot( $input: NewShot ){
+        newShot(input: $input){
             _id
-            number
-            manufacturer
-            description
-            acronym
-            identification
-            type
-            unit
-            color
+            molde
+            date
+            shift
+            quantity
+            end
+            shiftEnd
+            active
+            comments
+            user
+            createdAt
         }
     }`
 }
@@ -49,4 +51,4 @@ const removeMaterial = {
     }`
 }
 
-export { newMaterial, updateMaterial, removeMaterial }
+export { newShot, updateMaterial, removeMaterial }

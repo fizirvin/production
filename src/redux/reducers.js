@@ -15,6 +15,7 @@ import modelsForm from 'pages/parts/forms/formReducer'
 import programs from 'pages/programs/store/reducers'
 import programsForm from 'pages/programs/forms/formReducer'
 import shots from 'pages/shots/store/reducers'
+import shotsForm from 'pages/shots/forms/formReducer'
 import profiles from 'pages/workers/store/reducers'
 import users from 'pages/users/store/reducers'
 import user from './userReducer'
@@ -37,6 +38,7 @@ const reducers = combineReducers({
   materialsForm,
   modelsForm,
   programsForm,
+  shotsForm,
   user
 })
 

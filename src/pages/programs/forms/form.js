@@ -73,7 +73,6 @@ const Form = ({
         label={'Machine Number'}
         name={MACHINE_INPUT_PROGRAM}
         k={'number'}
-        list={'machines'}
         items={machines}
         loading={machinesLoading}
       />
@@ -84,7 +83,6 @@ const Form = ({
         label={'Mold Number'}
         name={MOLDE_INPUT_MPROGRAM}
         k={'number'}
-        list={'moldes'}
         items={moldes}
         loading={moldesLoading}
       />
@@ -94,7 +92,6 @@ const Form = ({
         label={'Model Name'}
         name={MODEL_INPUT_PROGRAM}
         k={'name'}
-        list={'models'}
         items={models}
         loading={modelsLoading}
       />

@@ -4,9 +4,9 @@ import { fetchMoldes } from '../../moldes/store/actions'
 
 import {
   FormComponent,
-  InputNumberComponent,
-  InputDecimalComponent,
+  InputDateComponent,
   InputSelectComponent,
+  InputTextAreaComponent,
   Controls
 } from 'layouts'
 
@@ -25,6 +25,11 @@ const Form = ({ onSubmit, moldes, fetchMoldes, moldesLoading }) => {
     }
     return
   }, [moldes, fetchMoldes])
+
+  const shifts = [
+    { _id: '1', shift: '1' },
+    { _id: '2', shift: '2' }
+  ]
   return (
     <FormComponent
       title={'Add New Molde Shot'}
@@ -45,22 +50,30 @@ const Form = ({ onSubmit, moldes, fetchMoldes, moldesLoading }) => {
         label={'Mold Number'}
         name={MOLDE_INPUT_SHOT}
         k={'number'}
-        list={'moldes'}
         items={moldes}
         loading={moldesLoading}
       />
-
-      <InputNumberComponent
-        label={'Capacity pcs / hr'}
-        name={CAPACITY_INPUT_PROGRAM}
-        reducer={'programsForm'}
-        input={'capacity'}
+      <InputDateComponent
+        reducer={'shotsForm'}
+        input={'date'}
+        label={'Start Date'}
+        name={DATE_INPUT_SHOT}
       />
-      <InputNumberComponent
-        label={'Capacity pcs / hr'}
-        name={CYCLES_INPUT_PROGRAM}
-        reducer={'programsForm'}
-        input={'cycles'}
+      <InputSelectComponent
+        reducer={'shotsForm'}
+        input={'shift'}
+        label={'Start Shift'}
+        name={SHIFT_INPUT_SHOT}
+        k={'shift'}
+        items={shifts}
+        loading={moldesLoading}
+      />
+      <InputTextAreaComponent
+        reducer={'shotsForm'}
+        input={'comments'}
+        label={'Comments'}
+        name={COMMENTS_INPUT_SHOT}
+        length={'60'}
       />
     </FormComponent>
   )
