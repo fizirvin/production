@@ -9,7 +9,7 @@ export default function InputSelectComponent({
   name,
   k,
   items,
-  loading
+  loading = false
 }) {
   return (
     <tr>

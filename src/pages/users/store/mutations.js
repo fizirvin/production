@@ -3,12 +3,10 @@ const newUser = {
     NewUser($input: NewUser){
         newUser(input: $input){
             _id
-            shortCat
-            fullUat
-            fullCat
             active
             level
             name
+            createdAt
         }
     }`
 }

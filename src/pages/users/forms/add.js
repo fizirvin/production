@@ -1,5 +1,6 @@
 import React from 'react'
+import Portal from './portal'
 
 export default function AddUser() {
-  return <div>add user</div>
+  return <Portal />
 }

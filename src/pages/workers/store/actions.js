@@ -1,5 +1,5 @@
 import query from './queries'
-import { newMaterial, updateMaterial, removeMaterial } from './mutations'
+import { newProfile, updateMaterial, removeMaterial } from './mutations'
 import { fetchItems } from 'services'
 
 export const REQUEST_PROFILES = 'REQUEST_PROFILES'
@@ -8,6 +8,7 @@ export const FETCH_SUCCESS_PROFILES = 'FETCH_SUCCESS_PROFILES'
 export const ADD_SUCCESS_PROFILES = 'ADD_SUCCESS_PROFILES'
 export const UPDATE_SUCCESS_PROFILES = 'UPDATE_SUCCESS_PROFILES'
 export const REMOVE_SUCCESS_PROFILES = 'REMOVE_SUCCESS_PROFILES'
+export const CLEAN_MESSAGE_PROFILES = 'CLEAN_MESSAGE_PROFILES'
 
 const request = () => {
   return {
@@ -61,15 +62,16 @@ export const fetchProfiles = () => async (dispatch) => {
   }
 }
 
-export const addMaterial = (input) => async (dispatch) => {
+export const addProfile = (input) => async (dispatch) => {
   dispatch(request())
-  newMaterial.variables = { input }
-  const { status, data } = await fetchItems('newMaterial', newMaterial)
+  newProfile.variables = { input }
+  const { status, data } = await fetchItems(newProfile)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(addSuccess(data))
+    const { newProfile } = data
+    dispatch(addSuccess(newProfile))
   }
 }
 

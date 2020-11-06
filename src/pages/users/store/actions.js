@@ -8,6 +8,7 @@ export const FETCH_SUCCESS_USERS = 'FETCH_SUCCESS_USERS'
 export const ADD_SUCCESS_USERS = 'ADD_SUCCESS_USERS'
 export const UPDATE_SUCCESS_USERS = 'UPDATE_SUCCESS_USERS'
 export const REMOVE_SUCCESS_USERS = 'REMOVE_SUCCESS_USERS'
+export const CLEAN_MESSAGE_USERS = 'CLEAN_MESSAGE_USERS'
 
 const request = () => {
   return {
@@ -64,12 +65,13 @@ export const fetchUsers = () => async (dispatch) => {
 export const addUser = (input) => async (dispatch) => {
   dispatch(request())
   newUser.variables = { input }
-  const { status, data } = await fetchItems('newUser', newUser)
+  const { status, data } = await fetchItems(newUser)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(addSuccess(data))
+    const { newUser } = data
+    dispatch(addSuccess(newUser))
   }
 }
 
