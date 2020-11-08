@@ -10,6 +10,7 @@ export default function Table({ items }) {
       header_data={header_data}
       header_keys={header_keys}
       active={'active'}
+      to={'users'}
     />
   )
 }

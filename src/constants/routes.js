@@ -26,7 +26,7 @@ export const ADD_SHOT = '/shots/add'
 export const ADD_USER = '/users/add'
 
 export const UPDATE_DEFECT = '/defects/update/:id'
-export const UPDATE_EMPLOYEE = '/employess/update/:id'
+export const UPDATE_EMPLOYEE = '/employees/update/:id'
 export const UPDATE_ISSUE = '/issues/update/:id'
 export const UPDATE_MATERIAL = '/materials/update/:id'
 export const UPDATE_MACHINE = '/machines/update/:id'

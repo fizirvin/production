@@ -1,7 +1,12 @@
 import React from 'react'
 import { TD } from 'components'
+import { Link } from 'react-router-dom'
 
-export default function renderRows(items, keys, headers, active) {
+export default function renderRows(items, keys, headers, active, to) {
+  const selectItem = (i) => {
+    console.log(i)
+  }
+
   const rows = items.map((item, index) => {
     const data = keys.map((key, ind) => {
       return (
@@ -20,7 +25,14 @@ export default function renderRows(items, keys, headers, active) {
             <input type="checkbox" readOnly checked={item[active]}></input>
           </TD>
         )}
-        <TD headers={'add'}>button</TD>
+        <TD headers={'add'}>
+          <Link
+            to={`/${to}/update/${item._id}`}
+            onClick={() => selectItem(item)}
+          >
+            <button>Update</button>
+          </Link>
+        </TD>
       </tr>
     )
   })

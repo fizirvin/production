@@ -41,7 +41,7 @@ const formReducer = (state = initialState, action) => {
     case GENDER_INPUT_PROFILE:
       return {
         ...state,
-        lastname: action.payload
+        gender: action.payload
       }
     case ENTRY_INPUT_PROFILE:
       return {

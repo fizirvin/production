@@ -15,7 +15,7 @@ import {
 } from './formActions'
 
 export default function Form({ onSubmit }) {
-  const shifts = [
+  const levels = [
     { _id: '1', level: '1' },
     { _id: '2', level: '2' },
     { _id: '3', level: '3' }
@@ -52,7 +52,7 @@ export default function Form({ onSubmit }) {
         label={'Level'}
         name={LEVEL_INPUT_USER}
         k={'level'}
-        items={shifts}
+        items={levels}
       />
     </FormComponent>
   )

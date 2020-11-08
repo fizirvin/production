@@ -9,6 +9,7 @@ export default function Table({ items }) {
       keys={keys}
       header_data={header_data}
       header_keys={header_keys}
+      to={'materials'}
     />
   )
 }

@@ -8,7 +8,9 @@ export default function TableComponent({
   keys,
   header_keys,
   header_data,
-  active
+  active,
+  to,
+  name
 }) {
   return (
     <Table>
@@ -18,6 +20,8 @@ export default function TableComponent({
         keys={keys}
         header_keys={header_keys}
         active={active}
+        to={to}
+        name={name}
       />
     </Table>
   )

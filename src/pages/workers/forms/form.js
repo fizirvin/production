@@ -22,19 +22,19 @@ import {
 
 export default function Form({ onSubmit }) {
   const teams = [
-    { _id: '1', team: 'varias' },
-    { _id: '2', team: 'amealco' }
+    { _id: 'varias', team: 'varias' },
+    { _id: 'amealco', team: 'amealco' }
   ]
   const genders = [
-    { _id: '1', gender: 'female' },
-    { _id: '2', gender: 'male' }
+    { _id: 'female', gender: 'female' },
+    { _id: 'male', gender: 'male' }
   ]
-  const depts = [{ _id: '1', dept: 'Production' }]
-  const areas = [{ _id: '1', area: 'Injection' }]
+  const depts = [{ _id: 'Production', dept: 'Production' }]
+  const areas = [{ _id: 'Injection', area: 'Injection' }]
   const positions = [
-    { _id: '1', pos: 'Operator' },
-    { _id: '2', pos: 'Inspector' },
-    { _id: '3', pos: 'Leader' }
+    { _id: 'Operator', pos: 'Operator' },
+    { _id: 'Inspector', pos: 'Inspector' },
+    { _id: 'Leader', pos: 'Leader' }
   ]
 
   return (
