@@ -1,6 +1,7 @@
 import React from 'react'
 import { TableComponent } from 'layouts'
 import { keys, header_keys, header_data } from './tdata'
+import { SELECT_INPUTS_MACHINE } from '../forms/formActions'
 
 export default function Table({ items }) {
   return (
@@ -10,6 +11,7 @@ export default function Table({ items }) {
       header_data={header_data}
       header_keys={header_keys}
       to={'machines'}
+      name={SELECT_INPUTS_MACHINE}
     />
   )
 }

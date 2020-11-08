@@ -1,5 +1,6 @@
 import React from 'react'
+import Portal from './portal'
 
 export default function UpdateProgram() {
-  return <div>update program</div>
+  return <Portal edit />
 }

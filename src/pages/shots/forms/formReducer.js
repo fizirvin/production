@@ -3,7 +3,8 @@ import {
   DATE_INPUT_SHOT,
   SHIFT_INPUT_SHOT,
   COMMENTS_INPUT_SHOT,
-  CLEAN_INPUTS_SHOT
+  CLEAN_INPUTS_SHOT,
+  SELECT_INPUTS_SHOT
 } from './formActions'
 
 const initialState = {
@@ -42,6 +43,8 @@ const formReducer = (state = initialState, action) => {
         shift: '',
         comments: ''
       }
+    case SELECT_INPUTS_SHOT:
+      return action.payload
     default:
       return state
   }

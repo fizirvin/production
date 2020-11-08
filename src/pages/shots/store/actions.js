@@ -76,7 +76,7 @@ export const addShot = (input) => async (dispatch) => {
   }
 }
 
-export const modifyMaterial = (_id, input) => async (dispatch) => {
+export const modifyShot = (_id, input) => async (dispatch) => {
   dispatch(request())
   updateMaterial.variables = { _id, input }
   const { status, data } = await fetchItems('updateMaterial', updateMaterial)

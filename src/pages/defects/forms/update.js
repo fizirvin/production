@@ -1,5 +1,6 @@
 import React from 'react'
+import Portal from './portal'
 
 export default function UpdateDefect() {
-  return <div>update defect</div>
+  return <Portal edit />
 }

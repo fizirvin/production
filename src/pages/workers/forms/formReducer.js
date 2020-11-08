@@ -1,3 +1,4 @@
+import { SELECT_INPUTS_PROGRAM } from 'pages/programs/forms/formActions'
 import {
   TEAM_INPUT_PROFILE,
   FIRSTNAME_INPUT_PROFILE,
@@ -7,7 +8,8 @@ import {
   DEPARTMENT_INPUT_PROFILE,
   AREA_INPUT_PROFILE,
   POSITION_INPUT_PROFILE,
-  CLEAN_INPUTS_PROFILE
+  CLEAN_INPUTS_PROFILE,
+  SELECT_INPUTS_PROFILE
 } from './formActions'
 
 const initialState = {
@@ -65,6 +67,8 @@ const formReducer = (state = initialState, action) => {
       }
     case CLEAN_INPUTS_PROFILE:
       return initialState
+    case SELECT_INPUTS_PROFILE:
+      return action.payload
     default:
       return state
   }

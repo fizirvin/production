@@ -13,10 +13,10 @@ import {
   CLEAN_INPUTS_DEFECT
 } from './formActions'
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit, onEdit, edit }) {
   return (
     <FormComponent
-      title={'Add New Injection Defect'}
+      title={edit ? 'Update Injection Defect' : 'Add New Injection Defect'}
       to={'/defects'}
       controls={
         <Controls
@@ -24,7 +24,7 @@ export default function Form({ onSubmit }) {
           load={'defects'}
           to="/defects"
           name={CLEAN_INPUTS_DEFECT}
-          onSubmit={onSubmit}
+          onSubmit={edit ? onEdit : onSubmit}
         />
       }
     >

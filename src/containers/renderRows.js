@@ -1,10 +1,17 @@
 import React from 'react'
 import { TD } from 'components'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
-export default function renderRows(items, keys, headers, active, to) {
-  const selectItem = (i) => {
-    console.log(i)
+export default function RenderRows(items, keys, headers, active, to, name) {
+  const dispatch = useDispatch()
+  const onSelect = (i) => {
+    const payload = { ...i }
+    if (active) {
+      payload[active] = payload[active].toString()
+    }
+
+    dispatch({ type: name, payload: i })
   }
 
   const rows = items.map((item, index) => {
@@ -26,10 +33,7 @@ export default function renderRows(items, keys, headers, active, to) {
           </TD>
         )}
         <TD headers={'add'}>
-          <Link
-            to={`/${to}/update/${item._id}`}
-            onClick={() => selectItem(item)}
-          >
+          <Link to={`/${to}/update/${item._id}`} onClick={() => onSelect(item)}>
             <button>Update</button>
           </Link>
         </TD>

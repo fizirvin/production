@@ -6,7 +6,8 @@ import {
   TCYCLES_INPUT_MOLDE,
   SHOT_INPUT_MOLDE,
   QUANTITY_INPUT_MOLDE,
-  CLEAN_INPUTS_MOLDE
+  CLEAN_INPUTS_MOLDE,
+  SELECT_INPUTS_MOLDE
 } from './formActions'
 
 const initialState = {
@@ -66,6 +67,8 @@ const formReducer = (state = initialState, action) => {
         shot: 0,
         quantity: 0
       }
+    case SELECT_INPUTS_MOLDE:
+      return action.payload
     default:
       return state
   }

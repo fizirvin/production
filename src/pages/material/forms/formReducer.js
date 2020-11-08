@@ -7,7 +7,8 @@ import {
   IDENTIFICATION_INPUT_MATERIAL,
   TYPE_INPUT_MATERIAL,
   UNIT_INPUT_MATERIAL,
-  CLEAN_INPUTS_MATERIAL
+  CLEAN_INPUTS_MATERIAL,
+  SELECT_INPUTS_MATERIAL
 } from './formActions'
 
 const initialState = {
@@ -74,6 +75,8 @@ const formReducer = (state = initialState, action) => {
         type: '',
         unit: ''
       }
+    case SELECT_INPUTS_MATERIAL:
+      return action.payload
     default:
       return state
   }

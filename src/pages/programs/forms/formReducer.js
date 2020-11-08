@@ -5,7 +5,8 @@ import {
   TIME_INPUT_PROGRAM,
   CAPACITY_INPUT_PROGRAM,
   CYCLES_INPUT_PROGRAM,
-  CLEAN_INPUTS_PROGRAM
+  CLEAN_INPUTS_PROGRAM,
+  SELECT_INPUTS_PROGRAM
 } from './formActions'
 
 const initialState = {
@@ -58,6 +59,8 @@ const formReducer = (state = initialState, action) => {
         capacity: 0,
         cycles: 0
       }
+    case SELECT_INPUTS_PROGRAM:
+      return action.payload
     default:
       return state
   }

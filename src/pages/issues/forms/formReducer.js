@@ -1,7 +1,8 @@
 import {
   NAME_INPUT_ISSUE,
   CODE_INPUT_ISSUE,
-  CLEAN_INPUTS_ISSUE
+  CLEAN_INPUTS_ISSUE,
+  SELECT_INPUTS_ISSUE
 } from './formActions'
 
 const initialState = {
@@ -26,6 +27,8 @@ const formReducer = (state = initialState, action) => {
         name: '',
         code: ''
       }
+    case SELECT_INPUTS_ISSUE:
+      return action.payload
     default:
       return state
   }

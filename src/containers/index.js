@@ -1,5 +1,5 @@
 import renderOptions from './renderOptions'
-import renderRows from './renderRows'
+import RenderRows from './renderRows'
 import renderRoutes from './routes'
 
-export { renderOptions, renderRows, renderRoutes }
+export { renderOptions, RenderRows, renderRoutes }

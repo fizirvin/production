@@ -2,7 +2,8 @@ import {
   NAME_INPUT_DEFECT,
   CODE_INPUT_DEFECT,
   INJECTION_INPUT_DEFECT,
-  CLEAN_INPUTS_DEFECT
+  CLEAN_INPUTS_DEFECT,
+  SELECT_INPUTS_DEFECT
 } from './formActions'
 
 const initialState = {
@@ -34,6 +35,8 @@ const formReducer = (state = initialState, action) => {
         code: '',
         injection: ''
       }
+    case SELECT_INPUTS_DEFECT:
+      return action.payload
     default:
       return state
   }

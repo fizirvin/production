@@ -2,7 +2,8 @@ import {
   NUMBER_INPUT_MODEL,
   NAME_INPUT_MODEL,
   FAMILY_INPUT_MODEL,
-  CLEAN_INPUTS_MODEL
+  CLEAN_INPUTS_MODEL,
+  SELECT_INPUTS_MODEL
 } from './formActions'
 
 const initialState = {
@@ -34,6 +35,8 @@ const formReducer = (state = initialState, action) => {
         name: '',
         family: ''
       }
+    case SELECT_INPUTS_MODEL:
+      return action.payload
     default:
       return state
   }

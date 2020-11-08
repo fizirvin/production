@@ -75,7 +75,7 @@ export const addProfile = (input) => async (dispatch) => {
   }
 }
 
-export const modifyMaterial = (_id, input) => async (dispatch) => {
+export const modifyProfile = (_id, input) => async (dispatch) => {
   dispatch(request())
   updateMaterial.variables = { _id, input }
   const { status, data } = await fetchItems('updateMaterial', updateMaterial)

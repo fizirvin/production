@@ -1,5 +1,6 @@
 import React from 'react'
+import Portal from './portal'
 
 export default function UpdateMaterial() {
-  return <div>update material</div>
+  return <Portal edit />
 }

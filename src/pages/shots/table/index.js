@@ -1,6 +1,7 @@
 import React from 'react'
 import { TableComponent } from 'layouts'
 import { keys, header_keys, header_data } from './tdata'
+import { SELECT_INPUTS_SHOT } from '../forms/formActions'
 
 export default function Table({ items }) {
   return (
@@ -11,6 +12,7 @@ export default function Table({ items }) {
       header_keys={header_keys}
       active={'active'}
       to={'shots'}
+      name={SELECT_INPUTS_SHOT}
     />
   )
 }

@@ -2,7 +2,8 @@ import {
   NAME_INPUT_USER,
   PASSWORD_INPUT_USER,
   LEVEL_INPUT_USER,
-  CLEAN_INPUTS_USER
+  CLEAN_INPUTS_USER,
+  SELECT_INPUTS_USER
 } from './formActions'
 
 const initialState = {
@@ -34,6 +35,8 @@ const formReducer = (state = initialState, action) => {
         password: '',
         level: ''
       }
+    case SELECT_INPUTS_USER:
+      return action.payload
     default:
       return state
   }

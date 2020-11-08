@@ -1,5 +1,6 @@
 import React from 'react'
+import Portal from './portal'
 
 export default function UpdateMolde() {
-  return <div>update molde</div>
+  return <Portal edit />
 }

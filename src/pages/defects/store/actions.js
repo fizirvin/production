@@ -79,12 +79,13 @@ export const addDefect = (input) => async (dispatch) => {
 export const modifyDefect = (_id, input) => async (dispatch) => {
   dispatch(request())
   updateDefect.variables = { _id, input }
-  const { status, data } = await fetchItems('updateDefect', updateDefect)
+  const { status, data } = await fetchItems(updateDefect)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(updateSuccess(data))
+    const { updateDefect } = data
+    dispatch(updateSuccess(updateDefect))
   }
 }
 

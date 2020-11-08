@@ -3,7 +3,8 @@ import {
   SERIAL_INPUT_MACHINE,
   CLOSING_INPUT_MACHINE,
   SPINDLE_INPUT_MACHINE,
-  CLEAN_INPUTS_MACHINE
+  CLEAN_INPUTS_MACHINE,
+  SELECT_INPUTS_MACHINE
 } from './formActions'
 
 const initialState = {
@@ -42,6 +43,8 @@ const formReducer = (state = initialState, action) => {
         closingForce: 0,
         spindleDiameter: 0
       }
+    case SELECT_INPUTS_MACHINE:
+      return action.payload
     default:
       return state
   }
