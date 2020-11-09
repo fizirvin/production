@@ -5,13 +5,18 @@ import {
   UPDATE_SUCCESS_DEFECTS,
   REMOVE_SUCCESS_DEFECTS,
   CLEAN_MESSAGE_DEFECTS,
-  ADD_SUCCESS_DEFECTS
+  ADD_SUCCESS_DEFECTS,
+  PAGE_TOTAL_DEFECTS,
+  ADD_TOTAL_DEFECTS
 } from './actions'
 
 const initialState = {
   message: '',
   loading: false,
-  items: []
+  items: [],
+  total: 0,
+  page: 1,
+  add: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,14 +34,17 @@ const reducer = (state = initialState, action) => {
       }
     case FETCH_SUCCESS_DEFECTS:
       return {
+        ...state,
         message: '',
         loading: false,
-        items: action.payload
+        items: [...state.items, ...action.payload.items],
+        total: action.payload.total
       }
     case ADD_SUCCESS_DEFECTS:
       const newItem = action.payload
       const items = [...state.items, newItem]
       return {
+        ...state,
         message: 'New Injection Defect added correctly',
         loading: false,
         items: items
@@ -46,6 +54,7 @@ const reducer = (state = initialState, action) => {
       let updatedItems = [...state.items]
       updatedItems[updatedItems.findIndex((el) => el._id === item._id)] = item
       return {
+        ...state,
         message: '',
         loading: false,
         items: updatedItems
@@ -55,6 +64,7 @@ const reducer = (state = initialState, action) => {
         (items) => items._id !== action.payload
       )
       return {
+        ...state,
         message: '',
         loading: false,
         items: removeItems
@@ -63,6 +73,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         message: ''
+      }
+    case PAGE_TOTAL_DEFECTS:
+      return {
+        ...state,
+        page: action.payload
+      }
+    case ADD_TOTAL_DEFECTS:
+      return {
+        ...state,
+        add: state.add++
       }
     default:
       return state

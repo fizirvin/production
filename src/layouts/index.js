@@ -15,6 +15,7 @@ import InputDateComponent from './input/date'
 import InputTextAreaComponent from './input/textarea'
 import Controls from './form/controls'
 import Message from './message'
+import ControlComponent from './control'
 
 export {
   Controls,
@@ -28,6 +29,7 @@ export {
   InputDecimalComponent,
   InputDateComponent,
   InputTextAreaComponent,
+  ControlComponent,
   Layout,
   Logo,
   Message,

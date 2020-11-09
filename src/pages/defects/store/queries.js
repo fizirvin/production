@@ -1,6 +1,7 @@
 const query = {
-  query: `query {
-        defects{
+  query: `query
+    Defects( $page: Int, $add: Int ){
+        defects( page:$page, add:$add ){
             total
             items{
                 _id
@@ -12,6 +13,7 @@ const query = {
                 updatedAt
             }
         }
+    
     }`
 }
 

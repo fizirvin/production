@@ -10,6 +10,8 @@ export const UPDATE_SUCCESS_DEFECTS = 'UPDATE_SUCCESS_DEFECTS'
 export const REMOVE_SUCCESS_DEFECTS = 'REMOVE_SUCCESS_DEFECTS'
 
 export const CLEAN_MESSAGE_DEFECTS = 'CLEAN_MESSAGE_DEFECTS'
+export const PAGE_TOTAL_DEFECTS = 'PAGE_DEFECTS'
+export const ADD_TOTAL_DEFECTS = 'ADD_TOTAL_DEFECTS'
 
 const request = () => {
   return {
@@ -52,14 +54,15 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchDefects = () => async (dispatch) => {
+export const fetchDefects = (page = 1) => async (dispatch) => {
   dispatch(request())
+  query.variables = { page }
   const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data.defects.items))
+    dispatch(fetchSuccess(data.defects))
   }
 }
 
