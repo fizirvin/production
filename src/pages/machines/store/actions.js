@@ -10,6 +10,8 @@ export const UPDATE_SUCCESS_MACHINES = 'UPDATE_SUCCESS_MACHINES'
 export const REMOVE_SUCCESS_MACHINES = 'REMOVE_SUCCESS_MACHNES'
 
 export const CLEAN_MESSAGE_MACHINES = 'CLEAN_MESSAGE_MACHINES'
+export const PAGE_TOTAL_MACHINES = 'PAGE_MACHINES'
+export const ADD_TOTAL_MACHINES = 'ADD_TOTAL_MACHINES'
 
 const request = () => {
   return {
@@ -52,16 +54,18 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchMachines = () => async (dispatch) => {
+export const fetchMachines = (page) => async (dispatch) => {
   dispatch(request())
+  query.variables = { page }
   const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
-    return 'se ejecutó la acción pero falló'
   } else {
-    dispatch(fetchSuccess(data.machines.items))
-    return 'se ejecutó con éxito'
+    if (page) {
+      dispatch({ type: PAGE_TOTAL_MACHINES, payload: page })
+    }
+    dispatch(fetchSuccess(data.machines))
   }
 }
 

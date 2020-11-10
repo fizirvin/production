@@ -9,6 +9,8 @@ export const ADD_SUCCESS_USERS = 'ADD_SUCCESS_USERS'
 export const UPDATE_SUCCESS_USERS = 'UPDATE_SUCCESS_USERS'
 export const REMOVE_SUCCESS_USERS = 'REMOVE_SUCCESS_USERS'
 export const CLEAN_MESSAGE_USERS = 'CLEAN_MESSAGE_USERS'
+export const PAGE_TOTAL_USERS = 'PAGE_USERS'
+export const ADD_TOTAL_USERS = 'ADD_TOTAL_USERS'
 
 const request = () => {
   return {
@@ -51,14 +53,18 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchUsers = () => async (dispatch) => {
+export const fetchUsers = (page) => async (dispatch) => {
   dispatch(request())
+  query.variables = { page }
   const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data.users.items))
+    if (page) {
+      dispatch({ type: PAGE_TOTAL_USERS, payload: page })
+    }
+    dispatch(fetchSuccess(data.users))
   }
 }
 

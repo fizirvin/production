@@ -5,13 +5,18 @@ import {
   UPDATE_SUCCESS_MATERIALS,
   REMOVE_SUCCESS_MATERIALS,
   ADD_SUCCESS_MATERIALS,
-  CLEAN_MESSAGE_MATERIALS
+  CLEAN_MESSAGE_MATERIALS,
+  PAGE_TOTAL_MATERIALS,
+  ADD_TOTAL_MATERIALS
 } from './actions'
 
 const initialState = {
   message: '',
   loading: false,
-  items: []
+  items: [],
+  total: 0,
+  page: 1,
+  add: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,9 +34,11 @@ const reducer = (state = initialState, action) => {
       }
     case FETCH_SUCCESS_MATERIALS:
       return {
+        ...state,
         message: '',
         loading: false,
-        items: action.payload
+        items: [...state.items, ...action.payload.items],
+        total: action.payload.total
       }
     case ADD_SUCCESS_MATERIALS:
       const newItem = action.payload
@@ -63,6 +70,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         message: ''
+      }
+    case PAGE_TOTAL_MATERIALS:
+      return {
+        ...state,
+        page: action.payload
+      }
+    case ADD_TOTAL_MATERIALS:
+      return {
+        ...state,
+        add: action.payload
       }
     default:
       return state

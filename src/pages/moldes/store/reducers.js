@@ -5,13 +5,18 @@ import {
   ADD_SUCCESS_MOLDES,
   UPDATE_SUCCESS_MOLDES,
   REMOVE_SUCCESS_MOLDES,
-  CLEAN_MESSAGE_MOLDES
+  CLEAN_MESSAGE_MOLDES,
+  PAGE_TOTAL_MOLDES,
+  ADD_TOTAL_MOLDES
 } from './actions'
 
 const initialState = {
   message: '',
   loading: false,
-  items: []
+  items: [],
+  total: 0,
+  page: 1,
+  add: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,9 +34,11 @@ const reducer = (state = initialState, action) => {
       }
     case FETCH_SUCCESS_MOLDES:
       return {
+        ...state,
         message: '',
         loading: false,
-        items: action.payload
+        items: [...state.items, ...action.payload.items],
+        total: action.payload.total
       }
     case ADD_SUCCESS_MOLDES:
       const newItem = action.payload
@@ -63,6 +70,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         message: ''
+      }
+    case PAGE_TOTAL_MOLDES:
+      return {
+        ...state,
+        page: action.payload
+      }
+    case ADD_TOTAL_MOLDES:
+      return {
+        ...state,
+        add: action.payload
       }
     default:
       return state

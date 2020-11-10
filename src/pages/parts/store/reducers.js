@@ -5,7 +5,9 @@ import {
   UPDATE_SUCCESS_MODELS,
   REMOVE_SUCCESS_MODELS,
   ADD_SUCCESS_MODELS,
-  CLEAN_MESSAGE_MODELS
+  CLEAN_MESSAGE_MODELS,
+  PAGE_TOTAL_MODELS,
+  ADD_TOTAL_MODELS
 } from './actions'
 
 const initialState = {
@@ -29,9 +31,11 @@ const reducer = (state = initialState, action) => {
       }
     case FETCH_SUCCESS_MODELS:
       return {
+        ...state,
         message: '',
         loading: false,
-        items: action.payload
+        items: [...state.items, ...action.payload.items],
+        total: action.payload.total
       }
     case ADD_SUCCESS_MODELS:
       const newItem = action.payload
@@ -63,6 +67,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         message: ''
+      }
+    case PAGE_TOTAL_MODELS:
+      return {
+        ...state,
+        page: action.payload
+      }
+    case ADD_TOTAL_MODELS:
+      return {
+        ...state,
+        add: action.payload
       }
     default:
       return state

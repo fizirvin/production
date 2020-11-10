@@ -82,7 +82,7 @@ const reducer = (state = initialState, action) => {
     case ADD_TOTAL_DEFECTS:
       return {
         ...state,
-        add: state.add++
+        add: action.payload
       }
     default:
       return state

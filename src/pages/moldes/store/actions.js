@@ -10,6 +10,8 @@ export const UPDATE_SUCCESS_MOLDES = 'UPDATE_SUCCESS_MOLDES'
 export const REMOVE_SUCCESS_MOLDES = 'REMOVE_SUCCESS_MOLDES'
 
 export const CLEAN_MESSAGE_MOLDES = 'CLEAN_MESSAGE_MOLDES'
+export const PAGE_TOTAL_MOLDES = 'PAGE_MOLDES'
+export const ADD_TOTAL_MOLDES = 'ADD_TOTAL_MOLDES'
 
 const request = () => {
   return {
@@ -52,14 +54,18 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchMoldes = () => async (dispatch) => {
+export const fetchMoldes = (page) => async (dispatch) => {
   dispatch(request())
+  query.variables = { page }
   const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data.moldes.items))
+    if (page) {
+      dispatch({ type: PAGE_TOTAL_MOLDES, payload: page })
+    }
+    dispatch(fetchSuccess(data.moldes))
   }
 }
 

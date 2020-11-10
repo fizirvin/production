@@ -5,13 +5,18 @@ import {
   UPDATE_SUCCESS_PROGRAMS,
   REMOVE_SUCCESS_PROGRAMS,
   ADD_SUCCESS_PROGRAMS,
-  CLEAN_MESSAGE_PROGRAMS
+  CLEAN_MESSAGE_PROGRAMS,
+  PAGE_TOTAL_PROGRAMS,
+  ADD_TOTAL_PROGRAMS
 } from './actions'
 
 const initialState = {
   message: '',
   loading: false,
-  items: []
+  items: [],
+  total: 0,
+  page: 1,
+  add: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,9 +34,11 @@ const reducer = (state = initialState, action) => {
       }
     case FETCH_SUCCESS_PROGRAMS:
       return {
+        ...state,
         message: '',
         loading: false,
-        items: action.payload
+        items: [...state.items, ...action.payload.items],
+        total: action.payload.total
       }
     case ADD_SUCCESS_PROGRAMS:
       const newItem = action.payload
@@ -63,6 +70,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         message: ''
+      }
+    case PAGE_TOTAL_PROGRAMS:
+      return {
+        ...state,
+        page: action.payload
+      }
+    case ADD_TOTAL_PROGRAMS:
+      return {
+        ...state,
+        add: action.payload
       }
     default:
       return state

@@ -10,6 +10,8 @@ export const UPDATE_SUCCESS_SHOTS = 'UPDATE_SUCCESS_SHOTS'
 export const REMOVE_SUCCESS_SHOTS = 'REMOVE_SUCCESS_SHOTS'
 
 export const CLEAN_MESSAGE_SHOTS = 'CLEAN_MESSAGE_SHOTS'
+export const PAGE_TOTAL_SHOTS = 'PAGE_SHOTS'
+export const ADD_TOTAL_SHOTS = 'ADD_TOTAL_SHOTS'
 
 const request = () => {
   return {
@@ -52,14 +54,18 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchShots = () => async (dispatch) => {
+export const fetchShots = (page) => async (dispatch) => {
   dispatch(request())
+  query.variables = { page }
   const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data.shots.items))
+    if (page) {
+      dispatch({ type: PAGE_TOTAL_SHOTS, payload: page })
+    }
+    dispatch(fetchSuccess(data.shots))
   }
 }
 

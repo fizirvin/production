@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function Pagination({ page, length, total, fetchReports }) {
-  const lastPage = Math.ceil(total / 100)
-  console.log(lastPage, page)
+export default function Pagination({ page, length, total, fetch }) {
+  const lastPage = Math.ceil(total / 25)
+
   return (
     <span>
       <label>
@@ -10,7 +10,7 @@ export default function Pagination({ page, length, total, fetchReports }) {
       </label>
       <span>
         {page < lastPage && (
-          <button onClick={() => console.log(page++)}>Next</button>
+          <button onClick={() => fetch(page + 1)}>Next</button>
         )}
       </span>
     </span>

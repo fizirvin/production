@@ -3,15 +3,19 @@ import { connect } from 'react-redux'
 import { fetchMachines } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
+import { ControlComponent } from 'layouts'
+
+const sort = [
+  { _id: '1', sort: 'code' },
+  { _id: '2', sort: 'name' }
+]
 
 const Connect = ({ machines, fetchMachines }) => {
-  const { loading, message, items } = machines
+  const { loading, message, items, total, page } = machines
 
   useEffect(() => {
     if (items.length === 0) {
-      fetchMachines().then((response) => {
-        console.log(response)
-      })
+      fetchMachines()
     }
   }, [items, fetchMachines])
 
@@ -19,7 +23,22 @@ const Connect = ({ machines, fetchMachines }) => {
     <>
       {loading && <Spinner />}
       {message && <div>{message}</div>}
-      {items.length > 0 && <Table items={items} />}
+      {items.length > 0 && !loading && (
+        <>
+          <ControlComponent
+            length={items.length}
+            page={page}
+            total={total}
+            items={sort}
+            k={'sort'}
+            loading={loading}
+            fetch={fetchMachines}
+            to={'/machines/add'}
+            title={'Machine'}
+          />
+          <Table items={items} />
+        </>
+      )}
     </>
   )
 }

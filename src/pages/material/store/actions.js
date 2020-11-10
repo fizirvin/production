@@ -10,6 +10,8 @@ export const UPDATE_SUCCESS_MATERIALS = 'UPDATE_SUCCESS_MATERIALS'
 export const REMOVE_SUCCESS_MATERIALS = 'REMOVE_SUCCESS_MATERIALS'
 
 export const CLEAN_MESSAGE_MATERIALS = 'CLEAN_MESSAGE_MATERIALS'
+export const PAGE_TOTAL_MATERIALS = 'PAGE_MATERIALS'
+export const ADD_TOTAL_MATERIALS = 'ADD_TOTAL_MATERIALS'
 
 const request = () => {
   return {
@@ -52,14 +54,18 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchMaterials = () => async (dispatch) => {
+export const fetchMaterials = (page) => async (dispatch) => {
   dispatch(request())
+  query.variables = { page }
   const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data.materials.items))
+    if (page) {
+      dispatch({ type: PAGE_TOTAL_MATERIALS, payload: page })
+    }
+    dispatch(fetchSuccess(data.materials))
   }
 }
 

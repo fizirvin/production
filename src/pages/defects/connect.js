@@ -12,8 +12,6 @@ const sort = [
 
 const Connect = ({ defects, fetchDefects }) => {
   const { loading, message, items, total, page } = defects
-
-  console.log('soy defects')
   useEffect(() => {
     if (items.length === 0) {
       fetchDefects()
@@ -24,7 +22,7 @@ const Connect = ({ defects, fetchDefects }) => {
     <>
       {loading && <Spinner />}
       {message && <div>{message}</div>}
-      {items.length > 0 && (
+      {items.length > 0 && !loading && (
         <>
           <ControlComponent
             length={items.length}
@@ -33,6 +31,9 @@ const Connect = ({ defects, fetchDefects }) => {
             items={sort}
             k={'sort'}
             loading={loading}
+            fetch={fetchDefects}
+            to={'/defects/add'}
+            title={'Defect'}
           />
           <Table items={items} />
         </>

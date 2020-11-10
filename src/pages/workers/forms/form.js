@@ -20,7 +20,7 @@ import {
   CLEAN_INPUTS_PROFILE
 } from './formActions'
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit, onEdit, edit }) {
   const teams = [
     { _id: 'varias', team: 'varias' },
     { _id: 'amealco', team: 'amealco' }
@@ -39,7 +39,7 @@ export default function Form({ onSubmit }) {
 
   return (
     <FormComponent
-      title={'Add New Employee'}
+      title={edit ? 'Update Injection Employee' : 'Add New Injection Employee'}
       to={'/employees'}
       controls={
         <Controls
@@ -47,7 +47,7 @@ export default function Form({ onSubmit }) {
           load={'profiles'}
           to="/employees"
           name={CLEAN_INPUTS_PROFILE}
-          onSubmit={onSubmit}
+          onSubmit={edit ? onEdit : onSubmit}
         />
       }
     >

@@ -5,13 +5,18 @@ import {
   UPDATE_SUCCESS_USERS,
   REMOVE_SUCCESS_USERS,
   ADD_SUCCESS_USERS,
-  CLEAN_MESSAGE_USERS
+  CLEAN_MESSAGE_USERS,
+  PAGE_TOTAL_USERS,
+  ADD_TOTAL_USERS
 } from './actions'
 
 const initialState = {
   message: '',
   loading: false,
-  items: []
+  items: [],
+  total: 0,
+  page: 1,
+  add: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,9 +34,11 @@ const reducer = (state = initialState, action) => {
       }
     case FETCH_SUCCESS_USERS:
       return {
+        ...state,
         message: '',
         loading: false,
-        items: action.payload
+        items: [...state.items, ...action.payload.items],
+        total: action.payload.total
       }
     case ADD_SUCCESS_USERS:
       const newItem = action.payload
@@ -63,6 +70,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         message: ''
+      }
+    case PAGE_TOTAL_USERS:
+      return {
+        ...state,
+        page: action.payload
+      }
+    case ADD_TOTAL_USERS:
+      return {
+        ...state,
+        add: action.payload
       }
     default:
       return state

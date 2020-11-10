@@ -10,6 +10,8 @@ export const UPDATE_SUCCESS_ISSUES = 'UPDATE_SUCCESS_ISSUES'
 export const REMOVE_SUCCESS_ISSUES = 'REMOVE_SUCCESS_ISSUES'
 
 export const CLEAN_MESSAGE_ISSUES = 'CLEAN_MESSAGE_ISSUES'
+export const PAGE_TOTAL_ISSUES = 'PAGE_ISSUES'
+export const ADD_TOTAL_ISSUES = 'ADD_TOTAL_ISSUES'
 
 const request = () => {
   return {
@@ -52,14 +54,18 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchIssues = () => async (dispatch) => {
+export const fetchIssues = (page) => async (dispatch) => {
   dispatch(request())
+  query.variables = { page }
   const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data.issues.items))
+    if (page) {
+      dispatch({ type: PAGE_TOTAL_ISSUES, payload: page })
+    }
+    dispatch(fetchSuccess(data.issues))
   }
 }
 

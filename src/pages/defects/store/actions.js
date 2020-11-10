@@ -54,7 +54,7 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchDefects = (page = 1) => async (dispatch) => {
+export const fetchDefects = (page) => async (dispatch) => {
   dispatch(request())
   query.variables = { page }
   const { status, data } = await fetchItems(query)
@@ -62,6 +62,9 @@ export const fetchDefects = (page = 1) => async (dispatch) => {
   if (!status) {
     dispatch(requestFailure(data))
   } else {
+    if (page) {
+      dispatch({ type: PAGE_TOTAL_DEFECTS, payload: page })
+    }
     dispatch(fetchSuccess(data.defects))
   }
 }

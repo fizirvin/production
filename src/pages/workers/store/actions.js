@@ -9,6 +9,8 @@ export const ADD_SUCCESS_PROFILES = 'ADD_SUCCESS_PROFILES'
 export const UPDATE_SUCCESS_PROFILES = 'UPDATE_SUCCESS_PROFILES'
 export const REMOVE_SUCCESS_PROFILES = 'REMOVE_SUCCESS_PROFILES'
 export const CLEAN_MESSAGE_PROFILES = 'CLEAN_MESSAGE_PROFILES'
+export const PAGE_TOTAL_PROFILES = 'PAGE_PROFILES'
+export const ADD_TOTAL_PROFILES = 'ADD_TOTAL_PROFILES'
 
 const request = () => {
   return {
@@ -51,14 +53,18 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchProfiles = () => async (dispatch) => {
+export const fetchProfiles = (page) => async (dispatch) => {
   dispatch(request())
+  query.variables = { page }
   const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data.profiles.items))
+    if (page) {
+      dispatch({ type: PAGE_TOTAL_PROFILES, payload: page })
+    }
+    dispatch(fetchSuccess(data.profiles))
   }
 }
 

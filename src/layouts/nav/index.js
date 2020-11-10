@@ -38,32 +38,6 @@ export default function Nav() {
             </SubMenu>
           </Item>
           <Item>
-            <Link to={'/'}>Add Data</Link>
-            <SubMenu>
-              <Item>
-                <Link to={'/molds/add'}>Add Molde</Link>
-              </Item>
-              <Item>
-                <Link to={'/machines/add'}>Add Machine</Link>
-              </Item>
-              <Item>
-                <Link to={'/models/add'}>Add Model</Link>
-              </Item>
-              <Item>
-                <Link to={'/programs/add'}>Add Program</Link>
-              </Item>
-              <Item>
-                <Link to={'/materials/add'}>Add Material</Link>
-              </Item>
-              <Item>
-                <Link to={'/issues/add'}>Add Issue</Link>
-              </Item>
-              <Item>
-                <Link to={'/defects/add'}>Add Defect</Link>
-              </Item>
-            </SubMenu>
-          </Item>
-          <Item>
             <Link to={'/reports'}>Production</Link>
             <SubMenu>
               <Item>

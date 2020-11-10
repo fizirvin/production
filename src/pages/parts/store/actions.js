@@ -10,6 +10,8 @@ export const UPDATE_SUCCESS_MODELS = 'UPDATE_SUCCESS_MODELS'
 export const REMOVE_SUCCESS_MODELS = 'REMOVE_SUCCESS_MODELS'
 
 export const CLEAN_MESSAGE_MODELS = 'CLEAN_MESSAGE_MODELS'
+export const PAGE_TOTAL_MODELS = 'PAGE_MODELS'
+export const ADD_TOTAL_MODELS = 'ADD_TOTAL_MODELS'
 
 const request = () => {
   return {
@@ -52,14 +54,18 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchModels = () => async (dispatch) => {
+export const fetchModels = (page) => async (dispatch) => {
   dispatch(request())
+  query.variables = { page }
   const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data.models.items))
+    if (page) {
+      dispatch({ type: PAGE_TOTAL_MODELS, payload: page })
+    }
+    dispatch(fetchSuccess(data.models))
   }
 }
 

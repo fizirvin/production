@@ -1,6 +1,7 @@
 const query = {
-  query: `query {
-            users{
+  query: `query
+    Users( $page: Int, $add: Int ){
+        users( page:$page, add:$add ){
             total
             items{
                 _id

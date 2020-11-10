@@ -1,6 +1,7 @@
 const query = {
-  query: `query {
-        models{
+  query: `query
+    Models( $page: Int, $add: Int ){
+        models( page:$page, add:$add ){
             total
             items {
                 _id

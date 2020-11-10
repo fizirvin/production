@@ -10,6 +10,8 @@ export const UPDATE_SUCCESS_PROGRAMS = 'UPDATE_SUCCESS_PROGRAMS'
 export const REMOVE_SUCCESS_PROGRAMS = 'REMOVE_SUCCESS_PROGRAMS'
 
 export const CLEAN_MESSAGE_PROGRAMS = 'CLEAN_MESSAGE_PROGRAMS'
+export const PAGE_TOTAL_PROGRAMS = 'PAGE_PROGRAMS'
+export const ADD_TOTAL_PROGRAMS = 'ADD_TOTAL_PROGRAMS'
 
 const request = () => {
   return {
@@ -52,14 +54,18 @@ const removeSuccess = (id) => {
   }
 }
 
-export const fetchPrograms = () => async (dispatch) => {
+export const fetchPrograms = (page) => async (dispatch) => {
   dispatch(request())
+  query.variables = { page }
   const { status, data } = await fetchItems(query)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(fetchSuccess(data.programs.items))
+    if (page) {
+      dispatch({ type: PAGE_TOTAL_PROGRAMS, payload: page })
+    }
+    dispatch(fetchSuccess(data.programs))
   }
 }
 

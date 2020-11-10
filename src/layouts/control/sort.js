@@ -6,7 +6,7 @@ export default function SortComoponent({ name, items, k }) {
   return (
     <>
       <label>Sort By: </label>
-      <select value="" name={name}>
+      <select value="" name={name} readOnly>
         <option disabled value="">
           select
         </option>

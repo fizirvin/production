@@ -5,13 +5,18 @@ import {
   UPDATE_SUCCESS_SHOTS,
   REMOVE_SUCCESS_SHOTS,
   ADD_SUCCESS_SHOTS,
-  CLEAN_MESSAGE_SHOTS
+  CLEAN_MESSAGE_SHOTS,
+  PAGE_TOTAL_SHOTS,
+  ADD_TOTAL_SHOTS
 } from './actions'
 
 const initialState = {
   message: '',
   loading: false,
-  items: []
+  items: [],
+  total: 0,
+  page: 1,
+  add: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,9 +34,11 @@ const reducer = (state = initialState, action) => {
       }
     case FETCH_SUCCESS_SHOTS:
       return {
+        ...state,
         message: '',
         loading: false,
-        items: action.payload
+        items: [...state.items, ...action.payload.items],
+        total: action.payload.total
       }
     case ADD_SUCCESS_SHOTS:
       const newItem = action.payload
@@ -63,6 +70,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         message: ''
+      }
+    case PAGE_TOTAL_SHOTS:
+      return {
+        ...state,
+        page: action.payload
+      }
+    case ADD_TOTAL_SHOTS:
+      return {
+        ...state,
+        add: action.payload
       }
     default:
       return state

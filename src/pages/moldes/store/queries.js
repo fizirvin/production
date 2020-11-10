@@ -1,6 +1,7 @@
 const query = {
-  query: `query {
-        moldes{
+  query: `query
+    Moldes( $page: Int, $add: Int ){
+        moldes( page:$page, add:$add ){
             total
             items{
                 _id

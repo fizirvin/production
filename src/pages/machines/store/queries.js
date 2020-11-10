@@ -1,6 +1,7 @@
 const query = {
-  query: `query {
-        machines{
+  query: `query
+    Machines( $page: Int, $add: Int ){
+        machines( page:$page, add:$add ){
             total
             items{
                 _id
