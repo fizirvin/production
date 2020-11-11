@@ -1,0 +1,51 @@
+export const keys = [
+  'date',
+  'shift',
+  'machine',
+  'real',
+  'ng',
+  'ok',
+  'plan',
+  'tprod',
+  'cycles',
+  'ptime',
+  'wtime',
+  'dtime',
+  'oee',
+  'purge',
+  'team'
+]
+export const header_keys = [
+  'date',
+  'shift',
+  'machine',
+  'real',
+  'ng',
+  'ok',
+  'plan',
+  'tprod',
+  'cycles',
+  'ptime',
+  'wtime',
+  'dtime',
+  'oee',
+  'purge',
+  'team'
+]
+export const header_data = [
+  'Date',
+  'Shift',
+  'Machine',
+  'Real',
+  'NG',
+  'OK',
+  'Plan',
+  'tprod',
+  'Cycles',
+  'Ptime',
+  'Work Time',
+  'Downtime',
+  'OEE%',
+  'Purge',
+  'Team'
+]
