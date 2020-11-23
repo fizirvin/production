@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function FormComponent({ title, children, controls }) {
+export default function FormComponent({ title, children, controls, report }) {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <h2>{title}</h2>
@@ -8,6 +8,7 @@ export default function FormComponent({ title, children, controls }) {
         <tbody>{children}</tbody>
       </table>
       {controls}
+      {report && report}
     </form>
   )
 }

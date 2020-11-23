@@ -18,6 +18,6 @@ export const Content = styled.div`
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 35%;
+  width: 100%;
   border-radius: 4px;
 `

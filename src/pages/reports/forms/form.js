@@ -8,7 +8,8 @@ import {
   InputNumberComponent,
   InputDateComponent,
   Controls,
-  InputSelectComponent
+  InputSelectComponent,
+  Report
 } from 'layouts'
 
 import {
@@ -62,6 +63,93 @@ const Form = ({
     { _id: '2', shift: '2' }
   ]
 
+  const inputs = [
+    {
+      _id: '1',
+      reducer: 'reportsForm',
+      input: 'real',
+      name: REAL_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '2',
+      reducer: 'reportsForm',
+      input: 'ng',
+      name: NG_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '3',
+      reducer: 'reportsForm',
+      input: 'ok',
+      name: OK_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '4',
+      reducer: 'reportsForm',
+      input: 'cycles',
+      name: CYCLES_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '5',
+      reducer: 'reportsForm',
+      input: 'plan',
+      name: PLAN_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '6',
+      reducer: 'reportsForm',
+      input: 'wtime',
+      name: WTIME_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '7',
+      reducer: 'reportsForm',
+      input: 'tprod',
+      name: TPROD_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '8',
+      reducer: 'reportsForm',
+      input: 'dtime',
+      name: DTIME_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '9',
+      reducer: 'reportsForm',
+      input: 'avail',
+      name: AVAIL_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '10',
+      reducer: 'reportsForm',
+      input: 'perf',
+      name: PERF_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '11',
+      reducer: 'reportsForm',
+      input: 'qual',
+      name: QUAL_INPUT_REPORT,
+      disabled: true
+    },
+    {
+      _id: '12',
+      reducer: 'reportsForm',
+      input: 'oee',
+      name: OEE_INPUT_REPORT,
+      disabled: true
+    }
+  ]
+
   return (
     <FormComponent
       title={edit ? 'Update Injection Report' : 'Add New Injection Report'}
@@ -75,6 +163,7 @@ const Form = ({
           onSubmit={edit ? onEdit : onSubmit}
         />
       }
+      report={<Report items={inputs} />}
     >
       <InputDateComponent
         reducer={'reportsForm'}

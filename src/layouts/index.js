@@ -16,6 +16,7 @@ import InputTextAreaComponent from './input/textarea'
 import Controls from './form/controls'
 import Message from './message'
 import ControlComponent from './control'
+import Report from './report'
 
 export {
   Controls,
@@ -35,5 +36,6 @@ export {
   Message,
   Nav,
   PortalComponent,
-  TableComponent
+  TableComponent,
+  Report
 }
