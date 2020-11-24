@@ -5,9 +5,19 @@ const query = {
             total
             items{
                 _id
-                machine
-                molde
-                model
+                machine{
+                    _id
+                    number
+                }
+                molde{
+                    _id
+                    number
+                    
+                }
+                model{
+                    _id
+                    name
+                }
                 time
                 cycles
                 capacity

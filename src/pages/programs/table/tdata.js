@@ -1,4 +1,11 @@
-export const keys = ['machine', 'molde', 'model', 'time', 'capacity', 'cycles']
+export const keys = [
+  ['machine', 'number'],
+  ['molde', 'number'],
+  ['model', 'name'],
+  'time',
+  'capacity',
+  'cycles'
+]
 export const header_keys = ['mac', 'mol', 'par', 'tim', 'cap', 'cyc']
 
 export const header_data = [

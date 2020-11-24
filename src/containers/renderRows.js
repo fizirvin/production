@@ -16,11 +16,19 @@ export default function RenderRows(items, keys, headers, active, to, name) {
 
   const rows = items.map((item, index) => {
     const data = keys.map((key, ind) => {
-      return (
-        <TD key={key} headers={headers[ind]}>
-          {item[key]}
-        </TD>
-      )
+      if (!Array.isArray(key)) {
+        return (
+          <TD key={key} headers={headers[ind]}>
+            {item[key]}
+          </TD>
+        )
+      } else if (Array.isArray(key)) {
+        return (
+          <TD key={key[0]} headers={headers[ind]}>
+            {item[key[0]][key[1]]}
+          </TD>
+        )
+      }
     })
 
     return (

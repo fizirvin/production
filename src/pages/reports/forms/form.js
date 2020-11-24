@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchMachines } from '../../machines/store/actions'
-import { fetchMoldes } from '../../moldes/store/actions'
-import { fetchModels } from '../../parts/store/actions'
+import { fetchPrograms } from '../../programs/store/actions'
+
 import {
   FormComponent,
   InputNumberComponent,
@@ -34,6 +34,7 @@ import {
   TEAM_INPUT_REPORT,
   OPER_INPUT_REPORT,
   INSP_INPUT_REPORT,
+  PRODUCTION_INPUT_REPORT,
   CLEAN_INPUTS_REPORT
 } from './formActions'
 
@@ -44,12 +45,8 @@ const Form = ({
   machines,
   machinesLoading,
   fetchMachines,
-  moldes,
-  moldesLoading,
-  fetchMoldes,
-  models,
-  modelsLoading,
-  fetchModels
+  programs,
+  fetchPrograms
 }) => {
   useEffect(() => {
     if (machines.length === 0) {
@@ -57,6 +54,12 @@ const Form = ({
     }
     return
   }, [machines, fetchMachines])
+  useEffect(() => {
+    if (programs.length === 0) {
+      fetchPrograms()
+    }
+    return
+  }, [programs, fetchPrograms])
 
   const shifts = [
     { _id: '1', shift: '1' },
@@ -163,7 +166,13 @@ const Form = ({
           onSubmit={edit ? onEdit : onSubmit}
         />
       }
-      report={<Report items={inputs} />}
+      report={
+        <Report
+          items={inputs}
+          programs={programs}
+          name={PRODUCTION_INPUT_REPORT}
+        />
+      }
     >
       <InputDateComponent
         reducer={'reportsForm'}
@@ -202,14 +211,10 @@ const Form = ({
 const mapStateToProps = (state) => ({
   machines: state.machines.items,
   machinesLoading: state.machines.loading,
-  moldes: state.moldes.items,
-  moldesLoading: state.moldes.loading,
-  models: state.models.items,
-  modelsLoading: state.machines.loading
+  programs: state.programs.items
 })
 
 export default connect(mapStateToProps, {
   fetchMachines,
-  fetchMoldes,
-  fetchModels
+  fetchPrograms
 })(Form)

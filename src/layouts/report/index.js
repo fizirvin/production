@@ -1,9 +1,11 @@
 import React from 'react'
 import renderInputs from './renderInputs'
+import renderPrograms from './renderPrograms'
 import { Table, TableHeader } from './styles'
 
-export default function Report({ items = [] }) {
+export default function Report({ items = [], programs = [], name }) {
   const inputs = renderInputs(items)
+  const programsInputs = renderPrograms(programs, name)
   return (
     <Table>
       <thead>
@@ -24,7 +26,7 @@ export default function Report({ items = [] }) {
           <TableHeader w={'6'}>OEE%</TableHeader>
         </tr>
       </thead>
-      {/* <tbody>{inputs}</tbody> */}
+      <tbody>{programsInputs}</tbody>
       <tfoot>
         <tr>
           <TableHeader colSpan="2">Total</TableHeader>

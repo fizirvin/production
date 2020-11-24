@@ -21,7 +21,8 @@ import {
   OPER_INPUT_REPORT,
   INSP_INPUT_REPORT,
   CLEAN_INPUTS_REPORT,
-  SELECT_INPUTS_REPORTS
+  SELECT_INPUTS_REPORTS,
+  PRODUCTION_INPUT_REPORT
 } from './formActions'
 
 const initialState = {
@@ -45,7 +46,8 @@ const initialState = {
   comments: '',
   team: '',
   oper: '',
-  insp: ''
+  insp: '',
+  production: []
 }
 
 const formReducer = (state = initialState, action) => {
@@ -155,6 +157,11 @@ const formReducer = (state = initialState, action) => {
       return {
         ...state,
         insp: payload
+      }
+    case PRODUCTION_INPUT_REPORT:
+      return {
+        ...state,
+        production: payload
       }
     case CLEAN_INPUTS_REPORT:
       return initialState
