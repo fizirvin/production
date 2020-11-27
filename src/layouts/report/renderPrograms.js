@@ -8,7 +8,7 @@ export default function renderPrograms(programs = [], name) {
         program={program}
         reducer={'reportsForm'}
         input={'production'}
-        name={name}
+        type={name}
       />
     </tr>
   ))

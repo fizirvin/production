@@ -12,7 +12,7 @@ const query = {
                 molde{
                     _id
                     number
-                    
+                    cavities
                 }
                 model{
                     _id

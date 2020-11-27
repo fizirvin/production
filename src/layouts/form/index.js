@@ -7,8 +7,8 @@ export default function FormComponent({ title, children, controls, report }) {
       <table>
         <tbody>{children}</tbody>
       </table>
-      {controls}
       {report && report}
+      {controls}
     </form>
   )
 }

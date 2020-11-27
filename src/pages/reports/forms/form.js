@@ -46,7 +46,8 @@ const Form = ({
   machinesLoading,
   fetchMachines,
   programs,
-  fetchPrograms
+  fetchPrograms,
+  machine
 }) => {
   useEffect(() => {
     if (machines.length === 0) {
@@ -152,7 +153,6 @@ const Form = ({
       disabled: true
     }
   ]
-
   return (
     <FormComponent
       title={edit ? 'Update Injection Report' : 'Add New Injection Report'}
@@ -169,7 +169,7 @@ const Form = ({
       report={
         <Report
           items={inputs}
-          programs={programs}
+          programs={programs.filter((prog) => prog.machine._id === machine)}
           name={PRODUCTION_INPUT_REPORT}
         />
       }
@@ -211,7 +211,8 @@ const Form = ({
 const mapStateToProps = (state) => ({
   machines: state.machines.items,
   machinesLoading: state.machines.loading,
-  programs: state.programs.items
+  programs: state.programs.items,
+  machine: state.reportsForm.machine
 })
 
 export default connect(mapStateToProps, {
