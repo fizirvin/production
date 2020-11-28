@@ -71,7 +71,12 @@ export default function CheckInput({
 
   const onInput = (e) => {
     const { value, name } = e.target
+    if (!value) {
+      return
+    }
     let number = parseInt(value)
+    let floatNumber = value
+
     if (isNaN(number)) {
       number = ''
     } else if (number === 0) {
@@ -82,17 +87,26 @@ export default function CheckInput({
     )
     let real = report.real
     let ng = report.ng
+
     if (name === 'real') {
       real = number
     }
     if (name === 'ng') {
       ng = number
     }
-
-    const ok = real - ng
+    if (name === 'wtime') {
+      // if (isNaN(floatNumber)) {
+      //   floatNumber = ''
+      // } else if (floatNumber === 0) {
+      //   floatNumber = 0
+      // }
+      console.log(floatNumber)
+    }
 
     const prewtime = real / program.capacity
     const wtime = parseFloat(prewtime.toFixed(2))
+
+    const ok = real - ng
 
     const TWTime = totalReport.production
       .filter((item) => item.program !== program._id)
@@ -146,7 +160,7 @@ export default function CheckInput({
     { name: 'ok', value: report['ok'], disabled: true },
     { name: 'cycles', value: report['cycles'], disabled: true },
     { name: 'plan', value: report['plan'], disabled: true },
-    { name: 'wtime', value: report['wtime'] },
+    { name: 'wtime', value: report['wtime'], step: '0.01' },
     { name: 'prod', value: report['prod'], disabled: true },
     { name: 'dtime', value: report['dtime'], disabled: true },
 
@@ -167,6 +181,7 @@ export default function CheckInput({
           onChange={onCheck}
           // value={program._id}
           name={type}
+          value={program._id}
         ></ProductionCheckbox>
         <label>{program.molde.number}</label>
       </TableData>

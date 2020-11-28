@@ -47,7 +47,8 @@ const initialState = {
   team: '',
   oper: '',
   insp: '',
-  production: []
+  production: [],
+  progs: 0
 }
 
 const formReducer = (state = initialState, action) => {
@@ -65,7 +66,7 @@ const formReducer = (state = initialState, action) => {
       }
     case MACHINE_INPUT_REPORT:
       return {
-        ...state,
+        ...initialState,
         machine: payload
       }
     case PLAN_TIME_INPUT_REPORT:
@@ -183,10 +184,16 @@ const formReducer = (state = initialState, action) => {
       const dtime = payload.reduce((a, b) => {
         return a + b.dtime || 0
       }, 0)
-      const avail = 0.0
-      const perf = 0.0
-      const qual = 0.0
-      const oee = 0.0
+      const productionTime = parseFloat(wtime + dtime)
+      const preav = parseFloat((wtime / productionTime) * 100)
+
+      const preperf = (real / tprod) * 100
+      const perf = parseFloat(preperf.toFixed(2))
+      const avail = parseFloat(preav.toFixed(2))
+      const preq = (ok / real) * 100
+      const qual = parseFloat(preq.toFixed(2))
+      const preoee = (avail * perf * qual) / 10000
+      const oee = parseFloat(preoee.toFixed(2))
 
       return {
         ...state,
@@ -198,6 +205,10 @@ const formReducer = (state = initialState, action) => {
         cycles,
         wtime,
         dtime,
+        avail,
+        perf,
+        qual,
+        oee,
         production: payload
       }
     case CLEAN_INPUTS_REPORT:

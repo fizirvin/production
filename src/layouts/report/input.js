@@ -1,6 +1,5 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { onInteger, onKey } from 'helpers'
+import { useSelector } from 'react-redux'
 import { ProductionInput, TableHeader } from './styles'
 
 export default function Input({
@@ -12,8 +11,7 @@ export default function Input({
   step = '1',
   disabled
 }) {
-  const dispatch = useDispatch()
-  const value = useSelector((state) => state[reducer][input])
+  const value = useSelector((state) => state[reducer][input]) || 0
 
   return (
     <TableHeader key={id}>
@@ -21,10 +19,8 @@ export default function Input({
         type="number"
         name={name}
         value={value}
-        onKeyUp={(e) => onKey(e)}
         onChange={(e) => {
-          const integerNum = onInteger(e.target.value, value, e)
-          dispatch({ type: e.target.name, payload: integerNum })
+          return
         }}
         min={min}
         disabled={disabled}
