@@ -159,8 +159,45 @@ const formReducer = (state = initialState, action) => {
         insp: payload
       }
     case PRODUCTION_INPUT_REPORT:
+      const real = payload.reduce((a, b) => {
+        return a + b.real || 0
+      }, 0)
+      const ng = payload.reduce((a, b) => {
+        return a + b.ng || 0
+      }, 0)
+      const ok = payload.reduce((a, b) => {
+        return a + b.ok || 0
+      }, 0)
+      const plan = payload.reduce((a, b) => {
+        return a + b.plan || 0
+      }, 0)
+      const tprod = payload.reduce((a, b) => {
+        return a + b.prod || 0
+      }, 0)
+      const cycles = payload.reduce((a, b) => {
+        return a + b.cycles || 0
+      }, 0)
+      const wtime = payload.reduce((a, b) => {
+        return a + b.wtime || 0
+      }, 0)
+      const dtime = payload.reduce((a, b) => {
+        return a + b.dtime || 0
+      }, 0)
+      const avail = 0.0
+      const perf = 0.0
+      const qual = 0.0
+      const oee = 0.0
+
       return {
         ...state,
+        real,
+        ng,
+        ok,
+        plan,
+        tprod,
+        cycles,
+        wtime,
+        dtime,
         production: payload
       }
     case CLEAN_INPUTS_REPORT:

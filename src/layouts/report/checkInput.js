@@ -89,8 +89,10 @@ export default function CheckInput({
       ng = number
     }
 
+    const ok = real - ng
+
     const prewtime = real / program.capacity
-    const wtime = prewtime.toFixed(2)
+    const wtime = parseFloat(prewtime.toFixed(2))
 
     const TWTime = totalReport.production
       .filter((item) => item.program !== program._id)
@@ -100,21 +102,42 @@ export default function CheckInput({
 
     const predtime =
       (totalReport.ptime - TWTime - wtime) / totalReport.production.length
-    const dtime = predtime.toFixed(1)
+    const dtime = parseFloat(predtime.toFixed(2))
 
-    console.log(wtime, predtime, TWTime, program.capacity)
+    const prod = Math.round(wtime * program.capacity)
+
+    const productionTime = parseFloat(wtime + dtime)
+    const preav = parseFloat((wtime / productionTime) * 100)
+    const preplan = productionTime * program.capacity
+    const plan = parseFloat(preplan.toFixed(0))
+
+    const preperf = (real / prod) * 100
+    const perf = parseFloat(preperf.toFixed(2))
+    const avail = parseFloat(preav.toFixed(2))
+    const preq = (ok / real) * 100
+    const qual = parseFloat(preq.toFixed(2))
+    const preoee = (avail * perf * qual) / 10000
+    const oee = parseFloat(preoee.toFixed(2))
+
     const newReport = {
       ...report,
       real,
       ng,
-      ok: real - ng,
+      ok,
       dtime,
-      cycles: Math.round(real / program.molde.cavities)
+      wtime,
+      cycles: Math.round(real / program.molde.cavities),
+      prod,
+      plan,
+      avail,
+      perf,
+      qual,
+      oee
     }
 
     const newPrograms = [...programs, newReport]
     setReport(newReport)
-    return dispatch({ type: name, payload: newPrograms })
+    return dispatch({ type, payload: newPrograms })
   }
 
   const programInputs = [
