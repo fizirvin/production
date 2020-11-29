@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { onInteger } from 'helpers'
 import { ProductionCheckbox, TableData } from './styles'
 import renderProgramInputs from './renderProgramInputs'
 
@@ -71,40 +72,28 @@ export default function CheckInput({
 
   const onInput = (e) => {
     const { value, name } = e.target
-    if (!value) {
-      return
-    }
-    let number = parseInt(value)
-    let floatNumber = value
 
-    if (isNaN(number)) {
-      number = ''
-    } else if (number === 0) {
-      number = 0
+    let real = report.real
+    let ng = report.ng
+    let wtime = report.wtime
+
+    if (name === 'real') {
+      real = onInteger(value, report.real)
+      const prewtime = real / program.capacity
+      wtime = parseFloat(prewtime.toFixed(2))
     }
+    if (name === 'ng') {
+      ng = onInteger(value, report.ng)
+      const prewtime = real / program.capacity
+      wtime = parseFloat(prewtime.toFixed(2))
+    }
+    if (name === 'wtime') {
+      wtime = value
+    }
+
     const programs = [...totalReport.production].filter(
       (item) => item.program !== program._id
     )
-    let real = report.real
-    let ng = report.ng
-
-    if (name === 'real') {
-      real = number
-    }
-    if (name === 'ng') {
-      ng = number
-    }
-    if (name === 'wtime') {
-      // if (isNaN(floatNumber)) {
-      //   floatNumber = ''
-      // } else if (floatNumber === 0) {
-      //   floatNumber = 0
-      // }
-      console.log(floatNumber)
-    }
-
-    const prewtime = real / program.capacity
-    const wtime = parseFloat(prewtime.toFixed(2))
 
     const ok = real - ng
 
@@ -126,12 +115,12 @@ export default function CheckInput({
     const plan = parseFloat(preplan.toFixed(0))
 
     const preperf = (real / prod) * 100
-    const perf = parseFloat(preperf.toFixed(2))
-    const avail = parseFloat(preav.toFixed(2))
+    const perf = parseFloat(preperf.toFixed(2)) || 0
+    const avail = parseFloat(preav.toFixed(2)) || 0
     const preq = (ok / real) * 100
-    const qual = parseFloat(preq.toFixed(2))
+    const qual = parseFloat(preq.toFixed(2)) || 0
     const preoee = (avail * perf * qual) / 10000
-    const oee = parseFloat(preoee.toFixed(2))
+    const oee = parseFloat(preoee.toFixed(2)) || 0
 
     const newReport = {
       ...report,
@@ -160,7 +149,11 @@ export default function CheckInput({
     { name: 'ok', value: report['ok'], disabled: true },
     { name: 'cycles', value: report['cycles'], disabled: true },
     { name: 'plan', value: report['plan'], disabled: true },
-    { name: 'wtime', value: report['wtime'], step: '0.01' },
+    {
+      name: 'wtime',
+      value: report['wtime'],
+      step: '0.01'
+    },
     { name: 'prod', value: report['prod'], disabled: true },
     { name: 'dtime', value: report['dtime'], disabled: true },
 
