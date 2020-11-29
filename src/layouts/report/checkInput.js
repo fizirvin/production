@@ -17,8 +17,8 @@ export default function CheckInput({
   const [check, setCheck] = useState(false)
   const [report, setReport] = useState({
     program: program._id,
-    molde: program.molde._id,
-    model: program.model._id,
+    molde: program.molde,
+    model: program.model,
     real: 0,
     ng: 0,
     ok: 0,
@@ -48,8 +48,8 @@ export default function CheckInput({
     if (!selected) {
       const report = {
         program: program._id,
-        molde: program.molde._id,
-        model: program.model._id,
+        molde: program.molde,
+        model: program.model,
         real: 0,
         ng: 0,
         ok: 0,
@@ -88,7 +88,7 @@ export default function CheckInput({
       wtime = parseFloat(prewtime.toFixed(2))
     }
     if (name === 'wtime') {
-      wtime = value
+      wtime = parseFloat(value)
     }
 
     const programs = [...totalReport.production].filter(
