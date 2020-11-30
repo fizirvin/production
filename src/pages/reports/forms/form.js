@@ -210,6 +210,7 @@ const Form = ({
           onTeam={TEAM_INPUT_REPORT}
           onOper={OPER_INPUT_REPORT}
           onInsp={INSP_INPUT_REPORT}
+          machine={machine}
         />
       }
     >

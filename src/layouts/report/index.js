@@ -14,7 +14,8 @@ export default function Report({
   name,
   onTeam,
   onOper,
-  onInsp
+  onInsp,
+  machine
 }) {
   const [section, setSection] = useState('defects')
   const onSwitch = (e) => {
@@ -23,19 +24,21 @@ export default function Report({
   }
   return (
     <>
-      <ReportTable items={items} programs={programs} name={name} />
-      <SwitchSection onClick={onSwitch} />
-      <SectionTwo>
-        <SectionContainer>
-          {section === 'defects' && <DefectsTable />}
-          {section === 'downtime' && <DowntimeTable />}
-          {section === 'purge' && <PurgeTable />}
-        </SectionContainer>
-        <div>
-          <Comments />
-          <Team onTeam={onTeam} onOper={onOper} onInsp={onInsp} />
-        </div>
-      </SectionTwo>
+      {machine && <ReportTable items={items} programs={programs} name={name} />}
+      {machine && <SwitchSection onClick={onSwitch} />}
+      {machine && (
+        <SectionTwo>
+          <SectionContainer>
+            {section === 'defects' && <DefectsTable />}
+            {section === 'downtime' && <DowntimeTable />}
+            {section === 'purge' && <PurgeTable />}
+          </SectionContainer>
+          <div>
+            <Comments />
+            <Team onTeam={onTeam} onOper={onOper} onInsp={onInsp} />
+          </div>
+        </SectionTwo>
+      )}
     </>
   )
 }

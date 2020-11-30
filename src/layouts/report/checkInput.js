@@ -143,16 +143,29 @@ export default function CheckInput({
     return dispatch({ type, payload: newPrograms })
   }
 
+  const disabledInput = () => {
+    return !totalReport.production.find((item) => item.program === program._id)
+  }
+
   const programInputs = [
-    { name: 'real', value: report['real'] },
-    { name: 'ng', value: report['ng'] },
+    {
+      name: 'real',
+      value: report['real'],
+      disabled: disabledInput()
+    },
+    {
+      name: 'ng',
+      value: report['ng'],
+      disabled: disabledInput()
+    },
     { name: 'ok', value: report['ok'], disabled: true },
     { name: 'cycles', value: report['cycles'], disabled: true },
     { name: 'plan', value: report['plan'], disabled: true },
     {
       name: 'wtime',
       value: report['wtime'],
-      step: '0.01'
+      step: '0.01',
+      disabled: disabledInput()
     },
     { name: 'prod', value: report['prod'], disabled: true },
     { name: 'dtime', value: report['dtime'], disabled: true },
