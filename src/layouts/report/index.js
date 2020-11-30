@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ReportTable from './table'
 import SwitchSection from './switchSection'
 import DefectsTable from './defectsTable'
+import DowntimeTable from './downtimeTable'
 import { SectionTwo, SectionContainer } from './styles'
 
 export default function Report({ items = [], programs = [], name }) {
@@ -17,6 +18,7 @@ export default function Report({ items = [], programs = [], name }) {
       <SectionTwo>
         <SectionContainer>
           {section === 'defects' && <DefectsTable />}
+          {section === 'downtime' && <DowntimeTable />}
         </SectionContainer>
       </SectionTwo>
     </>

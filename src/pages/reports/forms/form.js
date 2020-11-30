@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchMachines } from '../../machines/store/actions'
 import { fetchPrograms } from '../../programs/store/actions'
 import { fetchDefects } from '../../defects/store/actions'
+import { fetchIssues } from '../../issues/store/actions'
 
 import {
   FormComponent,
@@ -50,6 +51,8 @@ const Form = ({
   fetchPrograms,
   defects,
   fetchDefects,
+  issues,
+  fetchIssues,
   machine
 }) => {
   useEffect(() => {
@@ -70,6 +73,12 @@ const Form = ({
     }
     return
   }, [defects, fetchDefects])
+  useEffect(() => {
+    if (issues.length === 0) {
+      fetchIssues()
+    }
+    return
+  }, [issues, fetchIssues])
 
   const shifts = [
     { _id: '1', shift: '1' },
@@ -222,11 +231,13 @@ const mapStateToProps = (state) => ({
   machinesLoading: state.machines.loading,
   defects: state.defects.items,
   programs: state.programs.items,
-  machine: state.reportsForm.machine
+  machine: state.reportsForm.machine,
+  issues: state.issues.items
 })
 
 export default connect(mapStateToProps, {
   fetchMachines,
   fetchPrograms,
-  fetchDefects
+  fetchDefects,
+  fetchIssues
 })(Form)
