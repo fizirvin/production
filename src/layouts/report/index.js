@@ -3,6 +3,7 @@ import ReportTable from './table'
 import SwitchSection from './switchSection'
 import DefectsTable from './defectsTable'
 import DowntimeTable from './downtimeTable'
+import PurgeTable from './purgeTable'
 import { SectionTwo, SectionContainer } from './styles'
 
 export default function Report({ items = [], programs = [], name }) {
@@ -19,6 +20,7 @@ export default function Report({ items = [], programs = [], name }) {
         <SectionContainer>
           {section === 'defects' && <DefectsTable />}
           {section === 'downtime' && <DowntimeTable />}
+          {section === 'purge' && <PurgeTable />}
         </SectionContainer>
       </SectionTwo>
     </>

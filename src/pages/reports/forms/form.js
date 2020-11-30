@@ -4,6 +4,7 @@ import { fetchMachines } from '../../machines/store/actions'
 import { fetchPrograms } from '../../programs/store/actions'
 import { fetchDefects } from '../../defects/store/actions'
 import { fetchIssues } from '../../issues/store/actions'
+import { fetchMaterials } from '../../material/store/actions'
 
 import {
   FormComponent,
@@ -53,6 +54,8 @@ const Form = ({
   fetchDefects,
   issues,
   fetchIssues,
+  materials,
+  fetchMaterials,
   machine
 }) => {
   useEffect(() => {
@@ -79,6 +82,12 @@ const Form = ({
     }
     return
   }, [issues, fetchIssues])
+  useEffect(() => {
+    if (materials.length === 0) {
+      fetchMaterials()
+    }
+    return
+  }, [materials, fetchMaterials])
 
   const shifts = [
     { _id: '1', shift: '1' },
@@ -232,12 +241,14 @@ const mapStateToProps = (state) => ({
   defects: state.defects.items,
   programs: state.programs.items,
   machine: state.reportsForm.machine,
-  issues: state.issues.items
+  issues: state.issues.items,
+  materials: state.materials.items
 })
 
 export default connect(mapStateToProps, {
   fetchMachines,
   fetchPrograms,
   fetchDefects,
-  fetchIssues
+  fetchIssues,
+  fetchMaterials
 })(Form)
