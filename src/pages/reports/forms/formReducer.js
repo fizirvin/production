@@ -48,6 +48,9 @@ const initialState = {
   oper: '',
   insp: '',
   production: [],
+  downtimes: [],
+  ngs: [],
+  resines: [],
   progs: 0
 }
 

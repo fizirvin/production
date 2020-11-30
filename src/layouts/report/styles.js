@@ -71,3 +71,13 @@ export const SectionRow = styled.tr`
 export const CheckInput = styled.input`
   margin-left: 3px;
 `
+
+export const CommentsArea = styled.textarea`
+  resize: none;
+  font-size: 145%;
+`
+
+export const CommentsDiv = styled.div`
+  display: flex;
+  align-items: center;
+`

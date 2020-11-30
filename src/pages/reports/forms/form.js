@@ -5,6 +5,7 @@ import { fetchPrograms } from '../../programs/store/actions'
 import { fetchDefects } from '../../defects/store/actions'
 import { fetchIssues } from '../../issues/store/actions'
 import { fetchMaterials } from '../../material/store/actions'
+import { fetchProfiles } from '../../workers/store/actions'
 
 import {
   FormComponent,
@@ -56,6 +57,8 @@ const Form = ({
   fetchIssues,
   materials,
   fetchMaterials,
+  fetchProfiles,
+  profiles,
   machine
 }) => {
   useEffect(() => {
@@ -88,6 +91,12 @@ const Form = ({
     }
     return
   }, [materials, fetchMaterials])
+  useEffect(() => {
+    if (profiles.length === 0) {
+      fetchProfiles()
+    }
+    return
+  }, [profiles, fetchProfiles])
 
   const shifts = [
     { _id: '1', shift: '1' },
@@ -198,6 +207,9 @@ const Form = ({
           items={inputs}
           programs={programs.filter((prog) => prog.machine._id === machine)}
           name={PRODUCTION_INPUT_REPORT}
+          onTeam={TEAM_INPUT_REPORT}
+          onOper={OPER_INPUT_REPORT}
+          onInsp={INSP_INPUT_REPORT}
         />
       }
     >
@@ -242,7 +254,8 @@ const mapStateToProps = (state) => ({
   programs: state.programs.items,
   machine: state.reportsForm.machine,
   issues: state.issues.items,
-  materials: state.materials.items
+  materials: state.materials.items,
+  profiles: state.profiles.items
 })
 
 export default connect(mapStateToProps, {
@@ -250,5 +263,6 @@ export default connect(mapStateToProps, {
   fetchPrograms,
   fetchDefects,
   fetchIssues,
-  fetchMaterials
+  fetchMaterials,
+  fetchProfiles
 })(Form)
