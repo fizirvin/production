@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux'
 import DowntimeInput from './downtimeInput'
 import { DefectTable, TableHeader } from './styles'
 
-export default function DowntimeTable() {
+export default function DowntimeTable({ onDowntime }) {
   const issues = useSelector((state) => state['issues']['items']) || []
 
   const renderIssues = () => {
     return issues.map((issue) => (
-      <DowntimeInput key={issue._id} issue={issue} />
+      <DowntimeInput key={issue._id} issue={issue} onDowntime={onDowntime} />
     ))
   }
 

@@ -23,7 +23,8 @@ import {
   CLEAN_INPUTS_REPORT,
   SELECT_INPUTS_REPORTS,
   PRODUCTION_INPUT_REPORT,
-  RESINES_INPUT_REPORT
+  RESINES_INPUT_REPORT,
+  DOWNTIMES_INPUT_REPORT
 } from './formActions'
 
 const initialState = {
@@ -219,6 +220,11 @@ const formReducer = (state = initialState, action) => {
       return {
         ...state,
         resines: payload
+      }
+    case DOWNTIMES_INPUT_REPORT:
+      return {
+        ...state,
+        downtimes: payload
       }
     case CLEAN_INPUTS_REPORT:
       return initialState

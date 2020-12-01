@@ -17,6 +17,7 @@ export default function Report({
   onInsp,
   onComments,
   onResine,
+  onDowntime,
   machine
 }) {
   const [section, setSection] = useState('defects')
@@ -38,7 +39,9 @@ export default function Report({
         <SectionTwo>
           <SectionContainer>
             {section === 'defects' && <DefectsTable />}
-            {section === 'downtime' && <DowntimeTable />}
+            {section === 'downtime' && (
+              <DowntimeTable onDowntime={onDowntime} />
+            )}
             {section === 'purge' && <PurgeTable onResine={onResine} />}
           </SectionContainer>
           <div>

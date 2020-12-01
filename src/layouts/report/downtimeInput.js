@@ -1,16 +1,63 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { SectionRow, TableData, CheckInput } from './styles'
 
-export default function DowntimeInput({ issue }) {
+export default function DowntimeInput({ issue, onDowntime }) {
+  const downtimes = useSelector((state) => state['reportsForm']['downtimes'])
+  const dispatch = useDispatch()
+
+  const onCheck = () => {
+    const selected = downtimes.find((item) => item.issue === issue._id)
+    if (selected) {
+      const newDowntimes = [...downtimes].filter(
+        (item) => item.issue !== issue._id
+      )
+
+      return dispatch({ type: onDowntime, payload: newDowntimes })
+    }
+    if (!selected) {
+      const newDowntime = {
+        issue: issue._id,
+        mins: 5
+      }
+      const newDowntimes = [...downtimes, newDowntime]
+      return dispatch({ type: onDowntime, payload: newDowntimes })
+    }
+  }
+
+  const onIssue = (e) => {
+    const { value } = e.target
+
+    const otherDowntimes = [...downtimes].filter(
+      (item) => item.issue !== issue._id
+    )
+
+    const newDowntime = {
+      issue: issue._id,
+      mins: value
+    }
+
+    const newDowntimes = [...otherDowntimes, newDowntime]
+    dispatch({ type: onDowntime, payload: newDowntimes })
+  }
+
+  const isCheck = () => {
+    return downtimes.find((item) => item.issue === issue._id)
+  }
+
+  const isValue = () => {
+    const value = downtimes.find((item) => item.issue === issue._id)
+    return value ? value.mins : 0
+  }
+
   return (
     <SectionRow>
       <TableData>
         <CheckInput
           type="checkbox"
-          //   checked={findDefect(program, defect._id)}
+          onChange={onCheck}
+          checked={isCheck()}
           value={issue._id}
-
-          //   onChange={onSelectDefect}
         ></CheckInput>
         <label>
           {issue.code} {issue.name}
@@ -20,9 +67,9 @@ export default function DowntimeInput({ issue }) {
         <input
           type="number"
           id={issue._id}
-          //   onChange={onDefect}
-          //   disabled={disabledDefect(program, defect._id)}
-          //   value={getDefaultDefect(program, defect._id)}
+          onChange={onIssue}
+          disabled={!isCheck()}
+          value={isValue()}
         ></input>
       </TableData>
     </SectionRow>

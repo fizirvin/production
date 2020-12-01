@@ -33,13 +33,13 @@ import {
   PERF_INPUT_REPORT,
   QUAL_INPUT_REPORT,
   OEE_INPUT_REPORT,
-  PURGE_INPUT_REPORT,
   COMMENTS_INPUT_REPORT,
   TEAM_INPUT_REPORT,
   OPER_INPUT_REPORT,
   INSP_INPUT_REPORT,
   PRODUCTION_INPUT_REPORT,
   RESINES_INPUT_REPORT,
+  DOWNTIMES_INPUT_REPORT,
   CLEAN_INPUTS_REPORT
 } from './formActions'
 
@@ -213,6 +213,7 @@ const Form = ({
           onInsp={INSP_INPUT_REPORT}
           onComments={COMMENTS_INPUT_REPORT}
           onResine={RESINES_INPUT_REPORT}
+          onDowntime={DOWNTIMES_INPUT_REPORT}
           machine={machine}
         />
       }
