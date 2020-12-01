@@ -37,35 +37,36 @@ export default function CheckInput({
     const selected = totalReport.production.find(
       (item) => item.program === program._id
     )
+    const newReport = {
+      program: program._id,
+      molde: program.molde,
+      model: program.model,
+      real: 0,
+      ng: 0,
+      ok: 0,
+      plan: 0,
+      prod: 0,
+      cycles: 0,
+      wtime: 0.0,
+      dtime: 0.0,
+      avail: 0.0,
+      perf: 0.0,
+      qual: 0.0,
+      oee: 0.0
+    }
     if (selected) {
       const programs = [...totalReport.production].filter(
         (item) => item.program !== program._id
       )
       const { name } = e.target
       setCheck(false)
+      setReport(newReport)
       return dispatch({ type: name, payload: programs })
     }
     if (!selected) {
-      const report = {
-        program: program._id,
-        molde: program.molde,
-        model: program.model,
-        real: 0,
-        ng: 0,
-        ok: 0,
-        plan: 0,
-        prod: 0,
-        cycles: 0,
-        wtime: 0.0,
-        dtime: 0.0,
-        avail: 0.0,
-        perf: 0.0,
-        qual: 0.0,
-        oee: 0.0
-      }
-      const programs = [...totalReport.production, report]
+      const programs = [...totalReport.production, newReport]
       setCheck(true)
-      setReport(report)
+      setReport(newReport)
       return dispatch({ type: type, payload: programs })
     }
   }

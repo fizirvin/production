@@ -39,6 +39,7 @@ import {
   OPER_INPUT_REPORT,
   INSP_INPUT_REPORT,
   PRODUCTION_INPUT_REPORT,
+  RESINES_INPUT_REPORT,
   CLEAN_INPUTS_REPORT
 } from './formActions'
 
@@ -105,84 +106,84 @@ const Form = ({
 
   const inputs = [
     {
-      _id: '1',
+      key: '1',
       reducer: 'reportsForm',
       input: 'real',
       name: REAL_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '2',
+      key: '2',
       reducer: 'reportsForm',
       input: 'ng',
       name: NG_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '3',
+      key: '3',
       reducer: 'reportsForm',
       input: 'ok',
       name: OK_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '4',
+      key: '4',
       reducer: 'reportsForm',
       input: 'cycles',
       name: CYCLES_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '5',
+      key: '5',
       reducer: 'reportsForm',
       input: 'plan',
       name: PLAN_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '6',
+      key: '6',
       reducer: 'reportsForm',
       input: 'wtime',
       name: WTIME_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '7',
+      key: '7',
       reducer: 'reportsForm',
       input: 'tprod',
       name: TPROD_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '8',
+      key: '8',
       reducer: 'reportsForm',
       input: 'dtime',
       name: DTIME_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '9',
+      key: '9',
       reducer: 'reportsForm',
       input: 'avail',
       name: AVAIL_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '10',
+      key: '10',
       reducer: 'reportsForm',
       input: 'perf',
       name: PERF_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '11',
+      key: '11',
       reducer: 'reportsForm',
       input: 'qual',
       name: QUAL_INPUT_REPORT,
       disabled: true
     },
     {
-      _id: '12',
+      key: '12',
       reducer: 'reportsForm',
       input: 'oee',
       name: OEE_INPUT_REPORT,
@@ -206,10 +207,12 @@ const Form = ({
         <Report
           items={inputs}
           programs={programs.filter((prog) => prog.machine._id === machine)}
-          name={PRODUCTION_INPUT_REPORT}
+          onProduction={PRODUCTION_INPUT_REPORT}
           onTeam={TEAM_INPUT_REPORT}
           onOper={OPER_INPUT_REPORT}
           onInsp={INSP_INPUT_REPORT}
+          onComments={COMMENTS_INPUT_REPORT}
+          onResine={RESINES_INPUT_REPORT}
           machine={machine}
         />
       }

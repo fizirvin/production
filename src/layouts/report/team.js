@@ -18,7 +18,6 @@ export default function Team({ onTeam, onInsp, onOper }) {
     dispatch({ type: onInsp, payload: e.target.value })
   }
 
-  console.log('team', team)
   return (
     <table>
       <tbody>

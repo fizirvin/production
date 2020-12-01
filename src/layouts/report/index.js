@@ -11,10 +11,12 @@ import { SectionTwo, SectionContainer } from './styles'
 export default function Report({
   items = [],
   programs = [],
-  name,
+  onProduction,
   onTeam,
   onOper,
   onInsp,
+  onComments,
+  onResine,
   machine
 }) {
   const [section, setSection] = useState('defects')
@@ -24,17 +26,23 @@ export default function Report({
   }
   return (
     <>
-      {machine && <ReportTable items={items} programs={programs} name={name} />}
+      {machine && (
+        <ReportTable
+          items={items}
+          programs={programs}
+          onProduction={onProduction}
+        />
+      )}
       {machine && <SwitchSection onClick={onSwitch} />}
       {machine && (
         <SectionTwo>
           <SectionContainer>
             {section === 'defects' && <DefectsTable />}
             {section === 'downtime' && <DowntimeTable />}
-            {section === 'purge' && <PurgeTable />}
+            {section === 'purge' && <PurgeTable onResine={onResine} />}
           </SectionContainer>
           <div>
-            <Comments />
+            <Comments onComments={onComments} />
             <Team onTeam={onTeam} onOper={onOper} onInsp={onInsp} />
           </div>
         </SectionTwo>

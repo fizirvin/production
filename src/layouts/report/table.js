@@ -3,9 +3,9 @@ import renderInputs from './renderInputs'
 import renderPrograms from './renderPrograms'
 import { Table, TableHeader } from './styles'
 
-export default function ReportTable({ items, programs, name }) {
+export default function ReportTable({ items, programs, onProduction }) {
   const inputs = renderInputs(items)
-  const programsInputs = renderPrograms(programs, name)
+  const programsInputs = renderPrograms(programs, onProduction)
   return (
     <Table>
       <thead>

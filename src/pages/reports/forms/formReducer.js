@@ -22,7 +22,8 @@ import {
   INSP_INPUT_REPORT,
   CLEAN_INPUTS_REPORT,
   SELECT_INPUTS_REPORTS,
-  PRODUCTION_INPUT_REPORT
+  PRODUCTION_INPUT_REPORT,
+  RESINES_INPUT_REPORT
 } from './formActions'
 
 const initialState = {
@@ -213,6 +214,11 @@ const formReducer = (state = initialState, action) => {
         qual,
         oee,
         production: payload
+      }
+    case RESINES_INPUT_REPORT:
+      return {
+        ...state,
+        resines: payload
       }
     case CLEAN_INPUTS_REPORT:
       return initialState
