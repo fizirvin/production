@@ -24,7 +24,8 @@ import {
   SELECT_INPUTS_REPORTS,
   PRODUCTION_INPUT_REPORT,
   RESINES_INPUT_REPORT,
-  DOWNTIMES_INPUT_REPORT
+  DOWNTIMES_INPUT_REPORT,
+  NGS_INPUT_REPORT
 } from './formActions'
 
 const initialState = {
@@ -217,14 +218,23 @@ const formReducer = (state = initialState, action) => {
         production: payload
       }
     case RESINES_INPUT_REPORT:
+      const purge = payload.reduce((a, b) => {
+        return a + b.purge || 0
+      }, 0)
       return {
         ...state,
+        purge,
         resines: payload
       }
     case DOWNTIMES_INPUT_REPORT:
       return {
         ...state,
         downtimes: payload
+      }
+    case NGS_INPUT_REPORT:
+      return {
+        ...state,
+        ngs: payload
       }
     case CLEAN_INPUTS_REPORT:
       return initialState

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import RenderDefects from './renderDefects'
 import { DefectTable, TableHeader } from './styles'
 
-export default function DefectsTable() {
+export default function DefectsTable({ onNgs }) {
   const production = useSelector((state) => state['reportsForm']['production'])
 
   return production.map((item) => {
@@ -21,7 +21,11 @@ export default function DefectsTable() {
           </tr>
         </thead>
         <tbody>
-          <RenderDefects program={item.program} />
+          <RenderDefects
+            molde={item.molde._id}
+            model={item.model._id}
+            onNgs={onNgs}
+          />
         </tbody>
       </DefectTable>
     )

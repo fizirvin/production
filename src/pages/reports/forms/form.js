@@ -40,6 +40,7 @@ import {
   PRODUCTION_INPUT_REPORT,
   RESINES_INPUT_REPORT,
   DOWNTIMES_INPUT_REPORT,
+  NGS_INPUT_REPORT,
   CLEAN_INPUTS_REPORT
 } from './formActions'
 
@@ -214,6 +215,7 @@ const Form = ({
           onComments={COMMENTS_INPUT_REPORT}
           onResine={RESINES_INPUT_REPORT}
           onDowntime={DOWNTIMES_INPUT_REPORT}
+          onNgs={NGS_INPUT_REPORT}
           machine={machine}
         />
       }

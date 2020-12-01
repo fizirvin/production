@@ -1,18 +1,29 @@
 const newReport = {
   query: `mutation
-    NewReport( $input: NewShot ){
+    NewReport( $input: NewReport ){
         newReport(input: $input){
             _id
-            molde
-            date
-            shift
-            quantity
-            end
-            shiftEnd
-            active
-            comments
-            user
-            createdAt
+                date
+                shift
+                machine
+                real
+                ng
+                ok
+                plan
+                tprod
+                cycles
+                ptime
+                wtime
+                dtime
+                avail
+                perf
+                qual
+                oee
+                user
+                team
+                purge
+                createdAt
+                updatedAt
         }
     }`
 }

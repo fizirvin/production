@@ -18,7 +18,7 @@ export default function DowntimeInput({ issue, onDowntime }) {
     if (!selected) {
       const newDowntime = {
         issue: issue._id,
-        mins: 5
+        mins: 0
       }
       const newDowntimes = [...downtimes, newDowntime]
       return dispatch({ type: onDowntime, payload: newDowntimes })
