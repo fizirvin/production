@@ -72,7 +72,7 @@ const formReducer = (state = initialState, action) => {
       }
     case MACHINE_INPUT_REPORT:
       return {
-        ...initialState,
+        ...state,
         machine: payload
       }
     case PLAN_TIME_INPUT_REPORT:

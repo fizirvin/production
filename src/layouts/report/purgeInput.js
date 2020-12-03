@@ -34,7 +34,7 @@ export default function PurgeInput({ material, onResine }) {
 
     const newResine = {
       resine: material._id,
-      purge: value
+      purge: +value
     }
 
     const newResines = [...otherResines, newResine]

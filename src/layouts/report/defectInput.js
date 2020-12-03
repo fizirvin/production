@@ -37,7 +37,7 @@ export default function DefectInput({ defect, molde, model, onNgs }) {
       defect: defect._id,
       model,
       molde,
-      pieces: value
+      pieces: +value
     }
     const selected = ngs.find(
       (item) =>

@@ -34,7 +34,7 @@ export default function DowntimeInput({ issue, onDowntime }) {
 
     const newDowntime = {
       issue: issue._id,
-      mins: value
+      mins: +value
     }
 
     const newDowntimes = [...otherDowntimes, newDowntime]

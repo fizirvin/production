@@ -71,6 +71,7 @@ export const fetchReports = (page) => async (dispatch) => {
 }
 
 export const addReport = (input) => async (dispatch) => {
+  console.log('input', input)
   dispatch(request())
   newReport.variables = { input }
   const { status, data } = await fetchItems(newReport)

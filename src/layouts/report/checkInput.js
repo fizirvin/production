@@ -39,8 +39,8 @@ export default function CheckInput({
     )
     const newReport = {
       program: program._id,
-      molde: program.molde,
-      model: program.model,
+      molde: program.molde._id,
+      model: program.model._id,
       real: 0,
       ng: 0,
       ok: 0,
@@ -79,12 +79,12 @@ export default function CheckInput({
     let wtime = report.wtime
 
     if (name === 'real') {
-      real = onInteger(value, report.real)
+      real = +value
       const prewtime = real / program.capacity
       wtime = parseFloat(prewtime.toFixed(2))
     }
     if (name === 'ng') {
-      ng = onInteger(value, report.ng)
+      ng = +value
       const prewtime = real / program.capacity
       wtime = parseFloat(prewtime.toFixed(2))
     }

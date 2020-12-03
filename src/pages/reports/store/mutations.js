@@ -2,7 +2,7 @@ const newReport = {
   query: `mutation
     NewReport( $input: NewReport ){
         newReport(input: $input){
-            _id
+                _id
                 date
                 shift
                 machine
@@ -22,6 +22,7 @@ const newReport = {
                 user
                 team
                 purge
+                progrs
                 createdAt
                 updatedAt
         }
