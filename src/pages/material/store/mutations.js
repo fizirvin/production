@@ -20,7 +20,7 @@ const newMaterial = {
 
 const updateMaterial = {
   query: `mutation
-    UpdateMaterial($_id: ID, $input: NewMaterial ){
+    UpdateMaterial($_id: ID, $input: UpdateMaterial ){
         updateMaterial(_id: $_id, input: $input){
             _id
             number
@@ -31,6 +31,8 @@ const updateMaterial = {
             type
             unit
             color
+            user
+            createdAt
         }
     }`
 }

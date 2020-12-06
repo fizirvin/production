@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { SectionRow, TableData, CheckInput } from './styles'
 
@@ -25,25 +25,28 @@ export default function DowntimeInput({ issue, onDowntime }) {
     }
   }
 
-  const onIssue = (e) => {
-    const { value } = e.target
+  const onIssue = useCallback(
+    (e) => {
+      const { value } = e.target
 
-    const otherDowntimes = [...downtimes].filter(
-      (item) => item.issue !== issue._id
-    )
+      const otherDowntimes = [...downtimes].filter(
+        (item) => item.issue !== issue._id
+      )
 
-    const newDowntime = {
-      issue: issue._id,
-      mins: +value
-    }
+      const newDowntime = {
+        issue: issue._id,
+        mins: +value
+      }
 
-    const newDowntimes = [...otherDowntimes, newDowntime]
-    dispatch({ type: onDowntime, payload: newDowntimes })
-  }
+      const newDowntimes = [...otherDowntimes, newDowntime]
+      dispatch({ type: onDowntime, payload: newDowntimes })
+    },
+    [downtimes, issue._id, onDowntime, dispatch]
+  )
 
-  const isCheck = () => {
+  const isCheck = useMemo(() => {
     return downtimes.find((item) => item.issue === issue._id)
-  }
+  }, [downtimes, issue._id])
 
   const isValue = () => {
     const value = downtimes.find((item) => item.issue === issue._id)

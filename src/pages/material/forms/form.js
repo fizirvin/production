@@ -13,10 +13,10 @@ import {
   CLEAN_INPUTS_MATERIAL
 } from './formActions'
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit, edit, onEdit }) {
   return (
     <FormComponent
-      title={'Add New Injection Material'}
+      title={edit ? 'Update Injection Material' : 'Add New Injection Material'}
       to={'/materials'}
       controls={
         <Controls
@@ -24,7 +24,7 @@ export default function Form({ onSubmit }) {
           load={'materials'}
           to="/materials"
           name={CLEAN_INPUTS_MATERIAL}
-          onSubmit={onSubmit}
+          onSubmit={edit ? onEdit : onSubmit}
         />
       }
     >

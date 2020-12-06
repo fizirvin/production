@@ -82,15 +82,24 @@ export const addMachine = (input) => async (dispatch) => {
   }
 }
 
-export const modifyMachine = (_id, input) => async (dispatch) => {
+export const modifyMachine = (input) => async (dispatch) => {
   dispatch(request())
-  updateMachine.variables = { _id, input }
-  const { status, data } = await fetchItems('updateMachine', updateMachine)
+
+  const machine = {
+    number: input.number,
+    serial: input.serial,
+    closingForce: input.closingForce,
+    spindleDiameter: input.spindleDiameter
+  }
+
+  updateMachine.variables = { _id: input._id, input: machine }
+  const { status, data } = await fetchItems(updateMachine)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(updateSuccess(data))
+    const { updateMachine } = data
+    dispatch(updateSuccess(updateMachine))
   }
 }
 

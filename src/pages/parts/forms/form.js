@@ -8,10 +8,10 @@ import {
   CLEAN_INPUTS_MODEL
 } from './formActions'
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit, onEdit, edit }) {
   return (
     <FormComponent
-      title={'Add New Injection Model'}
+      title={edit ? 'Update Injection Model' : 'Add New Injection Model'}
       to={'/models'}
       controls={
         <Controls
@@ -19,7 +19,7 @@ export default function Form({ onSubmit }) {
           load={'models'}
           to="/models"
           name={CLEAN_INPUTS_MODEL}
-          onSubmit={onSubmit}
+          onSubmit={edit ? onEdit : onSubmit}
         />
       }
     >

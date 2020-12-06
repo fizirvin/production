@@ -12,14 +12,16 @@ const newModel = {
     }`
 }
 
-const updatePartNumber = {
+const updateModel = {
   query: `mutation
-    UpdatePartNumber($_id: ID, $input: NewPartNumber ){
-        updatePartNumber(_id: $_id, input: $input){
+    UpdateModel($_id: ID, $input: UpdateModel ){
+        updateModel(_id: $_id, input: $input){
             _id
-            partNumber
-            partName
+            number
+            name
             family
+            user
+            createdAt
         }
     }`
 }
@@ -36,4 +38,4 @@ const removeModel = {
       }`
 }
 
-export { newModel, removeModel, updatePartNumber }
+export { newModel, removeModel, updateModel }

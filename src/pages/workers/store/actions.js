@@ -1,5 +1,5 @@
 import query from './queries'
-import { newProfile, updateMaterial, removeMaterial } from './mutations'
+import { newProfile, updateProfile, removeMaterial } from './mutations'
 import { fetchItems } from 'services'
 
 export const REQUEST_PROFILES = 'REQUEST_PROFILES'
@@ -81,15 +81,28 @@ export const addProfile = (input) => async (dispatch) => {
   }
 }
 
-export const modifyProfile = (_id, input) => async (dispatch) => {
+export const modifyProfile = (input) => async (dispatch) => {
   dispatch(request())
-  updateMaterial.variables = { _id, input }
-  const { status, data } = await fetchItems('updateMaterial', updateMaterial)
+
+  const profile = {
+    firstname: input.firstname,
+    lastname: input.lastname,
+    gender: input.gender,
+    entry: input.entry,
+    department: input.department,
+    area: input.area,
+    team: input.team,
+    position: input.position,
+    active: input.active
+  }
+  updateProfile.variables = { _id: input._id, input: profile }
+  const { status, data } = await fetchItems(updateProfile)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(updateSuccess(data))
+    const { updateProfile } = data
+    dispatch(updateSuccess(updateProfile))
   }
 }
 

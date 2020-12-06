@@ -15,13 +15,15 @@ const newMachine = {
 
 const updateMachine = {
   query: `mutation
-    UpdateMachine($_id: ID, $input: NewMachine ){
+    UpdateMachine($_id: ID, $input: UpdateMachine ){
         updateMachine(_id: $_id, input: $input){
             _id
-            machineNumber
-            machineSerial
+            number
+            serial
             closingForce
             spindleDiameter
+            user
+            createdAt  
         }
     }`
 }

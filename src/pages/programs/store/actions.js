@@ -82,15 +82,25 @@ export const addProgram = (input) => async (dispatch) => {
   }
 }
 
-export const modifyProgram = (_id, input) => async (dispatch) => {
+export const modifyProgram = (input) => async (dispatch) => {
   dispatch(request())
-  updateProgram.variables = { _id, input }
-  const { status, data } = await fetchItems('updateProgram', updateProgram)
+
+  const program = {
+    machine: input.machine,
+    molde: input.molde,
+    model: input.model,
+    time: input.time,
+    cycles: input.cycles,
+    capacity: input.capacity
+  }
+  updateProgram.variables = { _id: input._id, input: program }
+  const { status, data } = await fetchItems(updateProgram)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(updateSuccess(data))
+    const { updateProgram } = data
+    dispatch(updateSuccess(updateProgram))
   }
 }
 

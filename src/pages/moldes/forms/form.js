@@ -3,6 +3,7 @@ import {
   FormComponent,
   InputNumberComponent,
   InputTextComponent,
+  InputRadioComponent,
   Controls
 } from 'layouts'
 
@@ -14,13 +15,14 @@ import {
   TCYCLES_INPUT_MOLDE,
   SHOT_INPUT_MOLDE,
   QUANTITY_INPUT_MOLDE,
+  ACTIVE_INPUT_MOLDE,
   CLEAN_INPUTS_MOLDE
 } from './formActions'
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit, onEdit, edit }) {
   return (
     <FormComponent
-      title={'Add New Injection Mold'}
+      title={edit ? 'Update Injection Mold' : 'Add New Injection Mold'}
       to={'/molds'}
       controls={
         <Controls
@@ -28,7 +30,7 @@ export default function Form({ onSubmit }) {
           load={'moldes'}
           to="/molds"
           name={CLEAN_INPUTS_MOLDE}
-          onSubmit={onSubmit}
+          onSubmit={edit ? onEdit : onSubmit}
         />
       }
     >
@@ -76,6 +78,14 @@ export default function Form({ onSubmit }) {
         reducer={'moldesForm'}
         input={'quantity'}
       />
+      {edit && (
+        <InputRadioComponent
+          reducer={'moldesForm'}
+          input={'active'}
+          label={'Active'}
+          name={ACTIVE_INPUT_MOLDE}
+        />
+      )}
     </FormComponent>
   )
 }

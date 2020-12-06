@@ -71,6 +71,7 @@ export const fetchMoldes = (page) => async (dispatch) => {
 
 export const addMolde = (input) => async (dispatch) => {
   dispatch(request())
+
   newMolde.variables = { input }
   const { status, data } = await fetchItems(newMolde)
 
@@ -82,15 +83,27 @@ export const addMolde = (input) => async (dispatch) => {
   }
 }
 
-export const modifyMolde = (_id, input) => async (dispatch) => {
+export const modifyMolde = (input) => async (dispatch) => {
   dispatch(request())
-  updateMolde.variables = { _id, input }
-  const { status, data } = await fetchItems('updateMolde', updateMolde)
+  const molde = {
+    number: input.number,
+    serial: input.serial,
+    cavities: input.cavities,
+    lifecycles: input.lifecycles,
+    tcycles: input.tcycles,
+    shot: input.shot,
+    quantity: input.quantity,
+    active: input.active
+  }
+
+  updateMolde.variables = { _id: input._id, input: molde }
+  const { status, data } = await fetchItems(updateMolde)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(updateSuccess(data))
+    const { updateMolde } = data
+    dispatch(updateSuccess(updateMolde))
   }
 }
 

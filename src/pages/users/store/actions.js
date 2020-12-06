@@ -81,15 +81,21 @@ export const addUser = (input) => async (dispatch) => {
   }
 }
 
-export const modifyUser = (_id, input) => async (dispatch) => {
+export const modifyUser = (input) => async (dispatch) => {
   dispatch(request())
-  updateUser.variables = { _id, input }
-  const { status, data } = await fetchItems('updateUser', updateUser)
+
+  const user = {
+    level: input.level,
+    active: input.active
+  }
+  updateUser.variables = { _id: input._id, input: user }
+  const { status, data } = await fetchItems(updateUser)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(updateSuccess(data))
+    const { updateUser } = data
+    dispatch(updateSuccess(updateUser))
   }
 }
 

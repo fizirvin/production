@@ -82,15 +82,27 @@ export const addMaterial = (input) => async (dispatch) => {
   }
 }
 
-export const modifyMaterial = (_id, input) => async (dispatch) => {
+export const modifyMaterial = (input) => async (dispatch) => {
   dispatch(request())
-  updateMaterial.variables = { _id, input }
-  const { status, data } = await fetchItems('updateMaterial', updateMaterial)
+
+  const material = {
+    number: input.number,
+    manufacturer: input.manufacturer,
+    description: input.description,
+    color: input.color,
+    acronym: input.acronym,
+    identification: input.identification,
+    type: input.type,
+    unit: input.unit
+  }
+  updateMaterial.variables = { _id: input._id, input: material }
+  const { status, data } = await fetchItems(updateMaterial)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(updateSuccess(data))
+    const { updateMaterial } = data
+    dispatch(updateSuccess(updateMaterial))
   }
 }
 

@@ -1,5 +1,5 @@
 import query from './queries'
-import { newModel, updatePartNumber, removeModel } from './mutations'
+import { newModel, updateModel, removeModel } from './mutations'
 import { fetchItems } from 'services'
 
 export const REQUEST_MODELS = 'REQUEST_MODELS'
@@ -82,18 +82,22 @@ export const addModel = (input) => async (dispatch) => {
   }
 }
 
-export const modifyModel = (_id, input) => async (dispatch) => {
+export const modifyModel = (input) => async (dispatch) => {
   dispatch(request())
-  updatePartNumber.variables = { _id, input }
-  const { status, data } = await fetchItems(
-    'updatePartNumber',
-    updatePartNumber
-  )
+  const model = {
+    name: input.name,
+    number: input.number,
+    family: input.family
+  }
+
+  updateModel.variables = { _id: input._id, input: model }
+  const { status, data } = await fetchItems(updateModel)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(updateSuccess(data))
+    const { updateModel } = data
+    dispatch(updateSuccess(updateModel))
   }
 }
 

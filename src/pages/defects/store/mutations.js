@@ -14,12 +14,14 @@ const newDefect = {
 
 const updateDefect = {
   query: `mutation
-UpdateDefect($_id: ID, $input: NewDefect ){
+UpdateDefect($_id: ID, $input: UpdateDefect ){
     updateDefect(_id: $_id, input: $input){
-            _id
-            defectName
-            defectCode
-            isInjection
+        _id
+        name
+        code
+        injection
+        user
+        createdAt
         }
     }`
 }

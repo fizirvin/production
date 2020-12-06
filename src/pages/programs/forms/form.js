@@ -57,7 +57,7 @@ const Form = ({
 
   return (
     <FormComponent
-      title={'Add New Injection Program'}
+      title={edit ? 'Update Injection Program' : 'Add New Injection Program'}
       to={'/programs'}
       controls={
         <Controls

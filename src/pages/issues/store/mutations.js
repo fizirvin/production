@@ -14,11 +14,13 @@ const newIssue = {
 
 const updateIssue = {
   query: `mutation
-    UpdateIssue($_id: ID, $input: NewIssue ){
+    UpdateIssue($_id: ID, $input: UpdateIssue ){
         updateIssue(_id: $_id, input: $input){
             _id
-            issueName
-            issueCode
+            name
+            code
+            user
+            createdAt
         }
     }`
 }

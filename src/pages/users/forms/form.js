@@ -14,7 +14,7 @@ import {
   CLEAN_INPUTS_USER
 } from './formActions'
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit, edit, onEdit }) {
   const levels = [
     { _id: '1', level: '1' },
     { _id: '2', level: '2' },
@@ -22,7 +22,7 @@ export default function Form({ onSubmit }) {
   ]
   return (
     <FormComponent
-      title={'Add New User'}
+      title={edit ? 'Update User' : 'Add New User'}
       to={'/users'}
       controls={
         <Controls
@@ -30,7 +30,7 @@ export default function Form({ onSubmit }) {
           load={'users'}
           to="/users"
           name={CLEAN_INPUTS_USER}
-          onSubmit={onSubmit}
+          onSubmit={edit ? onEdit : onSubmit}
         />
       }
     >

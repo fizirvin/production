@@ -20,7 +20,8 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { type, payload } = action
+  switch (type) {
     case REQUEST_ISSUES:
       return {
         ...state,
@@ -29,7 +30,7 @@ const reducer = (state = initialState, action) => {
     case REQUEST_FAILURE_ISSUES:
       return {
         ...state,
-        message: action.payload,
+        message: payload,
         loading: false
       }
     case FETCH_SUCCESS_ISSUES:
@@ -37,11 +38,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         message: '',
         loading: false,
-        items: [...state.items, ...action.payload.items],
-        total: action.payload.total
+        items: [...state.items, ...payload.items],
+        total: payload.total
       }
     case ADD_SUCCESS_ISSUES:
-      const newItem = action.payload
+      const newItem = payload
       const items = [...state.items, newItem]
       return {
         message: 'New Injection Issue added correctly',
@@ -49,17 +50,17 @@ const reducer = (state = initialState, action) => {
         items: items
       }
     case UPDATE_SUCCESS_ISSUES:
-      const item = action.payload
+      const item = payload
       let updatedItems = [...state.items]
       updatedItems[updatedItems.findIndex((el) => el._id === item._id)] = item
       return {
-        message: '',
+        message: 'Injection Issue updated correctly',
         loading: false,
         items: updatedItems
       }
     case REMOVE_SUCCESS_ISSUES:
       const removeItems = [...state.items].filter(
-        (items) => items._id !== action.payload
+        (items) => items._id !== payload
       )
       return {
         message: '',
@@ -74,12 +75,12 @@ const reducer = (state = initialState, action) => {
     case PAGE_TOTAL_ISSUES:
       return {
         ...state,
-        page: action.payload
+        page: payload
       }
     case ADD_TOTAL_ISSUES:
       return {
         ...state,
-        add: action.payload
+        add: payload
       }
     default:
       return state

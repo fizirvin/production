@@ -84,7 +84,14 @@ export const addDefect = (input) => async (dispatch) => {
 
 export const modifyDefect = (_id, input) => async (dispatch) => {
   dispatch(request())
-  updateDefect.variables = { _id, input }
+
+  const defect = {
+    name: input.name,
+    code: input.code,
+    injection: input.injection
+  }
+
+  updateDefect.variables = { _id: input._id, input: defect }
   const { status, data } = await fetchItems(updateDefect)
 
   if (!status) {

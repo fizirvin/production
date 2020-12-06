@@ -23,46 +23,47 @@ const initialState = {
 }
 
 const formReducer = (state = initialState, action) => {
-  switch (action.type) {
+  const { type, payload } = action
+  switch (type) {
     case NUMBER_INPUT_MATERIAL:
       return {
         ...state,
-        number: action.payload
+        number: payload
       }
     case MANUFACTURER_INPUT_MATERIAL:
       return {
         ...state,
-        manufacturer: action.payload
+        manufacturer: payload
       }
     case DESCRIPTION_INPUT_MATERIAL:
       return {
         ...state,
-        description: action.payload
+        description: payload
       }
     case COLOR_INPUT_MATERIAL:
       return {
         ...state,
-        color: action.payload
+        color: payload
       }
     case ACRONYM_INPUT_MATERIAL:
       return {
         ...state,
-        acronym: action.payload
+        acronym: payload
       }
     case IDENTIFICATION_INPUT_MATERIAL:
       return {
         ...state,
-        identification: action.payload
+        identification: payload
       }
     case TYPE_INPUT_MATERIAL:
       return {
         ...state,
-        type: action.payload
+        type: payload
       }
     case UNIT_INPUT_MATERIAL:
       return {
         ...state,
-        unit: action.payload
+        unit: payload
       }
     case CLEAN_INPUTS_MATERIAL:
       return {
@@ -76,7 +77,7 @@ const formReducer = (state = initialState, action) => {
         unit: ''
       }
     case SELECT_INPUTS_MATERIAL:
-      return action.payload
+      return payload
     default:
       return state
   }

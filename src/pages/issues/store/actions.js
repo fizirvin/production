@@ -82,15 +82,22 @@ export const addIssue = (input) => async (dispatch) => {
   }
 }
 
-export const modifyIssue = (_id, input) => async (dispatch) => {
+export const modifyIssue = (input) => async (dispatch) => {
   dispatch(request())
-  updateIssue.variables = { _id, input }
-  const { status, data } = await fetchItems('updateIssue', updateIssue)
+
+  const issue = {
+    name: input.name,
+    code: input.code
+  }
+
+  updateIssue.variables = { _id: input._id, input: issue }
+  const { status, data } = await fetchItems(updateIssue)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(updateSuccess(data))
+    const { updateIssue } = data
+    dispatch(updateSuccess(updateIssue))
   }
 }
 

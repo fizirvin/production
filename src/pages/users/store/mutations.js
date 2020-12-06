@@ -15,13 +15,11 @@ const updateUser = {
   query: `mutation
 UpdateUser($_id: ID, $input: UpdatedUser ){
     updateUser(_id: $_id, input: $input){
-            _id
-            shortCat
-            fullUat
-            fullCat
-            active
-            level
-            name
+        _id
+        active
+        level
+        name
+        createdAt
         }
     }`
 }

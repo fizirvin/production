@@ -20,17 +20,20 @@ const newMolde = {
 
 const updateMolde = {
   query: `mutation
-UpdateMolde($_id: ID, $input: NewMolde ){
+UpdateMolde($_id: ID, $input: UpdateMolde ){
     updateMolde(_id: $_id, input: $input){
-            _id
-            moldeNumber
-            moldeSerial
-            cavities
-            lifecycles
-            tcycles
-            shot
-            quantity
-            active
+        _id
+        number
+        serial
+        cavities
+        lifecycles
+        percent
+        tcycles
+        shot
+        quantity
+        active
+        user
+        createdAt
         }
     }`
 }
