@@ -6,17 +6,17 @@ export const UList = styled.ul`
   align-items: center;
 
   li {
-    line-height: 8rem;
+    line-height: 11rem;
     position: relative;
   }
 
   a {
     display: block;
     color: #eee;
-    padding: 0 1.5rem;
-    font-size: 1.4rem;
+    padding: 0 1.4rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
-    transition: color 650ms;
+    transition: color 550ms;
   }
 
   a:hover {
@@ -72,13 +72,13 @@ export const SubMenu = styled.ul`
   width: 20rem;
   display: block;
   position: absolute;
-  border-top: 3px solid #eb3007;
+  border-top: 2.8px solid #eb3007;
   background-color: #191919;
   z-index: 100;
-  top: 16rem;
+  top: 14rem;
   opacity: 0;
   visibility: hidden;
-  transition: all 605ms ease;
+  transition: all 450ms ease;
 
   li {
     line-height: 4rem;
@@ -87,23 +87,23 @@ export const SubMenu = styled.ul`
   ::before {
     content: '';
     position: absolute;
-    top: -2.5rem;
+    top: -2.4rem;
     left: 3rem;
-    border: 1.2rem solid transparent;
+    border: 1.1rem solid transparent;
     border-bottom-color: #eb3007;
   }
 
   ul {
     border-top: none;
-    border-left: 3px solid #eb3007;
+    border-left: 2.8px solid #eb3007;
     top: 0;
-    left: 160%;
+    left: 135%;
   }
 
   ul::before {
     top: 0.9rem;
-    left: -2.5rem;
-    border: 1.2rem solid transparent;
+    left: -2.4rem;
+    border: 1.1rem solid transparent;
     border-right-color: #eb3007;
   }
 

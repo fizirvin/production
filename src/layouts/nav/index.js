@@ -52,12 +52,6 @@ export default function Nav() {
               <Item>
                 <Link to={'/production'}>Production Data</Link>
               </Item>
-              <Item>
-                <Link to={'/shots/add'}>Add Shot</Link>
-              </Item>
-              <Item>
-                <Link to={'/reports/add'}>Add Report</Link>
-              </Item>
             </SubMenu>
           </Item>
         </SubMenu>
@@ -66,10 +60,7 @@ export default function Nav() {
         <Link to={'/employees'}>Employees</Link>
         <SubMenu>
           <Item>
-            <Link to={'/employees'}>Employees List</Link>
-          </Item>
-          <Item>
-            <Link to={'/employees/add'}>Add Employee</Link>
+            <Link to={'/employees'}>Employees</Link>
           </Item>
         </SubMenu>
       </Item>
@@ -78,9 +69,6 @@ export default function Nav() {
         <SubMenu>
           <Item>
             <Link to={'/users'}>Users</Link>
-          </Item>
-          <Item>
-            <Link to={'/users/add'}>Add User</Link>
           </Item>
           <Item>
             <Link to={'/'}>Settings</Link>

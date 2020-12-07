@@ -12,4 +12,5 @@ export const MainContainer = styled.main`
   width: 100%;
   top: 5rem;
   height: 90vh;
+  overflow-y: auto;
 `
