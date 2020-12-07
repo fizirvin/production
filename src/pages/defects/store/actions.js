@@ -82,7 +82,7 @@ export const addDefect = (input) => async (dispatch) => {
   }
 }
 
-export const modifyDefect = (_id, input) => async (dispatch) => {
+export const modifyDefect = (input) => async (dispatch) => {
   dispatch(request())
 
   const defect = {

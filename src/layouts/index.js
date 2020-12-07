@@ -17,6 +17,7 @@ import Controls from './form/controls'
 import Message from './message'
 import ControlComponent from './control'
 import Report from './report'
+import ProgramTableComponent from './programsTable'
 
 export {
   Controls,
@@ -37,5 +38,6 @@ export {
   Nav,
   PortalComponent,
   TableComponent,
-  Report
+  Report,
+  ProgramTableComponent
 }

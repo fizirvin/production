@@ -3,14 +3,25 @@ const newProgram = {
     NewProgram( $input: NewProgram ){
         newProgram(input: $input){
             _id
-            machine
-            molde
-            model
+            machine{
+                _id
+                number
+            }
+            molde{
+                _id
+                number
+                cavities
+            }
+            model{
+                _id
+                name
+            }
             time
             cycles
             capacity
             user
             createdAt
+            updatedAt
         }
     }`
 }
@@ -20,14 +31,25 @@ const updateProgram = {
     UpdateProgram($_id: ID, $input: UpdateProgram ){
         updateProgram(_id: $_id, input: $input){
             _id
-            machine
-            molde
-            model
+            machine{
+                _id
+                number
+            }
+            molde{
+                _id
+                number
+                cavities
+            }
+            model{
+                _id
+                name
+            }
             time
             cycles
             capacity
             user
             createdAt
+            updatedAt
         }
     }`
 }

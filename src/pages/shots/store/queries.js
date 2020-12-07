@@ -21,4 +21,21 @@ const query = {
     }`
 }
 
+const cyclesQuery = {
+  query: `query 
+    Cycles( $cleaning: ID){
+        cycles(cleaning: $cleaning){
+            report
+            date
+            shift
+            machine
+            model
+            molde
+            real
+            cycles
+        }
+    }`
+}
+
 export default query
+export { cyclesQuery }

@@ -3,10 +3,22 @@ import { TD } from 'components'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
-export default function RenderRows(items, keys, headers, active, to, name) {
+export default function RenderProgramsRows(
+  items,
+  keys,
+  headers,
+  active,
+  to,
+  name
+) {
   const dispatch = useDispatch()
   const onSelect = (i) => {
-    const payload = { ...i }
+    const payload = {
+      ...i,
+      machine: i.machine._id,
+      molde: i.molde._id,
+      model: i.model._id
+    }
     if (active) {
       dispatch({
         type: name,

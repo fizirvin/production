@@ -1,11 +1,11 @@
 import React from 'react'
-import { TableComponent } from 'layouts'
+import { ProgramTableComponent } from 'layouts'
 import { keys, header_keys, header_data } from './tdata'
 import { SELECT_INPUTS_PROGRAM } from '../forms/formActions'
 
 export default function Table({ items }) {
   return (
-    <TableComponent
+    <ProgramTableComponent
       items={items}
       keys={keys}
       header_data={header_data}
