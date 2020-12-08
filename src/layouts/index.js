@@ -18,6 +18,7 @@ import Message from './message'
 import ControlComponent from './control'
 import Report from './report'
 import ProgramTableComponent from './programsTable'
+import ShotsTableComponent from './shotsTable'
 
 export {
   Controls,
@@ -39,5 +40,6 @@ export {
   PortalComponent,
   TableComponent,
   Report,
-  ProgramTableComponent
+  ProgramTableComponent,
+  ShotsTableComponent
 }

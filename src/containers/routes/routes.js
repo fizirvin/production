@@ -48,5 +48,6 @@ export const data = [
   [routes.REMOVE_PROGRAM, pages.RemoveProgram],
   [routes.REMOVE_REPORT, pages.RemoveReport],
   [routes.REMOVE_SHOT, pages.RemoveShot],
-  [routes.REMOVE_USER, pages.RemoveUser]
+  [routes.REMOVE_USER, pages.RemoveUser],
+  [routes.CYCLES, pages.Cycles]
 ]

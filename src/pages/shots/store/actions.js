@@ -1,4 +1,4 @@
-import query from './queries'
+import query, { cyclesQuery } from './queries'
 import { newShot, updateMaterial, removeMaterial } from './mutations'
 import { fetchItems } from 'services'
 

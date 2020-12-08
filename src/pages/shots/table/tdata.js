@@ -1,5 +1,5 @@
 export const keys = [
-  'molde',
+  ['molde', 'number'],
   'date',
   'shift',
   'end',

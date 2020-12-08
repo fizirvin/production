@@ -1,11 +1,12 @@
 import React from 'react'
-import { TableComponent } from 'layouts'
+import { ShotsTableComponent } from 'layouts'
 import { keys, header_keys, header_data } from './tdata'
 import { SELECT_INPUTS_SHOT } from '../forms/formActions'
+import { SHOT_INPUT_CYCLES } from '../cycles/cyclesReducer'
 
 export default function Table({ items }) {
   return (
-    <TableComponent
+    <ShotsTableComponent
       items={items}
       keys={keys}
       header_data={header_data}
@@ -13,6 +14,7 @@ export default function Table({ items }) {
       active={'active'}
       to={'shots'}
       name={SELECT_INPUTS_SHOT}
+      shot={SHOT_INPUT_CYCLES}
     />
   )
 }

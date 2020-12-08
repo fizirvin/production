@@ -11,6 +11,7 @@ export const PRODUCTION = '/production'
 export const PROGRAMS = '/programs'
 export const REPORTS = '/reports'
 export const SHOTS = '/shots'
+export const CYCLES = '/shots/cycles/:id'
 export const USERS = '/users'
 
 export const ADD_DEFECT = '/defects/add'

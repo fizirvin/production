@@ -13,7 +13,7 @@ import Models, { AddModel, RemoveModel, UpdateModel } from './parts'
 import Moldes, { AddMolde, RemoveMolde, UpdateMolde } from './moldes'
 import Programs, { AddProgram, RemoveProgram, UpdateProgram } from './programs'
 import Reports, { AddReport, RemoveReport, UpdateReport } from './reports'
-import Shots, { AddShot, RemoveShot, UpdateShot } from './shots'
+import Shots, { AddShot, RemoveShot, UpdateShot, Cycles } from './shots'
 import Users, { AddUser, RemoveUser, UpdateUser } from './users'
 import Workers, { AddWorker, RemoveWorker, UpdateWorker } from './workers'
 
@@ -66,5 +66,6 @@ export {
   UpdateReport,
   UpdateShot,
   UpdateUser,
-  UpdateWorker
+  UpdateWorker,
+  Cycles
 }

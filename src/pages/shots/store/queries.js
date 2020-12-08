@@ -5,7 +5,10 @@ const query = {
             total    
             items{
                 _id
-                molde
+                molde{
+                    _id
+                    number
+                }
                 date
                 shift
                 quantity
@@ -23,16 +26,15 @@ const query = {
 
 const cyclesQuery = {
   query: `query 
-    Cycles( $cleaning: ID){
-        cycles(cleaning: $cleaning){
-            report
-            date
-            shift
-            machine
-            model
-            molde
+    Cycles( $shot: ID){
+        cycles(shot: $shot){
+            _id
+            date 
+            shift 
+            machine  
             real
             cycles
+            quantity
         }
     }`
 }

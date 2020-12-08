@@ -24,6 +24,8 @@ import user from './userReducer'
 import reports from 'pages/reports/store/reducers'
 import reportsForm from 'pages/reports/forms/formReducer'
 
+import cycles from 'pages/shots/cycles/cyclesReducer'
+
 const reducers = combineReducers({
   defects,
   issues,
@@ -47,7 +49,8 @@ const reducers = combineReducers({
   profilesForm,
   user,
   reports,
-  reportsForm
+  reportsForm,
+  cycles
 })
 
 export default reducers
