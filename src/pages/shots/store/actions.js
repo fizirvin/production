@@ -1,4 +1,4 @@
-import query, { cyclesQuery } from './queries'
+import query from './queries'
 import { newShot, updateMaterial, removeMaterial } from './mutations'
 import { fetchItems } from 'services'
 
@@ -8,6 +8,8 @@ export const FETCH_SUCCESS_SHOTS = 'FETCH_SUCCESS_SHOTS'
 export const ADD_SUCCESS_SHOTS = 'ADD_SUCCESS_SHOTS'
 export const UPDATE_SUCCESS_SHOTS = 'UPDATE_SUCCESS_SHOTS'
 export const REMOVE_SUCCESS_SHOTS = 'REMOVE_SUCCESS_SHOTS'
+
+export const FINISH_SUCCESS_SHOT = 'FINISH_SUCCESS_SHOT'
 
 export const CLEAN_MESSAGE_SHOTS = 'CLEAN_MESSAGE_SHOTS'
 export const PAGE_TOTAL_SHOTS = 'PAGE_SHOTS'

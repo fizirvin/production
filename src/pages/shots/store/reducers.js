@@ -7,7 +7,8 @@ import {
   ADD_SUCCESS_SHOTS,
   CLEAN_MESSAGE_SHOTS,
   PAGE_TOTAL_SHOTS,
-  ADD_TOTAL_SHOTS
+  ADD_TOTAL_SHOTS,
+  FINISH_SUCCESS_SHOT
 } from './actions'
 
 const initialState = {
@@ -56,6 +57,17 @@ const reducer = (state = initialState, action) => {
         message: '',
         loading: false,
         items: updatedItems
+      }
+    case FINISH_SUCCESS_SHOT:
+      const finishShot = action.payload
+      let updatedSots = [...state.items]
+      updatedSots[
+        updatedSots.findIndex((el) => el._id === finishShot._id)
+      ] = finishShot
+      return {
+        message: '',
+        loading: false,
+        items: updatedSots
       }
     case REMOVE_SUCCESS_SHOTS:
       const removeItems = [...state.items].filter(

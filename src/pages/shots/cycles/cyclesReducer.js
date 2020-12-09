@@ -1,5 +1,7 @@
 import { cyclesQuery } from '../store/queries'
+import { finishShot } from '../store/mutations'
 import { fetchItems } from 'services'
+import { FINISH_SUCCESS_SHOT } from '../store/actions'
 
 export const SHOT_INPUT_CYCLES = 'SHOT_INPUT_CYCLES'
 export const END_INPUT_CYCLES = 'END_INPUT_CYCLES'
@@ -14,6 +16,8 @@ export const FETCH_SUCCESS_CYCLES = 'FETCH_SUCCESS_CYCLES'
 
 const initialState = {
   shot: '',
+  molde: '',
+  active: '',
   end: '',
   shiftEnd: '',
   quantity: 0,
@@ -46,7 +50,9 @@ const cycles = (state = initialState, action) => {
     case SHOT_INPUT_CYCLES:
       return {
         ...state,
-        shot: payload
+        shot: payload.shot,
+        molde: payload.molde,
+        active: payload.active
       }
     case END_INPUT_CYCLES:
       return {
@@ -90,6 +96,13 @@ const fetchSuccess = (items) => {
   }
 }
 
+const finishSuccess = (items) => {
+  return {
+    type: FINISH_SUCCESS_SHOT,
+    payload: items
+  }
+}
+
 export const fetchCycles = (shot) => async (dispatch) => {
   dispatch(request())
   cyclesQuery.variables = { shot: shot }
@@ -99,6 +112,24 @@ export const fetchCycles = (shot) => async (dispatch) => {
     dispatch(requestFailure(data))
   } else {
     dispatch(fetchSuccess(data.cycles))
+  }
+}
+
+export const finishingShot = (input) => async (dispatch) => {
+  dispatch(request())
+  const shot = {
+    end: input.end,
+    shiftEnd: input.shift,
+    quantity: input.quantity
+  }
+  finishShot.variables = { _id: input.shot, input: shot }
+  const { status, data } = await fetchItems(finishShot)
+
+  if (!status) {
+    dispatch(requestFailure(data))
+  } else {
+    console.log(data, 'data')
+    dispatch(finishSuccess(data.finishShot))
   }
 }
 

@@ -1,7 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { CyclesTable, TH, TD, StatusTD } from './styles'
 
-export default function CyclesList({ items }) {
+export default function CyclesList({
+  items,
+  shot,
+  molde,
+  active,
+  clean,
+  finish
+}) {
+  const dispatch = useDispatch()
+
+  const onClean = () => {
+    dispatch({ type: clean })
+  }
+
+  const onFinish = (object) => {
+    finish(object)
+  }
+
   const renderItems = (cycles) => {
     return cycles.map((cycle, index) => {
       const quantity = cycles.slice(0, index + 1).reduce((a, b) => {
@@ -19,7 +38,22 @@ export default function CyclesList({ items }) {
           <TD>{cycle.cycles}</TD>
           <TD>{cycle.real}</TD>
           <StatusTD status={status}>
-            {quantity} <button>finish</button>
+            {quantity}{' '}
+            {active && (
+              <Link
+                to={'/shots/'}
+                onClick={() =>
+                  onFinish({
+                    shot: shot,
+                    end: cycle.date,
+                    shift: cycle.shift,
+                    quantity: quantity
+                  })
+                }
+              >
+                <button>finish</button>
+              </Link>
+            )}
           </StatusTD>
         </tr>
       )
@@ -29,6 +63,14 @@ export default function CyclesList({ items }) {
   return (
     <CyclesTable>
       <thead>
+        <tr>
+          <TH colSpan="7">
+            Molde: {molde}
+            <Link to={'/shots/'} onClick={onClean}>
+              <button>Back to Shots</button>
+            </Link>
+          </TH>
+        </tr>
         <tr>
           <TH>#</TH>
           <TH>Date</TH>

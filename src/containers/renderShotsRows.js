@@ -28,8 +28,12 @@ export default function RenderShotsRows(
     }
   }
 
-  const onShot = (id) => {
-    dispatch({ type: shot, payload: id })
+  const onShot = (item) => {
+    console.log(item)
+    dispatch({
+      type: shot,
+      payload: { shot: item._id, molde: item.molde.number, active: item.active }
+    })
   }
 
   const rows = items.map((item, index) => {
@@ -59,13 +63,15 @@ export default function RenderShotsRows(
           </TD>
         )}
         <TD headers={'add'}>
-          <Link to={`/${to}/update/${item._id}`} onClick={() => onSelect(item)}>
-            <button>Update</button>
-          </Link>
-          <Link
-            to={`/${to}/cycles/${item._id}`}
-            onClick={() => onShot(item._id)}
-          >
+          {item.active && (
+            <Link
+              to={`/${to}/update/${item._id}`}
+              onClick={() => onSelect(item)}
+            >
+              <button>Update</button>
+            </Link>
+          )}
+          <Link to={`/${to}/cycles/${item._id}`} onClick={() => onShot(item)}>
             <button>Cycles</button>
           </Link>
         </TD>
