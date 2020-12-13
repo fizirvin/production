@@ -1,6 +1,7 @@
 import query from './queries'
 import { newDefect, updateDefect, removeDefect } from './mutations'
 import { fetchItems } from 'services'
+import { validateInput } from 'helpers'
 
 export const REQUEST_DEFECTS = 'REQUEST_DEFECTS'
 export const REQUEST_FAILURE_DEFECTS = 'REQUEST_FAILURE_DEFECTS'
@@ -70,15 +71,20 @@ export const fetchDefects = (page) => async (dispatch) => {
 }
 
 export const addDefect = (input) => async (dispatch) => {
-  dispatch(request())
-  newDefect.variables = { input }
-  const { status, data } = await fetchItems(newDefect)
+  const { valid, message } = validateInput(input)
+  if (valid) {
+    dispatch(request())
+    newDefect.variables = { input }
+    const { status, data } = await fetchItems(newDefect)
 
-  if (!status) {
-    dispatch(requestFailure(data))
+    if (!status) {
+      dispatch(requestFailure(data))
+    } else {
+      const { newDefect } = data
+      dispatch(addSuccess(newDefect))
+    }
   } else {
-    const { newDefect } = data
-    dispatch(addSuccess(newDefect))
+    dispatch(requestFailure(message))
   }
 }
 

@@ -1,6 +1,7 @@
 import { query } from './queries'
 import { newMolde, updateMolde, removeMolde } from './mutations'
 import { fetchItems } from 'services'
+import { validateInput } from 'helpers'
 
 export const REQUEST_MOLDES = 'REQUEST_MOLDES'
 export const REQUEST_FAILURE_MOLDES = 'REQUEST_FAILURE_MOLDES'
@@ -70,16 +71,21 @@ export const fetchMoldes = (page) => async (dispatch) => {
 }
 
 export const addMolde = (input) => async (dispatch) => {
-  dispatch(request())
+  const { valid, message } = validateInput(input)
+  if (valid) {
+    dispatch(request())
 
-  newMolde.variables = { input }
-  const { status, data } = await fetchItems(newMolde)
+    newMolde.variables = { input }
+    const { status, data } = await fetchItems(newMolde)
 
-  if (!status) {
-    dispatch(requestFailure(data))
+    if (!status) {
+      dispatch(requestFailure(data))
+    } else {
+      const { newMolde } = data
+      dispatch(addSuccess(newMolde))
+    }
   } else {
-    const { newMolde } = data
-    dispatch(addSuccess(newMolde))
+    dispatch(requestFailure(message))
   }
 }
 

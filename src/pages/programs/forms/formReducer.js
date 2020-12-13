@@ -13,9 +13,9 @@ const initialState = {
   machine: '',
   molde: '',
   model: '',
-  time: 0.0,
-  capacity: 0,
-  cycles: 0
+  time: '',
+  capacity: '',
+  cycles: ''
 }
 
 const formReducer = (state = initialState, action) => {
@@ -51,14 +51,7 @@ const formReducer = (state = initialState, action) => {
         cycles: action.payload
       }
     case CLEAN_INPUTS_PROGRAM:
-      return {
-        machine: '',
-        molde: '',
-        model: '',
-        time: 0.0,
-        capacity: 0,
-        cycles: 0
-      }
+      return initialState
     case SELECT_INPUTS_PROGRAM:
       return action.payload
     default:

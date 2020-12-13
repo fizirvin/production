@@ -67,13 +67,13 @@ export default function Form({ onSubmit, onEdit, edit }) {
         min="1"
       />
       <InputNumberComponent
-        label={'Shot'}
+        label={'Shot (cycles)'}
         name={SHOT_INPUT_MOLDE}
         reducer={'moldesForm'}
         input={'shot'}
       />
       <InputNumberComponent
-        label={'Quantity'}
+        label={'Quantity (real pieces)'}
         name={QUANTITY_INPUT_MOLDE}
         reducer={'moldesForm'}
         input={'quantity'}

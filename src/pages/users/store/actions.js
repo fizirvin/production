@@ -1,6 +1,7 @@
 import query from './queries'
 import { newUser, updateUser, removeUser } from './mutations'
 import { fetchItems } from 'services'
+import { validateInput } from 'helpers'
 
 export const REQUEST_USERS = 'REQUEST_USERS'
 export const REQUEST_FAILURE_USERS = 'REQUEST_FAILURE_USERS'
@@ -69,15 +70,20 @@ export const fetchUsers = (page) => async (dispatch) => {
 }
 
 export const addUser = (input) => async (dispatch) => {
-  dispatch(request())
-  newUser.variables = { input }
-  const { status, data } = await fetchItems(newUser)
+  const { valid, message } = validateInput(input)
+  if (valid) {
+    dispatch(request())
+    newUser.variables = { input }
+    const { status, data } = await fetchItems(newUser)
 
-  if (!status) {
-    dispatch(requestFailure(data))
+    if (!status) {
+      dispatch(requestFailure(data))
+    } else {
+      const { newUser } = data
+      dispatch(addSuccess(newUser))
+    }
   } else {
-    const { newUser } = data
-    dispatch(addSuccess(newUser))
+    dispatch(requestFailure(message))
   }
 }
 

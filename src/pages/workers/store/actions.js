@@ -1,6 +1,7 @@
 import query from './queries'
 import { newProfile, updateProfile, removeMaterial } from './mutations'
 import { fetchItems } from 'services'
+import { validateInput } from 'helpers'
 
 export const REQUEST_PROFILES = 'REQUEST_PROFILES'
 export const REQUEST_FAILURE_PROFILES = 'REQUEST_FAILURE_PROFILES'
@@ -69,15 +70,20 @@ export const fetchProfiles = (page) => async (dispatch) => {
 }
 
 export const addProfile = (input) => async (dispatch) => {
-  dispatch(request())
-  newProfile.variables = { input }
-  const { status, data } = await fetchItems(newProfile)
+  const { valid, message } = validateInput(input)
+  if (valid) {
+    dispatch(request())
+    newProfile.variables = { input }
+    const { status, data } = await fetchItems(newProfile)
 
-  if (!status) {
-    dispatch(requestFailure(data))
+    if (!status) {
+      dispatch(requestFailure(data))
+    } else {
+      const { newProfile } = data
+      dispatch(addSuccess(newProfile))
+    }
   } else {
-    const { newProfile } = data
-    dispatch(addSuccess(newProfile))
+    dispatch(requestFailure(message))
   }
 }
 

@@ -1,6 +1,7 @@
 import query from './queries'
 import { newProgram, updateProgram, removeProgram } from './mutations'
 import { fetchItems } from 'services'
+import { validateInput } from 'helpers'
 
 export const REQUEST_PROGRAMS = 'REQUEST_PROGRAMS'
 export const REQUEST_FAILURE_PROGRAMS = 'REQUEST_FAILURE_PROGRAMS'
@@ -70,15 +71,20 @@ export const fetchPrograms = (page) => async (dispatch) => {
 }
 
 export const addProgram = (input) => async (dispatch) => {
-  dispatch(request())
-  newProgram.variables = { input }
-  const { status, data } = await fetchItems(newProgram)
+  const { valid, message } = validateInput(input)
+  if (valid) {
+    dispatch(request())
+    newProgram.variables = { input }
+    const { status, data } = await fetchItems(newProgram)
 
-  if (!status) {
-    dispatch(requestFailure(data))
+    if (!status) {
+      dispatch(requestFailure(data))
+    } else {
+      const { newProgram } = data
+      dispatch(addSuccess(newProgram))
+    }
   } else {
-    const { newProgram } = data
-    dispatch(addSuccess(newProgram))
+    dispatch(requestFailure(message))
   }
 }
 

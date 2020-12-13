@@ -14,11 +14,11 @@ import {
 const initialState = {
   number: '',
   serial: '',
-  cavities: 0,
-  lifecycles: 0,
-  tcycles: 0,
-  shot: 0,
-  quantity: 0
+  cavities: '',
+  lifecycles: '',
+  tcycles: '',
+  shot: '',
+  quantity: ''
 }
 
 const formReducer = (state = initialState, action) => {
@@ -64,15 +64,7 @@ const formReducer = (state = initialState, action) => {
         active: action.payload
       }
     case CLEAN_INPUTS_MOLDE:
-      return {
-        number: '',
-        serial: '',
-        cavities: 0,
-        lifecycles: 0,
-        tcycles: 0,
-        shot: 0,
-        quantity: 0
-      }
+      return initialState
     case SELECT_INPUTS_MOLDE:
       return action.payload
     default:

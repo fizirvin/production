@@ -1,6 +1,7 @@
 import query from './queries'
 import { newMaterial, updateMaterial, removeMaterial } from './mutations'
 import { fetchItems } from 'services'
+import { validateInput } from 'helpers'
 
 export const REQUEST_MATERIALS = 'REQUEST_MATERIALS'
 export const REQUEST_FAILURE_MATERIALS = 'REQUEST_FAILURE_MATERIALS'
@@ -70,15 +71,20 @@ export const fetchMaterials = (page) => async (dispatch) => {
 }
 
 export const addMaterial = (input) => async (dispatch) => {
-  dispatch(request())
-  newMaterial.variables = { input }
-  const { status, data } = await fetchItems(newMaterial)
+  const { valid, message } = validateInput(input)
+  if (valid) {
+    dispatch(request())
+    newMaterial.variables = { input }
+    const { status, data } = await fetchItems(newMaterial)
 
-  if (!status) {
-    dispatch(requestFailure(data))
+    if (!status) {
+      dispatch(requestFailure(data))
+    } else {
+      const { newMaterial } = data
+      dispatch(addSuccess(newMaterial))
+    }
   } else {
-    const { newMaterial } = data
-    dispatch(addSuccess(newMaterial))
+    dispatch(requestFailure(message))
   }
 }
 

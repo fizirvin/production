@@ -1,6 +1,7 @@
 import query from './queries'
 import { newMachine, updateMachine, removeMachine } from './mutations'
 import { fetchItems } from 'services'
+import { validateInput } from 'helpers'
 
 export const REQUEST_MACHINES = 'REQUEST_MACHINES'
 export const REQUEST_FAILURE_MACHINES = 'REQUEST_FAILURE_MACHINES'
@@ -70,15 +71,19 @@ export const fetchMachines = (page) => async (dispatch) => {
 }
 
 export const addMachine = (input) => async (dispatch) => {
-  dispatch(request())
-  newMachine.variables = { input }
-  const { status, data } = await fetchItems(newMachine)
-
-  if (!status) {
-    dispatch(requestFailure(data))
+  const { valid, message } = validateInput(input)
+  if (valid) {
+    dispatch(request())
+    newMachine.variables = { input }
+    const { status, data } = await fetchItems(newMachine)
+    if (!status) {
+      dispatch(requestFailure(data))
+    } else {
+      const { newMachine } = data
+      dispatch(addSuccess(newMachine))
+    }
   } else {
-    const { newMachine } = data
-    dispatch(addSuccess(newMachine))
+    dispatch(requestFailure(message))
   }
 }
 

@@ -10,8 +10,8 @@ import {
 const initialState = {
   number: '',
   serial: '',
-  closingForce: 0,
-  spindleDiameter: 0
+  closingForce: '',
+  spindleDiameter: ''
 }
 
 const formReducer = (state = initialState, action) => {
@@ -37,12 +37,7 @@ const formReducer = (state = initialState, action) => {
         spindleDiameter: action.payload
       }
     case CLEAN_INPUTS_MACHINE:
-      return {
-        number: '',
-        serial: '',
-        closingForce: 0,
-        spindleDiameter: 0
-      }
+      return initialState
     case SELECT_INPUTS_MACHINE:
       return action.payload
     default:

@@ -8,7 +8,7 @@ export default function onInteger(num, prev) {
     return ''
   }
   if (number) {
-    const value = parseInt(num)
+    const value = +num
     return value
   }
   return ''

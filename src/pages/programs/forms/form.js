@@ -110,7 +110,7 @@ const Form = ({
         input={'capacity'}
       />
       <InputNumberComponent
-        label={'Capacity pcs / hr'}
+        label={'Cycles / hr'}
         name={CYCLES_INPUT_PROGRAM}
         reducer={'programsForm'}
         input={'cycles'}
