@@ -53,8 +53,7 @@ const initialState = {
   production: [],
   downtimes: [],
   ngs: [],
-  resines: [],
-  progs: 0
+  resines: []
 }
 
 const formReducer = (state = initialState, action) => {

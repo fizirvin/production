@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { onInteger } from 'helpers'
 import { ProductionCheckbox, TableData } from './styles'
 import renderProgramInputs from './renderProgramInputs'
 
@@ -15,23 +14,35 @@ export default function CheckInput({
 
   const totalReport = useSelector((state) => state[reducer])
   const [check, setCheck] = useState(false)
-  const [report, setReport] = useState({
-    program: program._id,
-    molde: program.molde,
-    model: program.model,
-    real: 0,
-    ng: 0,
-    ok: 0,
-    plan: 0,
-    prod: 0,
-    cycles: 0,
-    wtime: 0.0,
-    dtime: 0.0,
-    avail: 0.0,
-    perf: 0.0,
-    qual: 0.0,
-    oee: 0.0
-  })
+  const [report, setReport] = useState({})
+
+  useEffect(() => {
+    const rep = totalReport.production.find(
+      (item) => item.program === program._id
+    )
+    if (!rep) {
+      setReport({
+        program: program._id,
+        molde: program.molde,
+        model: program.model,
+        real: 0,
+        ng: 0,
+        ok: 0,
+        plan: 0,
+        prod: 0,
+        cycles: 0,
+        wtime: 0.0,
+        dtime: 0.0,
+        avail: 0.0,
+        perf: 0.0,
+        qual: 0.0,
+        oee: 0.0
+      })
+    }
+    if (rep) {
+      setReport(rep)
+    }
+  }, [totalReport, program._id, program.molde, program.model])
 
   const onCheck = (e) => {
     const selected = totalReport.production.find(
@@ -59,9 +70,46 @@ export default function CheckInput({
         (item) => item.program !== program._id
       )
       const { name } = e.target
+
+      const newArray = programs.map((item) => {
+        const { wtime, real, ng, ok, prod } = item
+
+        const predtime = (totalReport.ptime - wtime) / programs.length
+
+        console.log(totalReport.ptime, wtime, programs.length)
+        const dtime = +predtime.toFixed(2)
+
+        const time = wtime + dtime
+        const preav = (wtime / time) * 100
+        const preplan = time * program.capacity
+        const plan = +preplan.toFixed(0)
+        const preperf = (real / prod) * 100
+        const perf = +preperf.toFixed(2) || 0
+        const avail = +preav.toFixed(2) || 0
+        const preq = (ok / real) * 100
+        const qual = +preq.toFixed(2) || 0
+        const preoee = (avail * perf * qual) / 10000
+        const oee = +preoee.toFixed(2) || 0
+        return {
+          ...item,
+          real,
+          ng,
+          ok,
+          wtime,
+          dtime,
+          plan,
+          avail,
+          perf,
+          qual,
+          oee
+        }
+      })
+
       setCheck(false)
       setReport(newReport)
-      return dispatch({ type: name, payload: programs })
+
+      console.log(newArray)
+      return dispatch({ type: name, payload: newArray })
     }
     if (!selected) {
       const programs = [...totalReport.production, newReport]
@@ -79,17 +127,17 @@ export default function CheckInput({
     let wtime = report.wtime
 
     if (name === 'real') {
-      real = +value
+      real = +value || ''
       const prewtime = real / program.capacity
-      wtime = parseFloat(prewtime.toFixed(2))
+      wtime = +prewtime.toFixed(2)
     }
     if (name === 'ng') {
-      ng = +value
+      ng = +value || ''
       const prewtime = real / program.capacity
-      wtime = parseFloat(prewtime.toFixed(2))
+      wtime = +prewtime.toFixed(2)
     }
     if (name === 'wtime') {
-      wtime = parseFloat(value)
+      wtime = +value
     }
 
     const programs = [...totalReport.production].filter(
@@ -101,27 +149,27 @@ export default function CheckInput({
     const TWTime = totalReport.production
       .filter((item) => item.program !== program._id)
       .reduce((a, b) => {
-        return a + parseFloat(b.wtime)
+        return a + +b.wtime
       }, 0)
 
     const predtime =
       (totalReport.ptime - TWTime - wtime) / totalReport.production.length
-    const dtime = parseFloat(predtime.toFixed(2))
+    const dtime = +predtime.toFixed(2)
 
     const prod = Math.round(wtime * program.capacity)
 
-    const productionTime = parseFloat(wtime + dtime)
-    const preav = parseFloat((wtime / productionTime) * 100)
+    const productionTime = +(wtime + dtime)
+    const preav = +((wtime / productionTime) * 100)
     const preplan = productionTime * program.capacity
-    const plan = parseFloat(preplan.toFixed(0))
+    const plan = +preplan.toFixed(0)
 
     const preperf = (real / prod) * 100
-    const perf = parseFloat(preperf.toFixed(2)) || 0
-    const avail = parseFloat(preav.toFixed(2)) || 0
+    const perf = +preperf.toFixed(2) || 0
+    const avail = +preav.toFixed(2) || 0
     const preq = (ok / real) * 100
-    const qual = parseFloat(preq.toFixed(2)) || 0
+    const qual = +preq.toFixed(2) || 0
     const preoee = (avail * perf * qual) / 10000
-    const oee = parseFloat(preoee.toFixed(2)) || 0
+    const oee = +preoee.toFixed(2) || 0
 
     const newReport = {
       ...report,
@@ -140,8 +188,26 @@ export default function CheckInput({
     }
 
     const newPrograms = [...programs, newReport]
-    setReport(newReport)
-    return dispatch({ type, payload: newPrograms })
+
+    const newArray = newPrograms.map((item) => {
+      const { wtime, real, ok, prod } = item
+      const time = wtime + dtime
+      const preav = (wtime / time) * 100
+      const preplan = time * program.capacity
+      const plan = +preplan.toFixed(0)
+      const preperf = (real / prod) * 100
+      const perf = +preperf.toFixed(2) || 0
+      const avail = +preav.toFixed(2) || 0
+      const preq = (ok / real) * 100
+      const qual = +preq.toFixed(2) || 0
+      const preoee = (avail * perf * qual) / 10000
+      const oee = +preoee.toFixed(2) || 0
+      return { ...item, dtime, plan, avail, perf, qual, oee }
+    })
+
+    // const set = newArray.find((item) => item.program === program._id)
+    // setReport(set)
+    return dispatch({ type, payload: newArray })
   }
 
   const disabledInput = () => {

@@ -89,6 +89,16 @@ export default function DefectInput({ defect, molde, model, onNgs }) {
           onChange={onDefect}
           disabled={!isCheck()}
           value={isValue()}
+          onFocus={(e) => {
+            if (e.target.value === '0') {
+              e.target.value = ''
+            }
+          }}
+          onBlur={(e) => {
+            if (e.target.value === '') {
+              e.target.value = 0
+            }
+          }}
         ></input>
       </TableData>
     </SectionRow>

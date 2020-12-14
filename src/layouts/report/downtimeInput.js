@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { SectionRow, TableData, CheckInput } from './styles'
 
@@ -44,9 +44,9 @@ export default function DowntimeInput({ issue, onDowntime }) {
     [downtimes, issue._id, onDowntime, dispatch]
   )
 
-  const isCheck = useMemo(() => {
+  const isCheck = () => {
     return downtimes.find((item) => item.issue === issue._id)
-  }, [downtimes, issue._id])
+  }
 
   const isValue = () => {
     const value = downtimes.find((item) => item.issue === issue._id)
@@ -73,6 +73,16 @@ export default function DowntimeInput({ issue, onDowntime }) {
           onChange={onIssue}
           disabled={!isCheck()}
           value={isValue()}
+          onFocus={(e) => {
+            if (e.target.value === '0') {
+              e.target.value = ''
+            }
+          }}
+          onBlur={(e) => {
+            if (e.target.value === '') {
+              e.target.value = 0
+            }
+          }}
         ></input>
       </TableData>
     </SectionRow>

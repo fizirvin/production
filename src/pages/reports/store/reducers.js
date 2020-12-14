@@ -42,7 +42,7 @@ const reducer = (state = initialState, action) => {
       }
     case ADD_SUCCESS_REPORTS:
       const newItem = action.payload
-      const items = [...state.items, newItem]
+      const items = [newItem, ...state.items]
       return {
         message: 'New Injection Report added correctly',
         loading: false,
