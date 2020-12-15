@@ -40,6 +40,7 @@ export default function CheckInput({
       })
     }
     if (rep) {
+      setCheck(true)
       setReport(rep)
     }
   }, [totalReport, program._id, program.molde, program.model])

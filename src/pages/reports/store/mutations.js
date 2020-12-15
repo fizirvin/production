@@ -2,29 +2,66 @@ const newReport = {
   query: `mutation
     NewReport( $input: NewReport ){
         newReport(input: $input){
+            _id
+            date
+            shift
+            machine{
                 _id
-                date
-                shift
-                machine
+                number
+            }
+            real
+            ng
+            ok
+            plan
+            tprod
+            cycles
+            ptime
+            wtime
+            dtime
+            avail
+            perf
+            qual
+            oee
+            purge
+            comments
+            team
+            oper
+            insp
+            production{
+                program
+                molde
+                model
                 real
                 ng
                 ok
                 plan
-                tprod
+                prod
                 cycles
-                ptime
                 wtime
                 dtime
                 avail
                 perf
                 qual
                 oee
-                user
-                team
+            }
+            downtimes{
+                issue
+                mins
+            }
+            ngs{
+                defect
+                model
+                molde
+                pieces
+            }
+            resines{
+                resine
                 purge
-                progrs
-                createdAt
-                updatedAt
+            }
+            progrs
+            user
+            createdAt
+            updatedAt
         }
     }`
 }
@@ -34,14 +71,65 @@ const updateReport = {
     UpdateMaterial($_id: ID, $input: NewMaterial ){
         updateMaterial(_id: $_id, input: $input){
             _id
-            number
-            manufacturer
-            description
-            acronym
-            identification
-            type
-            unit
-            color
+            date
+            shift
+            machine{
+                _id
+                number
+            }
+            real
+            ng
+            ok
+            plan
+            tprod
+            cycles
+            ptime
+            wtime
+            dtime
+            avail
+            perf
+            qual
+            oee
+            purge
+            comments
+            team
+            oper
+            insp
+            production{
+                program
+                molde
+                model
+                real
+                ng
+                ok
+                plan
+                prod
+                cycles
+                wtime
+                dtime
+                avail
+                perf
+                qual
+                oee
+            }
+            downtimes{
+                issue
+                mins
+            }
+            ngs{
+                defect
+                model
+                molde
+                pieces
+            }
+            resines{
+                resine
+                purge
+            }
+            progrs
+            user
+            createdAt
+            updatedAt
         }
     }`
 }

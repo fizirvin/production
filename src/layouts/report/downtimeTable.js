@@ -5,6 +5,12 @@ import { DefectTable, TableHeader } from './styles'
 
 export default function DowntimeTable({ onDowntime }) {
   const issues = useSelector((state) => state['issues']['items']) || []
+  const dtime = useSelector((state) => state['reportsForm']['dtime'])
+  const downtimes = useSelector((state) => state['reportsForm']['downtimes'])
+
+  const total = downtimes.reduce((a, b) => {
+    return a + +b.mins
+  }, 0)
 
   const renderIssues = () => {
     return issues.map((issue) => (
@@ -16,7 +22,9 @@ export default function DowntimeTable({ onDowntime }) {
     <DefectTable>
       <thead>
         <tr>
-          <TableHeader w={'80'}>Downtime to report</TableHeader>
+          <TableHeader w={'80'}>
+            Downtime to report {(dtime * 60 - total).toFixed(0)}
+          </TableHeader>
           <TableHeader w={'20'}>Time (min)</TableHeader>
         </tr>
       </thead>

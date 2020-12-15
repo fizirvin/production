@@ -39,7 +39,9 @@ export default function Report({
       {machine && (
         <SectionTwo>
           <SectionContainer>
-            {section === 'defects' && <DefectsTable onNgs={onNgs} />}
+            {section === 'defects' && (
+              <DefectsTable onNgs={onNgs} programs={programs} />
+            )}
             {section === 'downtime' && (
               <DowntimeTable onDowntime={onDowntime} />
             )}

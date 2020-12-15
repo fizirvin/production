@@ -84,9 +84,17 @@ export const addReport = (input) => async (dispatch) => {
   }
 }
 
-export const modifyReport = (_id, input) => async (dispatch) => {
+export const modifyReport = (input) => async (dispatch) => {
   dispatch(request())
-  updateReport.variables = { _id, input }
+
+  const report = {
+    number: input.number,
+    serial: input.serial,
+    closingForce: input.closingForce,
+    spindleDiameter: input.spindleDiameter
+  }
+
+  updateReport.variables = { _id: input._id, input: report }
   const { status, data } = await fetchItems(updateReport)
 
   if (!status) {

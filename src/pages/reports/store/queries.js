@@ -7,7 +7,10 @@ const query = {
                 _id
                 date
                 shift
-                machine
+                machine{
+                    _id
+                    number
+                }
                 real
                 ng
                 ok
@@ -21,9 +24,44 @@ const query = {
                 perf
                 qual
                 oee
-                user
-                team
                 purge
+                comments
+                team
+                oper
+                insp
+                production{
+                    program
+                    molde
+                    model
+                    real
+                    ng
+                    ok
+                    plan
+                    prod
+                    cycles
+                    wtime
+                    dtime
+                    avail
+                    perf
+                    qual
+                    oee
+                }
+                downtimes{
+                    issue
+                    mins
+                }
+                ngs{
+                    defect
+                    model
+                    molde
+                    pieces
+                }
+                resines{
+                    resine
+                    purge
+                }
+                progrs
+                user
                 createdAt
                 updatedAt
             }

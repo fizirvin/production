@@ -1,11 +1,11 @@
 import React from 'react'
-import { TableComponent } from 'layouts'
+import { ReportTableComponent } from 'layouts'
 import { keys, header_keys, header_data } from './tdata'
 import { SELECT_INPUTS_REPORTS } from '../forms/formActions'
 
 export default function Table({ items }) {
   return (
-    <TableComponent
+    <ReportTableComponent
       items={items}
       keys={keys}
       header_data={header_data}

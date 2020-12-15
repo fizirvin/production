@@ -2,6 +2,7 @@ import renderOptions from './renderOptions'
 import RenderRows from './renderRows'
 import RenderProgramsRows from './renderProgramsRows'
 import RenderShotsRows from './renderShotsRows'
+import RenderReportsRows from './renderReportsRows'
 import renderRoutes from './routes'
 
 export {
@@ -9,5 +10,6 @@ export {
   RenderRows,
   renderRoutes,
   RenderProgramsRows,
-  RenderShotsRows
+  RenderShotsRows,
+  RenderReportsRows
 }

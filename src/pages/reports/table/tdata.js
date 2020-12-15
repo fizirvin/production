@@ -1,7 +1,7 @@
 export const keys = [
   'date',
   'shift',
-  'machine',
+  ['machine', 'number'],
   'real',
   'ng',
   'ok',
