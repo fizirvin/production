@@ -66,14 +66,14 @@ export const fetchReports = (page) => async (dispatch) => {
     if (page) {
       dispatch({ type: PAGE_TOTAL_REPORTS, payload: page })
     }
-    console.log(data)
+
     dispatch(fetchSuccess(data.reports))
   }
 }
 
 export const addReport = (input) => async (dispatch) => {
   const { valid, message } = validateReportInput(input)
-  console.log(input)
+
   if (valid) {
     dispatch(request())
     newReport.variables = { input }

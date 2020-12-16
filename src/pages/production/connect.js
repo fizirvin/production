@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
 import * as actions from './actions'
 import Spinner from 'components/spinner'
-import { formatDate, setFields } from 'helpers'
+import { formatDate } from 'helpers'
 // import Table from './table'
 // import { ControlComponent } from 'layouts'
 import Header from './header'
@@ -22,10 +22,9 @@ const Connect = ({ production }) => {
     if (date === '') {
       return
     } else {
-      const fields = setFields(period, date)
-      console.log(fields)
+      // const fields = setFields(period, date)
     }
-  }, [period, date])
+  }, [period, date, items])
 
   return (
     <>

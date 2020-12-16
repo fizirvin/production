@@ -77,7 +77,6 @@ export default function CheckInput({
 
         const predtime = (totalReport.ptime - wtime) / programs.length
 
-        console.log(totalReport.ptime, wtime, programs.length)
         const dtime = +predtime.toFixed(2)
 
         const time = wtime + dtime
@@ -109,7 +108,6 @@ export default function CheckInput({
       setCheck(false)
       setReport(newReport)
 
-      console.log(newArray)
       return dispatch({ type: name, payload: newArray })
     }
     if (!selected) {

@@ -29,7 +29,6 @@ export default function RenderShotsRows(
   }
 
   const onShot = (item) => {
-    console.log(item)
     dispatch({
       type: shot,
       payload: { shot: item._id, molde: item.molde.number, active: item.active }

@@ -128,7 +128,6 @@ export const finishingShot = (input) => async (dispatch) => {
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    console.log(data, 'data')
     dispatch(finishSuccess(data.finishShot))
   }
 }

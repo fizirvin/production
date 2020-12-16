@@ -238,7 +238,6 @@ const formReducer = (state = initialState, action) => {
     case CLEAN_INPUTS_REPORT:
       return initialState
     case SELECT_INPUTS_REPORTS:
-      console.log(payload)
       return payload
     default:
       return state

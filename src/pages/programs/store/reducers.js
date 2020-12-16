@@ -44,7 +44,7 @@ const reducer = (state = initialState, action) => {
     case ADD_SUCCESS_PROGRAMS:
       const newItem = payload
       const items = [...state.items, newItem]
-      console.log(newItem)
+
       return {
         message: 'New Injection Program added correctly',
         loading: false,
