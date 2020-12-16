@@ -1,4 +1,3 @@
-import { SELECT_INPUTS_PROGRAM } from 'pages/programs/forms/formActions'
 import {
   TEAM_INPUT_PROFILE,
   FIRSTNAME_INPUT_PROFILE,

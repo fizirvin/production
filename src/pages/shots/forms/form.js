@@ -18,7 +18,14 @@ import {
   CLEAN_INPUTS_SHOT
 } from './formActions'
 
-const Form = ({ onSubmit, moldes, fetchMoldes, moldesLoading }) => {
+const Form = ({
+  onSubmit,
+  moldes,
+  fetchMoldes,
+  moldesLoading,
+  edit,
+  onEdit
+}) => {
   useEffect(() => {
     if (moldes.length === 0) {
       fetchMoldes()
@@ -32,7 +39,7 @@ const Form = ({ onSubmit, moldes, fetchMoldes, moldesLoading }) => {
   ]
   return (
     <FormComponent
-      title={'Add New Molde Shot'}
+      title={edit ? 'Update Mold Shot' : 'Add New Mold Shot'}
       to={'/shots'}
       controls={
         <Controls
@@ -40,7 +47,7 @@ const Form = ({ onSubmit, moldes, fetchMoldes, moldesLoading }) => {
           load={'shots'}
           to="/shots"
           name={CLEAN_INPUTS_SHOT}
-          onSubmit={onSubmit}
+          onSubmit={edit ? onEdit : onSubmit}
         />
       }
     >

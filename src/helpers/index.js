@@ -6,6 +6,7 @@ import onRadio from './radio'
 import formatDate from './formatDate'
 import setFields from './setFields'
 import validateInput from './validateInput'
+import validateReportInput from './validateReportInput'
 
 export {
   onDecimal,
@@ -15,5 +16,6 @@ export {
   onRadio,
   formatDate,
   setFields,
-  validateInput
+  validateInput,
+  validateReportInput
 }

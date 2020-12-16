@@ -1,6 +1,6 @@
-import { url, options } from 'constants/server'
+import { localhost, options } from 'constants/server'
 
 export const database = {
-  url: url,
+  url: localhost,
   options: options
 }

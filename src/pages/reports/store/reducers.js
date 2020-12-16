@@ -44,8 +44,11 @@ const reducer = (state = initialState, action) => {
       const newItem = action.payload
       const items = [newItem, ...state.items]
       return {
+        ...state,
         message: 'New Injection Report added correctly',
         loading: false,
+        add: state.add + 1,
+        total: state.total + 1,
         items: items
       }
     case UPDATE_SUCCESS_REPORTS:
@@ -53,7 +56,8 @@ const reducer = (state = initialState, action) => {
       let updatedItems = [...state.items]
       updatedItems[updatedItems.findIndex((el) => el._id === item._id)] = item
       return {
-        message: '',
+        ...state,
+        message: 'Injection Report updated correctly',
         loading: false,
         items: updatedItems
       }

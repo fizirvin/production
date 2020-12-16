@@ -12,11 +12,18 @@ export default function ControlComponent({
   k,
   fetch,
   to,
-  title
+  title,
+  pagination
 }) {
   return (
     <ControlsDiv>
-      <Pagination page={page} length={length} total={total} fetch={fetch} />
+      <Pagination
+        page={page}
+        length={length}
+        total={total}
+        fetch={fetch}
+        pagination={pagination}
+      />
       <SortComoponent items={items} k={k} />
       <CtrlsLabel>
         <Link to={to}>

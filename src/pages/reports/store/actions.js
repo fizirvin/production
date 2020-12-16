@@ -1,6 +1,7 @@
 import query from './queries'
 import { newReport, updateReport, removeReport } from './mutations'
 import { fetchItems } from 'services'
+import { validateReportInput } from 'helpers'
 
 export const REQUEST_REPORTS = 'REQUEST_REPORTS'
 export const REQUEST_FAILURE_REPORTS = 'REQUEST_FAILURE_REPORTS'
@@ -71,36 +72,67 @@ export const fetchReports = (page) => async (dispatch) => {
 }
 
 export const addReport = (input) => async (dispatch) => {
-  console.log('input', input)
-  dispatch(request())
-  newReport.variables = { input }
-  const { status, data } = await fetchItems(newReport)
+  const { valid, message } = validateReportInput(input)
+  console.log(input)
+  if (valid) {
+    dispatch(request())
+    newReport.variables = { input }
+    const { status, data } = await fetchItems(newReport)
 
-  if (!status) {
-    dispatch(requestFailure(data))
+    if (!status) {
+      dispatch(requestFailure(data))
+    } else {
+      const { newReport } = data
+      dispatch(addSuccess(newReport))
+    }
   } else {
-    const { newReport } = data
-    dispatch(addSuccess(newReport))
+    dispatch(requestFailure(message))
   }
 }
 
 export const modifyReport = (input) => async (dispatch) => {
   dispatch(request())
-
   const report = {
-    number: input.number,
-    serial: input.serial,
-    closingForce: input.closingForce,
-    spindleDiameter: input.spindleDiameter
+    date: input.date,
+    shift: input.shift,
+    machine: input.machine,
+    real: input.real,
+    ng: input.ng,
+    ok: input.ok,
+    plan: input.plan,
+    tprod: input.tprod,
+    cycles: input.cycles,
+    ptime: input.ptime,
+    wtime: input.wtime,
+    dtime: input.dtime,
+    avail: input.avail,
+    perf: input.perf,
+    qual: input.qual,
+    oee: input.oee,
+    purge: input.purge,
+    comments: input.comments,
+    team: input.team,
+    oper: input.oper,
+    insp: input.insp,
+    production: input.production,
+    downtimes: input.downtimes,
+    ngs: input.ngs,
+    resines: input.resines,
+    user: input.user
   }
+  const { valid, message } = validateReportInput(input)
+  if (valid) {
+    updateReport.variables = { _id: input._id, input: report }
 
-  updateReport.variables = { _id: input._id, input: report }
-  const { status, data } = await fetchItems(updateReport)
+    const { status, data } = await fetchItems(updateReport)
 
-  if (!status) {
-    dispatch(requestFailure(data))
+    if (!status) {
+      dispatch(requestFailure(data))
+    } else {
+      dispatch(updateSuccess(data.updateReport))
+    }
   } else {
-    dispatch(updateSuccess(data))
+    dispatch(requestFailure(message))
   }
 }
 

@@ -68,8 +68,8 @@ const newReport = {
 
 const updateReport = {
   query: `mutation
-    UpdateMaterial($_id: ID, $input: NewMaterial ){
-        updateMaterial(_id: $_id, input: $input){
+    UpdateReport($_id: ID, $input: UpdateReport ){
+        updateReport(_id: $_id, input: $input){
             _id
             date
             shift

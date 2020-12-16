@@ -3,7 +3,10 @@ const newShot = {
     NewShot( $input: NewShot ){
         newShot(input: $input){
             _id
-            molde
+            molde{
+                _id
+                number
+            }
             date
             shift
             quantity
@@ -40,19 +43,24 @@ const finishShot = {
     }`
 }
 
-const updateMaterial = {
+const updateShot = {
   query: `mutation
-      UpdateMaterial($_id: ID, $input: NewMaterial ){
-          updateMaterial(_id: $_id, input: $input){
-              _id
-              number
-              manufacturer
-              description
-              acronym
-              identification
-              type
-              unit
-              color
+      UpdateShot($_id: ID, $input: UpdateShot ){
+          updateShot(_id: $_id, input: $input){
+            _id
+            molde{
+                _id
+                number
+            }
+            date
+            shift
+            quantity
+            end
+            shiftEnd
+            active
+            comments
+            user
+            createdAt
           }
       }`
 }
@@ -74,4 +82,4 @@ const removeMaterial = {
     }`
 }
 
-export { newShot, updateMaterial, finishShot, removeMaterial }
+export { newShot, updateShot, finishShot, removeMaterial }

@@ -43,10 +43,13 @@ const reducer = (state = initialState, action) => {
       }
     case ADD_SUCCESS_SHOTS:
       const newItem = action.payload
-      const items = [...state.items, newItem]
+      const items = [newItem, ...state.items]
       return {
-        message: 'New Injection Shot added correctly',
+        ...state,
+        message: 'New Mold Shot added correctly',
         loading: false,
+        add: state.add + 1,
+        total: state.total + 1,
         items: items
       }
     case UPDATE_SUCCESS_SHOTS:
@@ -54,7 +57,8 @@ const reducer = (state = initialState, action) => {
       let updatedItems = [...state.items]
       updatedItems[updatedItems.findIndex((el) => el._id === item._id)] = item
       return {
-        message: '',
+        ...state,
+        message: 'Mold Shot updated correctly',
         loading: false,
         items: updatedItems
       }
@@ -65,6 +69,7 @@ const reducer = (state = initialState, action) => {
         updatedSots.findIndex((el) => el._id === finishShot._id)
       ] = finishShot
       return {
+        ...state,
         message: '',
         loading: false,
         items: updatedSots
