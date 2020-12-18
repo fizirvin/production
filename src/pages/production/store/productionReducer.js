@@ -2,7 +2,7 @@ import * as actions from './actions'
 
 const initialState = {
   period: 'day',
-  shift: 'both',
+  shifts: 'both',
   filter: 'machine',
   date: '',
   loading: '',
@@ -13,6 +13,25 @@ const initialState = {
 const production = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
+    case actions.REQUEST_PRODUCTION:
+      return {
+        ...state,
+        loading: true
+      }
+    case actions.REQUEST_FAILURE_PRODUCTION:
+      return {
+        ...state,
+        message: payload,
+        loading: false
+      }
+    case actions.FETCH_SUCCESS_PRODUCTION:
+      console.log(payload)
+      return {
+        ...state,
+        message: '',
+        loading: false,
+        items: payload
+      }
     case actions.PERIOD_PRODUCTION:
       return {
         ...state,
@@ -21,7 +40,7 @@ const production = (state = initialState, action) => {
     case actions.SHIFT_PRODUCTION:
       return {
         ...state,
-        shift: payload
+        shifts: payload
       }
     case actions.FILTER_PRODUCTION:
       return {

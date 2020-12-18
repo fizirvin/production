@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import * as actions from './actions'
+import * as actions from './store/actions'
 import { Controls, Label } from './styles'
 
-export default function Header({ period, shift, filter, date }) {
+export default function Header({ period, shifts, filter, date }) {
   const dispatch = useDispatch()
 
   const onPeriod = (e) => {
@@ -38,15 +38,15 @@ export default function Header({ period, shift, filter, date }) {
         <label>Period:</label>
         <select name="period" value={period} onChange={(e) => onPeriod(e)}>
           <option value="day">Day</option>
-          <option value="week">Week</option>
+          {/* <option value="week">Week</option>
           <option value="month">Month</option>
           <option value="trimester">Trimester</option>
-          <option value="semester">Semester</option>
+          <option value="semester">Semester</option> */}
         </select>
       </Label>
       <Label>
         <label>Shift:</label>
-        <select name="shift" value={shift} onChange={(e) => onShift(e)}>
+        <select name="shift" value={shifts} onChange={(e) => onShift(e)}>
           <option value="both">Shifts 1{`&`}2</option>
           <option value="1">Shift 1</option>
           <option value="2">Shift 2</option>

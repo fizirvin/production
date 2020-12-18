@@ -1,30 +1,22 @@
 import React, { useEffect } from 'react'
-import { connect, useDispatch } from 'react-redux'
-import * as actions from './actions'
+import { connect } from 'react-redux'
+import { fetchProduction } from './store/actions'
 import Spinner from 'components/spinner'
-import { formatDate } from 'helpers'
 // import Table from './table'
 // import { ControlComponent } from 'layouts'
 import Header from './header'
 
-const Connect = ({ production }) => {
-  const { loading, message, items, period, shift, filter, date } = production
-
-  const dispatch = useDispatch()
+const Connect = ({ production, fetchProduction }) => {
+  const { loading, message, items, period, shifts, filter, date } = production
 
   useEffect(() => {
-    const date = new Date()
-    const today = formatDate(date)
-    dispatch({ type: actions.DATE_PRODUCTION, payload: today })
-  }, [dispatch])
-
-  useEffect(() => {
-    if (date === '') {
-      return
-    } else {
-      // const fields = setFields(period, date)
-    }
-  }, [period, date, items])
+    fetchProduction({
+      today: date,
+      filter: filter,
+      period: period,
+      shifts: shifts
+    })
+  }, [fetchProduction, period, shifts, date, filter])
 
   return (
     <>
@@ -32,7 +24,7 @@ const Connect = ({ production }) => {
       {message && <div>{message}</div>}
       {!loading && (
         <>
-          <Header period={period} shift={shift} filter={filter} date={date} />
+          <Header period={period} shifts={shifts} filter={filter} date={date} />
         </>
       )}
     </>
@@ -43,4 +35,4 @@ const mapStateToProps = (state) => ({
   production: state.production
 })
 
-export default connect(mapStateToProps, {})(Connect)
+export default connect(mapStateToProps, { fetchProduction })(Connect)

@@ -25,7 +25,7 @@ import reports from 'pages/reports/store/reducers'
 import reportsForm from 'pages/reports/forms/formReducer'
 
 import cycles from 'pages/shots/cycles/cyclesReducer'
-import production from 'pages/production/productionReducer'
+import production from 'pages/production/store/productionReducer'
 
 const reducers = combineReducers({
   defects,
