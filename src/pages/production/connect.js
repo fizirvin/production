@@ -2,12 +2,20 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchProduction } from './store/actions'
 import Spinner from 'components/spinner'
-// import Table from './table'
-// import { ControlComponent } from 'layouts'
+import ProductionTable from './table/productionTable'
 import Header from './header'
 
 const Connect = ({ production, fetchProduction }) => {
-  const { loading, message, items, period, shifts, filter, date } = production
+  const {
+    loading,
+    message,
+    rows,
+    fields,
+    period,
+    shifts,
+    filter,
+    date
+  } = production
 
   useEffect(() => {
     fetchProduction({
@@ -25,6 +33,7 @@ const Connect = ({ production, fetchProduction }) => {
       {!loading && (
         <>
           <Header period={period} shifts={shifts} filter={filter} date={date} />
+          <ProductionTable rows={rows} fields={fields} filter={filter} />
         </>
       )}
     </>

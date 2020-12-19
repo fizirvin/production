@@ -2,6 +2,11 @@ const query = {
   query: `query
     Production( $today: String, $filter: String, $period: String, $shifts: String ){
       production( today: $today, filter: $filter, period: $period, shifts: $shifts){
+        fields{
+          value
+          field
+        }
+        rows{
         row
         data {
           date
@@ -31,7 +36,8 @@ const query = {
               value
             }
           }
-        }  
+        }
+      }  
                 
               
       }

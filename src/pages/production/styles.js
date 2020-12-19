@@ -23,3 +23,9 @@ export const StatusTD = styled.td(({ status }) => ({
   padding: '10px',
   backgroundColor: status
 }))
+
+export const Table = styled.table`
+  border: solid 2px;
+  width: 96%;
+  border-spacing: 1px;
+`

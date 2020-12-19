@@ -7,7 +7,8 @@ const initialState = {
   date: '',
   loading: '',
   message: '',
-  items: []
+  rows: [],
+  fields: []
 }
 
 const production = (state = initialState, action) => {
@@ -30,7 +31,8 @@ const production = (state = initialState, action) => {
         ...state,
         message: '',
         loading: false,
-        items: payload
+        rows: payload.rows,
+        fields: payload.fields
       }
     case actions.PERIOD_PRODUCTION:
       return {
