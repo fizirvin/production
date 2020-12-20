@@ -17,15 +17,17 @@ export const TD = styled.td`
   font-size: 1.5rem;
   padding: 10px;
   background-color: gainsboro;
+  border-spacing: 2px;
 `
 export const StatusTD = styled.td(({ status }) => ({
   fontSize: '1.5rem',
   padding: '10px',
-  backgroundColor: status
+  backgroundColor: status,
+  borderSpacing: '2px'
 }))
 
 export const Table = styled.table`
   border: solid 2px;
   width: 96%;
-  border-spacing: 1px;
+  border-spacing: 8px;
 `

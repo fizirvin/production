@@ -26,7 +26,6 @@ const production = (state = initialState, action) => {
         loading: false
       }
     case actions.FETCH_SUCCESS_PRODUCTION:
-      console.log(payload)
       return {
         ...state,
         message: '',

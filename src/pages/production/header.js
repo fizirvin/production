@@ -38,9 +38,9 @@ export default function Header({ period, shifts, filter, date }) {
         <label>Period:</label>
         <select name="period" value={period} onChange={(e) => onPeriod(e)}>
           <option value="day">Day</option>
-          {/* <option value="week">Week</option>
+          <option value="week">Week</option>
           <option value="month">Month</option>
-          <option value="trimester">Trimester</option>
+          {/* <option value="trimester">Trimester</option>
           <option value="semester">Semester</option> */}
         </select>
       </Label>

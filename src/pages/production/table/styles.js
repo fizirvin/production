@@ -21,6 +21,7 @@ export const TH = styled.th`
   font-size: 1rem;
   padding: 10px;
   background-color: orange;
+  border: solid 1px;
 `
 
 export const TD = styled.td`
@@ -28,6 +29,7 @@ export const TD = styled.td`
   padding: 10px;
   background-color: rgba(0, 164, 179, 1);
   text-align: right;
+  border: solid 1px;
 `
 
 export const TDSecond = styled.td`
@@ -35,6 +37,7 @@ export const TDSecond = styled.td`
   padding: 10px;
   background-color: #52b6ca;
   text-align: right;
+  border: solid 1px;
 `
 
 export const TDSecondSub = styled.td`
@@ -42,6 +45,7 @@ export const TDSecondSub = styled.td`
   padding: 10px;
   background-color: whitesmoke;
   text-align: right;
+  border: solid 1px;
 `
 
 export const TRow = styled.div`
