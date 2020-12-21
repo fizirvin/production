@@ -1,5 +1,6 @@
 import React from 'react'
+import Connect from './connect'
 
 export default function Calendar() {
-  return <div>calendar</div>
+  return <Connect />
 }
