@@ -1,17 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
 import { BrowserRouter, Switch } from 'react-router-dom'
-import { Provider } from 'react-redux'
+import { Provider, useDispatch } from 'react-redux'
 import store from './redux'
 import { Layout } from 'layouts'
 import { renderRoutes } from 'containers'
 
-export default function App() {
+export default function App({ token, userId, name, logoutHandler }) {
   const { routes } = renderRoutes()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({
+      type: 'REQUEST_SUCCESS_LOGIN',
+      payload: { token, userId, name }
+    })
+  }, [name, token, userId, dispatch])
 
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Layout>
+        <Layout logoutHandler={logoutHandler}>
           <Switch>{routes}</Switch>
         </Layout>
       </BrowserRouter>

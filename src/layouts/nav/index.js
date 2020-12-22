@@ -1,8 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Item, Btn, SubMenu, UList } from './styles'
+import { Item, SubMenu, UList, ItemBtn } from './styles'
+import { useSelector } from 'react-redux'
 
-export default function Nav() {
+export default function Nav({ logoutHandler }) {
+  const name = useSelector((state) => state.user.name)
+  const logOut = () => {
+    logoutHandler()
+  }
   return (
     <UList>
       <Item>
@@ -75,9 +80,16 @@ export default function Nav() {
           </Item>
         </SubMenu>
       </Item>
-      <Btn>
-        <Link to={'/'}>Adrian</Link>
-      </Btn>
+      <ItemBtn>
+        <Link to={'/'}>{name}</Link>
+        <SubMenu>
+          <Item>
+            <Link to={'/'} onClick={logOut}>
+              logout
+            </Link>
+          </Item>
+        </SubMenu>
+      </ItemBtn>
     </UList>
   )
 }

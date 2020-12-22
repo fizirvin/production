@@ -49,7 +49,7 @@ export const UList = styled.ul`
 `
 export const Btn = styled.div`
   margin: auto 0 auto auto;
-  line-height: initial;
+  line-height: 1rem;
   padding: 1.3rem;
   display: inline-block;
   background-color: #eb3007;
@@ -130,5 +130,32 @@ export const Item = styled.li`
     top: 8rem;
     opacity: 1;
     visibility: visible;
+  }
+`
+
+export const ItemBtn = styled.div`
+  margin: auto 0 auto auto;
+  line-height: 1rem;
+  padding: 1.3rem;
+  display: inline-block;
+  background-color: #eb3007;
+  border: 2px solid #eb3007;
+  border-radius: 5rem;
+  transition: background-color 650ms;
+
+  :hover {
+    color: #eb3007;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 850px) {
+    margin: 0 auto 0 0;
+    line-height: initial;
+  }
+  :hover > ul {
+    top: 5rem;
+    opacity: 1;
+    visibility: visible;
+    transition: all 250ms ease;
   }
 `

@@ -2,10 +2,10 @@ import React from 'react'
 import { Header } from 'layouts'
 import { LayoutDiv, MainContainer } from './styles'
 
-export default function Layout({ children }) {
+export default function Layout({ children, logoutHandler }) {
   return (
     <LayoutDiv>
-      <Header />
+      <Header logoutHandler={logoutHandler} />
       <MainContainer>{children}</MainContainer>
     </LayoutDiv>
   )
