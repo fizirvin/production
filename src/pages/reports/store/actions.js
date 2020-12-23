@@ -1,5 +1,5 @@
 import query from './queries'
-import { newReport, updateReport, removeReport } from './mutations'
+import { newReport, updateReport, deleteReport } from './mutations'
 import { fetchItems } from 'services'
 import { validateReportInput } from 'helpers'
 
@@ -136,14 +136,14 @@ export const modifyReport = (input) => async (dispatch) => {
   }
 }
 
-export const eraseReport = (_id) => async (dispatch) => {
+export const eraseReport = (input) => async (dispatch) => {
   dispatch(request())
-  removeReport.variables = { _id }
-  const { status, data } = await fetchItems(removeReport)
+  deleteReport.variables = { _id: input._id, user: input.user }
+  const { status, data } = await fetchItems(deleteReport)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(removeSuccess(data))
+    dispatch(removeSuccess(data.deleteReport))
   }
 }

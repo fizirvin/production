@@ -1,8 +1,17 @@
 import React from 'react'
 import CancelComponent from './cancel'
 import SubmitComponent from './submit'
+import DeleteComponent from './delete'
 
-export default function Controls({ form, onSubmit, load, to, name }) {
+export default function Controls({
+  form,
+  onSubmit,
+  load,
+  to,
+  name,
+  edit,
+  onDelete
+}) {
   return (
     <div>
       <SubmitComponent
@@ -11,7 +20,18 @@ export default function Controls({ form, onSubmit, load, to, name }) {
         name={name}
         onSubmit={onSubmit}
       />
+
       <CancelComponent to={to} name={name} />
+      {edit && (
+        <div>
+          <DeleteComponent
+            form={form}
+            load={load}
+            onDelete={onDelete}
+            name={name}
+          />
+        </div>
+      )}
     </div>
   )
 }

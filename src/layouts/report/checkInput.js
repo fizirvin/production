@@ -126,12 +126,12 @@ export default function CheckInput({
     let wtime = report.wtime
 
     if (name === 'real') {
-      real = +value || ''
+      real = +value
       const prewtime = real / program.capacity
       wtime = +prewtime.toFixed(2)
     }
     if (name === 'ng') {
-      ng = +value || ''
+      ng = +value
       const prewtime = real / program.capacity
       wtime = +prewtime.toFixed(2)
     }

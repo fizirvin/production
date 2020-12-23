@@ -134,21 +134,13 @@ const updateReport = {
     }`
 }
 
-const removeReport = {
+const deleteReport = {
   query: `mutation
-    UpdateMaterial($_id: ID, $input: NewMaterial ){
-        updateMaterial(_id: $_id, input: $input){
+  DeleteReport($_id: ID, $user: ID ){
+        deleteReport(_id: $_id, user: $user){
             _id
-            number
-            manufacturer
-            description
-            acronym
-            identification
-            type
-            unit
-            color
         }
     }`
 }
 
-export { newReport, updateReport, removeReport }
+export { newReport, updateReport, deleteReport }
