@@ -7,7 +7,7 @@ import {
   CLEAN_INPUTS_ISSUE
 } from './formActions'
 
-export default function Form({ onSubmit, onEdit, edit }) {
+export default function Form({ onSubmit, onEdit, edit, onDelete }) {
   return (
     <FormComponent
       title={edit ? 'Update Injection Issue' : 'Add New Injection Issue'}
@@ -19,6 +19,8 @@ export default function Form({ onSubmit, onEdit, edit }) {
           to="/issues"
           name={CLEAN_INPUTS_ISSUE}
           onSubmit={edit ? onEdit : onSubmit}
+          onDelete={onDelete}
+          edit={edit}
         />
       }
     >

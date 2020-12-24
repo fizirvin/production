@@ -25,15 +25,13 @@ const updateIssue = {
     }`
 }
 
-const removeIssue = {
+const deleteIssue = {
   query: `mutation
-    UpdateIssue($_id: ID, $input: NewIssue ){
-        updateIssue(_id: $_id, input: $input){
-            _id
-            issueName
-            issueCode
-        }
-    }`
+      DeleteIssue($_id: ID, $user: ID ){
+        deleteIssue(_id: $_id, user: $user){
+                _id
+            }
+        }`
 }
 
-export { newIssue, removeIssue, updateIssue }
+export { newIssue, deleteIssue, updateIssue }

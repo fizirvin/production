@@ -38,21 +38,13 @@ UpdateMolde($_id: ID, $input: UpdateMolde ){
     }`
 }
 
-const removeMolde = {
+const deleteMolde = {
   query: `mutation
-UpdateMolde($_id: ID, $input: NewMolde ){
-    updateMolde(_id: $_id, input: $input){
-            _id
-            moldeNumber
-            moldeSerial
-            cavities
-            lifecycles
-            tcycles
-            shot
-            quantity
-            active
-        }
-    }`
+    DeleteMolde($_id: ID, $user: ID ){
+            deleteMolde(_id: $_id, user: $user){
+                  _id
+              }
+          }`
 }
 
-export { newMolde, removeMolde, updateMolde }
+export { newMolde, deleteMolde, updateMolde }

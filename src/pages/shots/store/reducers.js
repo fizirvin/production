@@ -17,7 +17,8 @@ const initialState = {
   items: [],
   total: 0,
   page: 1,
-  add: 0
+  add: 0,
+  deletes: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -75,13 +76,17 @@ const reducer = (state = initialState, action) => {
         items: updatedSots
       }
     case REMOVE_SUCCESS_SHOTS:
+      const deletedItem = action.payload
       const removeItems = [...state.items].filter(
-        (items) => items._id !== action.payload
+        (el) => el._id !== deletedItem._id
       )
       return {
-        message: '',
+        ...state,
+        message: 'Mold Shot deleted correctly',
         loading: false,
-        items: removeItems
+        items: removeItems,
+        deletes: state.deletes + 1,
+        total: state.total - 1
       }
     case CLEAN_MESSAGE_SHOTS:
       return {

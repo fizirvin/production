@@ -1,5 +1,5 @@
 import query from './queries'
-import { newMaterial, updateMaterial, removeMaterial } from './mutations'
+import { newMaterial, updateMaterial, deleteMaterial } from './mutations'
 import { fetchItems } from 'services'
 import { validateInput } from 'helpers'
 
@@ -112,14 +112,14 @@ export const modifyMaterial = (input) => async (dispatch) => {
   }
 }
 
-export const eraseMaterial = (_id) => async (dispatch) => {
+export const eraseMaterial = (input) => async (dispatch) => {
   dispatch(request())
-  removeMaterial.variables = { _id }
-  const { status, data } = await fetchItems('removeMaterial', removeMaterial)
+  deleteMaterial.variables = { _id: input._id, user: input.user }
+  const { status, data } = await fetchItems(deleteMaterial)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(removeSuccess(data))
+    dispatch(removeSuccess(data.deleteMaterial))
   }
 }

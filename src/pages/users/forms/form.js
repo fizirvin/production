@@ -14,7 +14,7 @@ import {
   CLEAN_INPUTS_USER
 } from './formActions'
 
-export default function Form({ onSubmit, edit, onEdit }) {
+export default function Form({ onSubmit, edit, onEdit, onDelete }) {
   const levels = [
     { _id: '1', level: '1' },
     { _id: '2', level: '2' },
@@ -31,6 +31,8 @@ export default function Form({ onSubmit, edit, onEdit }) {
           to="/users"
           name={CLEAN_INPUTS_USER}
           onSubmit={edit ? onEdit : onSubmit}
+          onDelete={onDelete}
+          edit={edit}
         />
       }
     >

@@ -1,5 +1,5 @@
 import { query } from './queries'
-import { newMolde, updateMolde, removeMolde } from './mutations'
+import { newMolde, updateMolde, deleteMolde } from './mutations'
 import { fetchItems } from 'services'
 import { validateInput } from 'helpers'
 
@@ -113,14 +113,14 @@ export const modifyMolde = (input) => async (dispatch) => {
   }
 }
 
-export const eraseMolde = (_id) => async (dispatch) => {
+export const eraseMolde = (input) => async (dispatch) => {
   dispatch(request())
-  removeMolde.variables = { _id }
-  const { status, data } = await fetchItems('removeMolde', removeMolde)
+  deleteMolde.variables = { _id: input._id, user: input.user }
+  const { status, data } = await fetchItems(deleteMolde)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(removeSuccess(data))
+    dispatch(removeSuccess(data.deleteMolde))
   }
 }

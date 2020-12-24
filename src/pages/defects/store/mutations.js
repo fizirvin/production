@@ -26,16 +26,12 @@ UpdateDefect($_id: ID, $input: UpdateDefect ){
     }`
 }
 
-const removeDefect = {
+const deleteDefect = {
   query: `mutation
-  UpdateDefect($_id: ID, $input: NewDefect ){
-      updateDefect(_id: $_id, input: $input){
-              _id
-              defectName
-              defectCode
-              isInjection
-          }
-      }`
+    DeleteDefect($_id: ID, $user: ID ){
+            deleteDefect(_id: $_id, user: $user){
+                  _id
+              }
+          }`
 }
-
-export { updateDefect, newDefect, removeDefect }
+export { updateDefect, newDefect, deleteDefect }

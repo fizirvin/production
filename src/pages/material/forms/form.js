@@ -13,7 +13,7 @@ import {
   CLEAN_INPUTS_MATERIAL
 } from './formActions'
 
-export default function Form({ onSubmit, edit, onEdit }) {
+export default function Form({ onSubmit, edit, onEdit, onDelete }) {
   return (
     <FormComponent
       title={edit ? 'Update Injection Material' : 'Add New Injection Material'}
@@ -25,6 +25,8 @@ export default function Form({ onSubmit, edit, onEdit }) {
           to="/materials"
           name={CLEAN_INPUTS_MATERIAL}
           onSubmit={edit ? onEdit : onSubmit}
+          onDelete={onDelete}
+          edit={edit}
         />
       }
     >

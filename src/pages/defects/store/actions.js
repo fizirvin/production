@@ -1,5 +1,5 @@
 import query from './queries'
-import { newDefect, updateDefect, removeDefect } from './mutations'
+import { newDefect, updateDefect, deleteDefect } from './mutations'
 import { fetchItems } from 'services'
 import { validateInput } from 'helpers'
 
@@ -108,14 +108,14 @@ export const modifyDefect = (input) => async (dispatch) => {
   }
 }
 
-export const eraseDefect = (_id) => async (dispatch) => {
+export const eraseDefect = (input) => async (dispatch) => {
   dispatch(request())
-  removeDefect.variables = { _id }
-  const { status, data } = await fetchItems('removeDefect', removeDefect)
+  deleteDefect.variables = { _id: input._id, user: input.user }
+  const { status, data } = await fetchItems(deleteDefect)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(removeSuccess(data))
+    dispatch(removeSuccess(data.deleteDefect))
   }
 }

@@ -28,17 +28,13 @@ const updateMachine = {
     }`
 }
 
-const removeMachine = {
+const deleteMachine = {
   query: `mutation
-    UpdateMachine($_id: ID, $input: NewMachine ){
-        updateMachine(_id: $_id, input: $input){
-            _id
-            machineNumber
-            machineSerial
-            closingForce
-            spindleDiameter
-        }
-    }`
+    DeleteMachine($_id: ID, $user: ID ){
+            deleteMachine(_id: $_id, user: $user){
+                  _id
+              }
+          }`
 }
 
-export { newMachine, updateMachine, removeMachine }
+export { newMachine, updateMachine, deleteMachine }

@@ -25,6 +25,7 @@ import {
 const Form = ({
   onSubmit,
   onEdit,
+  onDelete,
   edit,
   machines,
   machinesLoading,
@@ -66,6 +67,8 @@ const Form = ({
           to="/programs"
           name={CLEAN_INPUTS_PROGRAM}
           onSubmit={edit ? onEdit : onSubmit}
+          onDelete={onDelete}
+          edit={edit}
         />
       }
     >

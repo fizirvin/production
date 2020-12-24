@@ -1,5 +1,5 @@
 import query from './queries'
-import { newMachine, updateMachine, removeMachine } from './mutations'
+import { newMachine, updateMachine, deleteMachine } from './mutations'
 import { fetchItems } from 'services'
 import { validateInput } from 'helpers'
 
@@ -108,14 +108,14 @@ export const modifyMachine = (input) => async (dispatch) => {
   }
 }
 
-export const eraseMachine = (_id) => async (dispatch) => {
+export const eraseMachine = (input) => async (dispatch) => {
   dispatch(request())
-  removeMachine.variables = { _id }
-  const { status, data } = await fetchItems('removeMachine', removeMachine)
+  deleteMachine.variables = { _id: input._id, user: input.user }
+  const { status, data } = await fetchItems(deleteMachine)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(removeSuccess(data))
+    dispatch(removeSuccess(data.deleteMachine))
   }
 }

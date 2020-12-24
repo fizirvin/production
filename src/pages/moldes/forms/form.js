@@ -19,7 +19,7 @@ import {
   CLEAN_INPUTS_MOLDE
 } from './formActions'
 
-export default function Form({ onSubmit, onEdit, edit }) {
+export default function Form({ onSubmit, onEdit, edit, onDelete }) {
   return (
     <FormComponent
       title={edit ? 'Update Injection Mold' : 'Add New Injection Mold'}
@@ -31,6 +31,8 @@ export default function Form({ onSubmit, onEdit, edit }) {
           to="/molds"
           name={CLEAN_INPUTS_MOLDE}
           onSubmit={edit ? onEdit : onSubmit}
+          onDelete={onDelete}
+          edit={edit}
         />
       }
     >

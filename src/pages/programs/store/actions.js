@@ -1,5 +1,5 @@
 import query from './queries'
-import { newProgram, updateProgram, removeProgram } from './mutations'
+import { newProgram, updateProgram, deleteProgram } from './mutations'
 import { fetchItems } from 'services'
 import { validateInput } from 'helpers'
 
@@ -110,14 +110,14 @@ export const modifyProgram = (input) => async (dispatch) => {
   }
 }
 
-export const eraseProgram = (_id) => async (dispatch) => {
+export const eraseProgram = (input) => async (dispatch) => {
   dispatch(request())
-  removeProgram.variables = { _id }
-  const { status, data } = await fetchItems('removeProgram', removeProgram)
+  deleteProgram.variables = { _id: input._id, user: input.user }
+  const { status, data } = await fetchItems(deleteProgram)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(removeSuccess(data))
+    dispatch(removeSuccess(data.deleteProgram))
   }
 }

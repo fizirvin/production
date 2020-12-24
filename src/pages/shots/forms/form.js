@@ -24,7 +24,8 @@ const Form = ({
   fetchMoldes,
   moldesLoading,
   edit,
-  onEdit
+  onEdit,
+  onDelete
 }) => {
   useEffect(() => {
     if (moldes.length === 0) {
@@ -48,6 +49,8 @@ const Form = ({
           to="/shots"
           name={CLEAN_INPUTS_SHOT}
           onSubmit={edit ? onEdit : onSubmit}
+          onDelete={onDelete}
+          edit={edit}
         />
       }
     >

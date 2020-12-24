@@ -13,7 +13,7 @@ import {
   CLEAN_INPUTS_DEFECT
 } from './formActions'
 
-export default function Form({ onSubmit, onEdit, edit }) {
+export default function Form({ onSubmit, onEdit, edit, onDelete }) {
   return (
     <FormComponent
       title={edit ? 'Update Injection Defect' : 'Add New Injection Defect'}
@@ -25,6 +25,8 @@ export default function Form({ onSubmit, onEdit, edit }) {
           to="/defects"
           name={CLEAN_INPUTS_DEFECT}
           onSubmit={edit ? onEdit : onSubmit}
+          onDelete={onDelete}
+          edit={edit}
         />
       }
     >

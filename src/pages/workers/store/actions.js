@@ -1,5 +1,5 @@
 import query from './queries'
-import { newProfile, updateProfile, removeMaterial } from './mutations'
+import { newProfile, updateProfile, deleteProfile } from './mutations'
 import { fetchItems } from 'services'
 import { validateInput } from 'helpers'
 
@@ -112,14 +112,14 @@ export const modifyProfile = (input) => async (dispatch) => {
   }
 }
 
-export const eraseMaterial = (_id) => async (dispatch) => {
+export const eraseProfile = (input) => async (dispatch) => {
   dispatch(request())
-  removeMaterial.variables = { _id }
-  const { status, data } = await fetchItems('removeMaterial', removeMaterial)
+  deleteProfile.variables = { _id: input._id, user: input.user }
+  const { status, data } = await fetchItems(deleteProfile)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(removeSuccess(data))
+    dispatch(removeSuccess(data.deleteProfile))
   }
 }

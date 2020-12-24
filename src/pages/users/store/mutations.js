@@ -13,7 +13,7 @@ const newUser = {
 
 const updateUser = {
   query: `mutation
-UpdateUser($_id: ID, $input: UpdatedUser ){
+UpdateUser($_id: ID, $input: UpdateUser ){
     updateUser(_id: $_id, input: $input){
         _id
         active
@@ -24,19 +24,13 @@ UpdateUser($_id: ID, $input: UpdatedUser ){
     }`
 }
 
-const removeUser = {
+const deleteUser = {
   query: `mutation
-  UpdateUser($_id: ID, $input: UpdatedUser ){
-      updateUser(_id: $_id, input: $input){
-              _id
-              shortCat
-              fullUat
-              fullCat
-              active
-              level
-              name
-          }
-      }`
+    DeleteUser($_id: ID, $user: ID ){
+            deleteUser(_id: $_id, user: $user){
+                  _id
+              }
+          }`
 }
 
-export { newUser, removeUser, updateUser }
+export { newUser, deleteUser, updateUser }

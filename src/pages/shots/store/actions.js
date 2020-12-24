@@ -1,5 +1,5 @@
 import query from './queries'
-import { newShot, updateShot, removeMaterial } from './mutations'
+import { newShot, updateShot, deleteShot } from './mutations'
 import { fetchItems } from 'services'
 
 export const REQUEST_SHOTS = 'REQUEST_SHOTS'
@@ -105,14 +105,14 @@ export const modifyShot = (input) => async (dispatch) => {
   }
 }
 
-export const eraseMaterial = (_id) => async (dispatch) => {
+export const eraseShot = (input) => async (dispatch) => {
   dispatch(request())
-  removeMaterial.variables = { _id }
-  const { status, data } = await fetchItems('removeMaterial', removeMaterial)
+  deleteShot.variables = { _id: input._id, user: input.user }
+  const { status, data } = await fetchItems(deleteShot)
 
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(removeSuccess(data))
+    dispatch(removeSuccess(data.deleteShot))
   }
 }

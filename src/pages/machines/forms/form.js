@@ -14,7 +14,7 @@ import {
   CLEAN_INPUTS_MACHINE
 } from './formActions'
 
-export default function Form({ onSubmit, onEdit, edit }) {
+export default function Form({ onSubmit, onEdit, edit, onDelete }) {
   return (
     <FormComponent
       title={edit ? 'Update Injection Machine' : 'Add New Injection Machine'}
@@ -26,6 +26,8 @@ export default function Form({ onSubmit, onEdit, edit }) {
           to="/machines"
           name={CLEAN_INPUTS_MACHINE}
           onSubmit={edit ? onEdit : onSubmit}
+          onDelete={onDelete}
+          edit={edit}
         />
       }
     >

@@ -40,21 +40,13 @@ const updateProfile = {
     }`
 }
 
-const removeMaterial = {
+const deleteProfile = {
   query: `mutation
-    UpdateMaterial($_id: ID, $input: NewMaterial ){
-        updateMaterial(_id: $_id, input: $input){
-            _id
-            number
-            manufacturer
-            description
-            acronym
-            identification
-            type
-            unit
-            color
-        }
-    }`
+    DeleteProfile($_id: ID, $user: ID ){
+            deleteProfile(_id: $_id, user: $user){
+                  _id
+              }
+          }`
 }
 
-export { newProfile, updateProfile, removeMaterial }
+export { newProfile, updateProfile, deleteProfile }

@@ -26,16 +26,13 @@ const updateModel = {
     }`
 }
 
-const removeModel = {
+const deleteModel = {
   query: `mutation
-      UpdatePartNumber($_id: ID, $input: NewPartNumber ){
-          updatePartNumber(_id: $_id, input: $input){
-              _id
-              partNumber
-              partName
-              family
-          }
-      }`
+    DeleteModel($_id: ID, $user: ID ){
+            deleteModel(_id: $_id, user: $user){
+                  _id
+              }
+          }`
 }
 
-export { newModel, removeModel, updateModel }
+export { newModel, deleteModel, updateModel }

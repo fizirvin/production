@@ -20,7 +20,7 @@ import {
   CLEAN_INPUTS_PROFILE
 } from './formActions'
 
-export default function Form({ onSubmit, onEdit, edit }) {
+export default function Form({ onSubmit, onEdit, edit, onDelete }) {
   const teams = [
     { _id: 'varias', team: 'varias' },
     { _id: 'amealco', team: 'amealco' }
@@ -48,6 +48,8 @@ export default function Form({ onSubmit, onEdit, edit }) {
           to="/employees"
           name={CLEAN_INPUTS_PROFILE}
           onSubmit={edit ? onEdit : onSubmit}
+          onDelete={onDelete}
+          edit={edit}
         />
       }
     >
