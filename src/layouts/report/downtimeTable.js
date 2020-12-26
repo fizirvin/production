@@ -32,9 +32,7 @@ export default function DowntimeTable({ onDowntime }) {
       <tfoot>
         <tr>
           <TableHeader w={'80'}>Total Downtime</TableHeader>
-          <TableHeader w={'20'}>
-            <input type="number" disabled></input>
-          </TableHeader>
+          <TableHeader w={'20'}>{total.toFixed(0)}</TableHeader>
         </tr>
       </tfoot>
     </DefectTable>

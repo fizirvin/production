@@ -89,12 +89,13 @@ export const addUser = (input) => async (dispatch) => {
 }
 
 export const modifyUser = (input) => async (dispatch) => {
-  dispatch(request())
-
   const user = {
+    password: input.password,
     level: input.level,
     active: input.active
   }
+
+  dispatch(request())
   updateUser.variables = { _id: input._id, input: user }
   const { status, data } = await fetchItems(updateUser)
 

@@ -5,7 +5,8 @@ export default function ConnectedTextInput({
   reducer,
   input,
   name,
-  length = '60'
+  length = '60',
+  disabled
 }) {
   const dispatch = useDispatch()
   const value = useSelector((state) => state[reducer][input])
@@ -19,6 +20,7 @@ export default function ConnectedTextInput({
         dispatch({ type: e.target.name, payload: e.target.value })
       }
       required
+      disabled={disabled}
     ></input>
   )
 }

@@ -6,7 +6,8 @@ export default function InputTextComponent({
   reducer,
   label,
   name,
-  length
+  length,
+  disabled
 }) {
   return (
     <tr>
@@ -19,6 +20,7 @@ export default function InputTextComponent({
           reducer={reducer}
           name={name}
           length={length}
+          disabled={disabled}
         ></ConnectedTextInput>
       </td>
     </tr>
