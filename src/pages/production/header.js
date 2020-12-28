@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import * as actions from './store/actions'
 import { Controls, Label } from './styles'
+import { formatDate } from 'helpers'
 
 export default function Header({ period, shifts, filter, date }) {
   const dispatch = useDispatch()
@@ -23,13 +24,51 @@ export default function Header({ period, shifts, filter, date }) {
   }
 
   const onBack = () => {
-    const value = 'hola'
-    dispatch({ type: actions.BACK_PRODUCTION, payload: value })
+    const dateNow = date ? new Date(date + 'T01:00:00.000-06:00') : new Date()
+
+    if (period === 'day') {
+      const pastWeek = dateNow.getDate() - 7
+      dateNow.setDate(pastWeek)
+      const newToday = formatDate(dateNow)
+
+      dispatch({ type: actions.DATE_PRODUCTION, payload: newToday })
+    } else if (period === 'month') {
+      const pastWeek = dateNow.getMonth() - 1
+      dateNow.setMonth(pastWeek)
+      const newToday = formatDate(dateNow)
+
+      dispatch({ type: actions.DATE_PRODUCTION, payload: newToday })
+    } else if (period === 'week') {
+      const pastWeek = dateNow.getDate() - 35
+      dateNow.setDate(pastWeek)
+      const newToday = formatDate(dateNow)
+
+      dispatch({ type: actions.DATE_PRODUCTION, payload: newToday })
+    }
   }
 
   const onForward = () => {
-    const value = 'hola'
-    dispatch({ type: actions.FORWARD_PRODUCTION, payload: value })
+    const dateNow = date ? new Date(date + 'T01:00:00.000-06:00') : new Date()
+
+    if (period === 'day') {
+      const pastWeek = dateNow.getDate() + 7
+      dateNow.setDate(pastWeek)
+      const newToday = formatDate(dateNow)
+
+      dispatch({ type: actions.DATE_PRODUCTION, payload: newToday })
+    } else if (period === 'month') {
+      const pastWeek = dateNow.getMonth() + 1
+      dateNow.setMonth(pastWeek)
+      const newToday = formatDate(dateNow)
+
+      dispatch({ type: actions.DATE_PRODUCTION, payload: newToday })
+    } else if (period === 'week') {
+      const pastWeek = dateNow.getDate() + 35
+      dateNow.setDate(pastWeek)
+      const newToday = formatDate(dateNow)
+
+      dispatch({ type: actions.DATE_PRODUCTION, payload: newToday })
+    }
   }
 
   return (

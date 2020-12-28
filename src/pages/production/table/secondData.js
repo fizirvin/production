@@ -29,9 +29,11 @@ export default function SecondData({ row, data = [], second = [] }) {
       <tr>
         <TDSecond>
           <TRow>
-            <DisplayButton color={color} onClick={display}>
-              ▼
-            </DisplayButton>
+            {second.length > 0 && (
+              <DisplayButton color={color} onClick={display}>
+                ▼
+              </DisplayButton>
+            )}
             {row}
           </TRow>
         </TDSecond>
