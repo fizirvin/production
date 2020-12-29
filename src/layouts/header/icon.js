@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef } from 'react'
+import { Hamburguer } from 'components'
 import styled from '@emotion/styled'
 
 const IconDiv = styled.div`
@@ -17,15 +18,29 @@ const IconDiv = styled.div`
   }
 `
 
-export default function Icon() {
-  const [open, setOpen] = useState(true)
+export default function Icon({ Open, isOpen, setMobile }) {
+  const iconRef = useRef()
+  useEffect(() => {
+    const styles = getComputedStyle(iconRef.current)
+
+    if (styles.display === 'none') {
+      setMobile(false)
+    }
+    if (styles.display === 'block') {
+      setMobile(true)
+    }
+  }, [setMobile])
+
   return (
-    <IconDiv>
-      {open ? (
-        <i onClick={() => setOpen(false)}>M</i>
+    <IconDiv ref={iconRef}>
+      {/* {isOpen ? (
+        <i onClick={() => Open(false)}>X</i>
       ) : (
-        <i onClick={() => setOpen(true)}>X</i>
-      )}
+        <i onClick={() => Open(true)}>M</i>
+      )} */}
+      <i onClick={() => Open(!isOpen)}>
+        <Hamburguer isOpen={isOpen} />
+      </i>
     </IconDiv>
   )
 }

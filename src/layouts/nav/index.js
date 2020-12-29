@@ -1,15 +1,30 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Item, SubMenu, UList, ItemBtn } from './styles'
 import { useSelector } from 'react-redux'
 
-export default function Nav({ logoutHandler }) {
+export default function Nav({ logoutHandler, open, mobile, setOpen }) {
+  const [flex, setFlex] = useState('none')
   const name = useSelector((state) => state.user.name)
+
+  useEffect(() => {
+    if (!mobile && !open) {
+      setFlex('flex')
+    }
+    if (mobile && !open) {
+      setFlex('none')
+    }
+    if (mobile && open) {
+      setFlex('flex')
+    }
+  }, [open, mobile])
+
   const logOut = () => {
     logoutHandler()
   }
+
   return (
-    <UList>
+    <UList style={{ display: flex }}>
       <Item>
         <Link to={'/'}>Home</Link>
       </Item>
@@ -20,25 +35,39 @@ export default function Nav({ logoutHandler }) {
             <Link to={'/'}>Injection Data</Link>
             <SubMenu>
               <Item>
-                <Link to={'/molds'}>Moldes</Link>
+                <Link onClick={() => setOpen(!open)} to={'/molds'}>
+                  Moldes
+                </Link>
               </Item>
               <Item>
-                <Link to={'/machines'}>Machines</Link>
+                <Link onClick={() => setOpen(!open)} to={'/machines'}>
+                  Machines
+                </Link>
               </Item>
               <Item>
-                <Link to={'/models'}>Models</Link>
+                <Link onClick={() => setOpen(!open)} to={'/models'}>
+                  Models
+                </Link>
               </Item>
               <Item>
-                <Link to={'/programs'}>Programs</Link>
+                <Link onClick={() => setOpen(!open)} to={'/programs'}>
+                  Programs
+                </Link>
               </Item>
               <Item>
-                <Link to={'/materials'}>Raw Material</Link>
+                <Link onClick={() => setOpen(!open)} to={'/materials'}>
+                  Raw Material
+                </Link>
               </Item>
               <Item>
-                <Link to={'/issues'}>Issues</Link>
+                <Link onClick={() => setOpen(!open)} to={'/issues'}>
+                  Issues
+                </Link>
               </Item>
               <Item>
-                <Link to={'/defects'}>Defects</Link>
+                <Link onClick={() => setOpen(!open)} to={'/defects'}>
+                  Defects
+                </Link>
               </Item>
             </SubMenu>
           </Item>
@@ -46,16 +75,24 @@ export default function Nav({ logoutHandler }) {
             <Link to={'/reports'}>Production</Link>
             <SubMenu>
               <Item>
-                <Link to={'/calendar'}>Calendar</Link>
+                <Link onClick={() => setOpen(!open)} to={'/calendar'}>
+                  Calendar
+                </Link>
               </Item>
               <Item>
-                <Link to={'/shots'}>Shots</Link>
+                <Link onClick={() => setOpen(!open)} to={'/shots'}>
+                  Shots
+                </Link>
               </Item>
               <Item>
-                <Link to={'/reports'}>Reports</Link>
+                <Link onClick={() => setOpen(!open)} to={'/reports'}>
+                  Reports
+                </Link>
               </Item>
               <Item>
-                <Link to={'/production'}>Production Data</Link>
+                <Link onClick={() => setOpen(!open)} to={'/production'}>
+                  Production Data
+                </Link>
               </Item>
             </SubMenu>
           </Item>
@@ -65,7 +102,9 @@ export default function Nav({ logoutHandler }) {
         <Link to={'/employees'}>Employees</Link>
         <SubMenu>
           <Item>
-            <Link to={'/employees'}>Employees</Link>
+            <Link onClick={() => setOpen(!open)} to={'/employees'}>
+              Employees
+            </Link>
           </Item>
         </SubMenu>
       </Item>
@@ -73,10 +112,14 @@ export default function Nav({ logoutHandler }) {
         <Link to={'/'}>Settings</Link>
         <SubMenu>
           <Item>
-            <Link to={'/users'}>Users</Link>
+            <Link onClick={() => setOpen(!open)} to={'/users'}>
+              Users
+            </Link>
           </Item>
           <Item>
-            <Link to={'/'}>Settings</Link>
+            <Link onClick={() => setOpen(!open)} to={'/'}>
+              Settings
+            </Link>
           </Item>
         </SubMenu>
       </Item>

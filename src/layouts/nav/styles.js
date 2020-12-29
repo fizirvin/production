@@ -37,8 +37,8 @@ export const UList = styled.ul`
 
     li {
       line-height: 6rem;
+      width: 70%;
     }
-    display: flex;
 
     li:hover > ul {
       opacity: 1;
