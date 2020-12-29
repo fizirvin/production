@@ -7,7 +7,8 @@ import {
   ADD_SUCCESS_MODELS,
   CLEAN_MESSAGE_MODELS,
   PAGE_TOTAL_MODELS,
-  ADD_TOTAL_MODELS
+  ADD_TOTAL_MODELS,
+  SORT_MODELS
 } from './actions'
 
 const initialState = {
@@ -90,6 +91,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         add: payload
+      }
+    case SORT_MODELS:
+      let sortedItems = []
+      if (payload === 'name') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.name > b.name) return 1
+          if (a.name < b.name) return -1
+          return 0
+        })
+      } else if (payload === 'family') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.family > b.family) return 1
+          if (a.family < b.family) return -1
+          return 0
+        })
+      }
+      return {
+        ...state,
+        items: sortedItems
       }
     default:
       return state

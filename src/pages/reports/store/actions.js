@@ -14,6 +14,8 @@ export const CLEAN_MESSAGE_REPORTS = 'CLEAN_MESSAGE_REPORTS'
 export const PAGE_TOTAL_REPORTS = 'PAGE_REPORTS'
 export const ADD_TOTAL_REPORTS = 'ADD_TOTAL_REPORTS'
 
+export const SORT_REPORTS = 'SORT_REPORTS'
+
 const request = () => {
   return {
     type: REQUEST_REPORTS

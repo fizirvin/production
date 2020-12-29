@@ -14,6 +14,8 @@ export const CLEAN_MESSAGE_MATERIALS = 'CLEAN_MESSAGE_MATERIALS'
 export const PAGE_TOTAL_MATERIALS = 'PAGE_MATERIALS'
 export const ADD_TOTAL_MATERIALS = 'ADD_TOTAL_MATERIALS'
 
+export const SORT_MATERIAL = 'SORT_MATERIAL'
+
 const request = () => {
   return {
     type: REQUEST_MATERIALS

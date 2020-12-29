@@ -7,7 +7,8 @@ import {
   ADD_SUCCESS_PROGRAMS,
   CLEAN_MESSAGE_PROGRAMS,
   PAGE_TOTAL_PROGRAMS,
-  ADD_TOTAL_PROGRAMS
+  ADD_TOTAL_PROGRAMS,
+  SORT_PROGRAMS
 } from './actions'
 
 const initialState = {
@@ -91,6 +92,31 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         add: payload
+      }
+    case SORT_PROGRAMS:
+      let sortedItems = []
+      if (payload === 'molde') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.molde.number > b.molde.number) return 1
+          if (a.molde.number < b.molde.number) return -1
+          return 0
+        })
+      } else if (payload === 'model') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.model.name > b.model.name) return 1
+          if (a.model.name < b.model.name) return -1
+          return 0
+        })
+      } else if (payload === 'machine') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (+a.machine.number > +b.machine.number) return 1
+          if (+a.machine.number < +b.machine.number) return -1
+          return 0
+        })
+      }
+      return {
+        ...state,
+        items: sortedItems
       }
     default:
       return state

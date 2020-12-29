@@ -13,6 +13,8 @@ export const CLEAN_MESSAGE_PROFILES = 'CLEAN_MESSAGE_PROFILES'
 export const PAGE_TOTAL_PROFILES = 'PAGE_PROFILES'
 export const ADD_TOTAL_PROFILES = 'ADD_TOTAL_PROFILES'
 
+export const SORT_PROFILES = 'SORT_PROFILES'
+
 const request = () => {
   return {
     type: REQUEST_PROFILES

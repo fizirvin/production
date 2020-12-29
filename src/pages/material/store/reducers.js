@@ -7,7 +7,8 @@ import {
   ADD_SUCCESS_MATERIALS,
   CLEAN_MESSAGE_MATERIALS,
   PAGE_TOTAL_MATERIALS,
-  ADD_TOTAL_MATERIALS
+  ADD_TOTAL_MATERIALS,
+  SORT_MATERIAL
 } from './actions'
 
 const initialState = {
@@ -90,6 +91,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         add: payload
+      }
+    case SORT_MATERIAL:
+      let sortedItems = []
+      if (payload === 'manufacturer') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.manufacturer > b.manufacturer) return 1
+          if (a.manufacturer < b.manufacturer) return -1
+          return 0
+        })
+      } else if (payload === 'serial') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.number > b.number) return 1
+          if (a.number < b.number) return -1
+          return 0
+        })
+      }
+      return {
+        ...state,
+        items: sortedItems
       }
     default:
       return state

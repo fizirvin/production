@@ -4,10 +4,12 @@ import { fetchPrograms } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
 import { ControlComponent } from 'layouts'
+import { SORT_PROGRAMS } from './store/actions'
 
 const sort = [
-  { _id: '1', sort: 'code' },
-  { _id: '2', sort: 'name' }
+  { _id: 'molde', sort: 'molde' },
+  { _id: 'model', sort: 'model' },
+  { _id: 'machine', sort: 'machine' }
 ]
 
 const Connect = ({ programs, fetchPrograms }) => {
@@ -35,6 +37,8 @@ const Connect = ({ programs, fetchPrograms }) => {
             fetch={fetchPrograms}
             to={'/programs/add'}
             title={'Program'}
+            sortName={SORT_PROGRAMS}
+            sort
           />
           <Table items={items} />
         </>

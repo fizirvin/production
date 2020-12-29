@@ -13,6 +13,7 @@ export const REMOVE_SUCCESS_MOLDES = 'REMOVE_SUCCESS_MOLDES'
 export const CLEAN_MESSAGE_MOLDES = 'CLEAN_MESSAGE_MOLDES'
 export const PAGE_TOTAL_MOLDES = 'PAGE_MOLDES'
 export const ADD_TOTAL_MOLDES = 'ADD_TOTAL_MOLDES'
+export const SORT_MOLDES = 'SORT_MOLDES'
 
 const request = () => {
   return {

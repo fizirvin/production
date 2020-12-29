@@ -8,7 +8,8 @@ import {
   CLEAN_MESSAGE_SHOTS,
   PAGE_TOTAL_SHOTS,
   ADD_TOTAL_SHOTS,
-  FINISH_SUCCESS_SHOT
+  FINISH_SUCCESS_SHOT,
+  SORT_SHOTS
 } from './actions'
 
 const initialState = {
@@ -102,6 +103,37 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         add: action.payload
+      }
+    case SORT_SHOTS:
+      let sortedItems = []
+      if (action.payload === 'molde') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.molde.number > b.molde.number) return 1
+          if (a.molde.number < b.molde.number) return -1
+          if (a.date > b.date) return -1
+          if (a.date < b.date) return 1
+          return 0
+        })
+      } else if (action.payload === 'status') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.active > b.active) return -1
+          if (a.active < b.active) return 1
+          if (a.date > b.date) return -1
+          if (a.date < b.date) return 1
+          return 0
+        })
+      } else if (action.payload === 'date') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.date > b.date) return -1
+          if (a.date < b.date) return 1
+          if (a.active > b.active) return -1
+          if (a.active < b.active) return 1
+          return 0
+        })
+      }
+      return {
+        ...state,
+        items: sortedItems
       }
     default:
       return state

@@ -4,10 +4,11 @@ import { fetchProfiles } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
 import { ControlComponent } from 'layouts'
+import { SORT_PROFILES } from './store/actions'
 
 const sort = [
-  { _id: '1', sort: 'code' },
-  { _id: '2', sort: 'name' }
+  { _id: 'entry', sort: 'entry' },
+  { _id: 'number', sort: 'number' }
 ]
 
 const Connect = ({ profiles, fetchProfiles }) => {
@@ -35,6 +36,8 @@ const Connect = ({ profiles, fetchProfiles }) => {
             fetch={fetchProfiles}
             to={'/employees/add'}
             title={'Employee'}
+            sortName={SORT_PROFILES}
+            sort
           />
           <Table items={items} />
         </>

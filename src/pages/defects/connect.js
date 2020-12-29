@@ -4,10 +4,11 @@ import { fetchDefects } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
 import { ControlComponent } from 'layouts'
+import { SORT_DEFECTS } from './store/actions'
 
 const sort = [
-  { _id: '1', sort: 'code' },
-  { _id: '2', sort: 'name' }
+  { _id: 'code', sort: 'code' },
+  { _id: 'name', sort: 'name' }
 ]
 
 const Connect = ({ defects, fetchDefects }) => {
@@ -34,6 +35,8 @@ const Connect = ({ defects, fetchDefects }) => {
             fetch={fetchDefects}
             to={'/defects/add'}
             title={'Defect'}
+            sortName={SORT_DEFECTS}
+            sort
           />
           <Table items={items} />
         </>

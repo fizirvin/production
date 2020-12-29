@@ -13,7 +13,9 @@ export default function ControlComponent({
   fetch,
   to,
   title,
-  pagination
+  pagination,
+  sortName,
+  sort
 }) {
   return (
     <ControlsDiv>
@@ -24,7 +26,7 @@ export default function ControlComponent({
         fetch={fetch}
         pagination={pagination}
       />
-      <SortComoponent items={items} k={k} />
+      {sort && <SortComoponent items={items} k={k} sortName={sortName} />}
       <CtrlsLabel>
         <Link to={to}>
           <button>Add {title}</button>

@@ -7,7 +7,8 @@ import {
   ADD_SUCCESS_REPORTS,
   CLEAN_MESSAGE_REPORTS,
   PAGE_TOTAL_REPORTS,
-  ADD_TOTAL_REPORTS
+  ADD_TOTAL_REPORTS,
+  SORT_REPORTS
 } from './actions'
 
 const initialState = {
@@ -89,6 +90,43 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         add: action.payload
+      }
+    case SORT_REPORTS:
+      let sortedItems = []
+      if (action.payload === 'machine') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (+a.machine.number > +b.machine.number) return 1
+          if (+a.machine.number < +b.machine.number) return -1
+          if (a.date > b.date) return -1
+          if (a.date < b.date) return 1
+          return 0
+        })
+      } else if (action.payload === 'shift') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.shift > b.shift) return 1
+          if (a.shift < b.shift) return -1
+          if (a.date > b.date) return -1
+          if (a.date < b.date) return 1
+          return 0
+        })
+      } else if (action.payload === 'date') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.date > b.date) return -1
+          if (a.date < b.date) return 1
+          return 0
+        })
+      } else if (action.payload === 'team') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.team > b.team) return 1
+          if (a.team < b.team) return -1
+          if (a.date > b.date) return -1
+          if (a.date < b.date) return 1
+          return 0
+        })
+      }
+      return {
+        ...state,
+        items: sortedItems
       }
     default:
       return state

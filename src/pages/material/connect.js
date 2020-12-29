@@ -4,10 +4,11 @@ import { fetchMaterials } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
 import { ControlComponent } from 'layouts'
+import { SORT_MATERIAL } from './store/actions'
 
 const sort = [
-  { _id: '1', sort: 'code' },
-  { _id: '2', sort: 'name' }
+  { _id: 'manufacturer', sort: 'manufacturer' },
+  { _id: 'serial', sort: 'serial' }
 ]
 
 const Connect = ({ materials, fetchMaterials }) => {
@@ -35,6 +36,8 @@ const Connect = ({ materials, fetchMaterials }) => {
             fetch={fetchMaterials}
             to={'/materials/add'}
             title={'Material'}
+            sortName={SORT_MATERIAL}
+            sort
           />
           <Table items={items} />
         </>

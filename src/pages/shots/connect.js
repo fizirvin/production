@@ -4,10 +4,12 @@ import { fetchShots } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
 import { ControlComponent } from 'layouts'
+import { SORT_SHOTS } from './store/actions'
 
 const sort = [
-  { _id: '1', sort: 'code' },
-  { _id: '2', sort: 'name' }
+  { _id: 'molde', sort: 'molde' },
+  { _id: 'status', sort: 'status' },
+  { _id: 'date', sort: 'date' }
 ]
 
 const Connect = ({ shots, fetchShots }) => {
@@ -35,6 +37,8 @@ const Connect = ({ shots, fetchShots }) => {
             fetch={fetchShots}
             to={'/shots/add'}
             title={'Shot'}
+            sortName={SORT_SHOTS}
+            sort
           />
           <Table items={items} />
         </>

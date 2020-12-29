@@ -14,6 +14,8 @@ export const CLEAN_MESSAGE_ISSUES = 'CLEAN_MESSAGE_ISSUES'
 export const PAGE_TOTAL_ISSUES = 'PAGE_ISSUES'
 export const ADD_TOTAL_ISSUES = 'ADD_TOTAL_ISSUES'
 
+export const SORT_ISSUES = 'SORT_ISSUES'
+
 const request = () => {
   return {
     type: REQUEST_ISSUES

@@ -7,7 +7,8 @@ import {
   CLEAN_MESSAGE_DEFECTS,
   ADD_SUCCESS_DEFECTS,
   PAGE_TOTAL_DEFECTS,
-  ADD_TOTAL_DEFECTS
+  ADD_TOTAL_DEFECTS,
+  SORT_DEFECTS
 } from './actions'
 
 const initialState = {
@@ -90,6 +91,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         add: payload
+      }
+    case SORT_DEFECTS:
+      let sortedItems = []
+      if (payload === 'name') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.name > b.name) return 1
+          if (a.name < b.name) return -1
+          return 0
+        })
+      } else if (payload === 'code') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.code > b.code) return 1
+          if (a.code < b.code) return -1
+          return 0
+        })
+      }
+      return {
+        ...state,
+        items: sortedItems
       }
     default:
       return state

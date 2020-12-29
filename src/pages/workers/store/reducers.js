@@ -7,7 +7,8 @@ import {
   ADD_SUCCESS_PROFILES,
   CLEAN_MESSAGE_PROFILES,
   PAGE_TOTAL_PROFILES,
-  ADD_TOTAL_PROFILES
+  ADD_TOTAL_PROFILES,
+  SORT_PROFILES
 } from './actions'
 
 const initialState = {
@@ -89,6 +90,28 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         add: payload
+      }
+    case SORT_PROFILES:
+      let sortedItems = []
+      if (action.payload === 'number') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.number > b.number) return 1
+          if (a.number < b.number) return -1
+
+          return 0
+        })
+      } else if (action.payload === 'entry') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.entry > b.entry) return 1
+          if (a.entry < b.entry) return -1
+          if (a.number > b.number) return 1
+          if (a.number < b.number) return -1
+          return 0
+        })
+      }
+      return {
+        ...state,
+        items: sortedItems
       }
     default:
       return state

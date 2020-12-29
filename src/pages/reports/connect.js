@@ -4,10 +4,13 @@ import { fetchReports } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
 import { ControlComponent } from 'layouts'
+import { SORT_REPORTS } from './store/actions'
 
 const sort = [
-  { _id: '1', sort: 'code' },
-  { _id: '2', sort: 'name' }
+  { _id: 'machine', sort: 'machine' },
+  { _id: 'shift', sort: 'shift' },
+  { _id: 'date', sort: 'date' },
+  { _id: 'team', sort: 'team' }
 ]
 
 const Connect = ({ reports, fetchReports }) => {
@@ -35,6 +38,8 @@ const Connect = ({ reports, fetchReports }) => {
             fetch={fetchReports}
             to={'/reports/add'}
             title={'Report'}
+            sortName={SORT_REPORTS}
+            sort
           />
           <Table items={items} />
         </>

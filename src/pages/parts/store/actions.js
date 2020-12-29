@@ -14,6 +14,8 @@ export const CLEAN_MESSAGE_MODELS = 'CLEAN_MESSAGE_MODELS'
 export const PAGE_TOTAL_MODELS = 'PAGE_MODELS'
 export const ADD_TOTAL_MODELS = 'ADD_TOTAL_MODELS'
 
+export const SORT_MODELS = 'SORT_MODELS'
+
 const request = () => {
   return {
     type: REQUEST_MODELS

@@ -7,7 +7,8 @@ import {
   REMOVE_SUCCESS_MOLDES,
   CLEAN_MESSAGE_MOLDES,
   PAGE_TOTAL_MOLDES,
-  ADD_TOTAL_MOLDES
+  ADD_TOTAL_MOLDES,
+  SORT_MOLDES
 } from './actions'
 
 const initialState = {
@@ -91,6 +92,31 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         add: payload
+      }
+    case SORT_MOLDES:
+      let sortedItems = []
+      if (payload === 'number') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.number > b.number) return 1
+          if (a.number < b.number) return -1
+          return 0
+        })
+      } else if (payload === 'percent') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (+a.percent > +b.percent) return -1
+          if (+a.percent < +b.percent) return 1
+          return 0
+        })
+      } else if (payload === 'tcycles') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (+a.tcycles > +b.tcycles) return -1
+          if (+a.tcycles < +b.tcycles) return 1
+          return 0
+        })
+      }
+      return {
+        ...state,
+        items: sortedItems
       }
     default:
       return state

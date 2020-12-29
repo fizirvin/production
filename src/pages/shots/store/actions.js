@@ -15,6 +15,8 @@ export const CLEAN_MESSAGE_SHOTS = 'CLEAN_MESSAGE_SHOTS'
 export const PAGE_TOTAL_SHOTS = 'PAGE_SHOTS'
 export const ADD_TOTAL_SHOTS = 'ADD_TOTAL_SHOTS'
 
+export const SORT_SHOTS = 'SORT_SHOTS'
+
 const request = () => {
   return {
     type: REQUEST_SHOTS

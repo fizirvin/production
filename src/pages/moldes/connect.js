@@ -4,10 +4,12 @@ import { fetchMoldes } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
 import { ControlComponent } from 'layouts'
+import { SORT_MOLDES } from './store/actions'
 
 const sort = [
-  { _id: '1', sort: 'code' },
-  { _id: '2', sort: 'name' }
+  { _id: 'number', sort: 'number' },
+  { _id: 'percent', sort: 'percent' },
+  { _id: 'tcycles', sort: 'tcycles' }
 ]
 
 const Connect = ({ moldes, fetchMoldes }) => {
@@ -35,6 +37,8 @@ const Connect = ({ moldes, fetchMoldes }) => {
             fetch={fetchMoldes}
             to={'/molds/add'}
             title={'Molde'}
+            sortName={SORT_MOLDES}
+            sort
           />
           <Table items={items} />
         </>

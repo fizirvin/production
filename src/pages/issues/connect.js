@@ -4,10 +4,11 @@ import { fetchIssues } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
 import { ControlComponent } from 'layouts'
+import { SORT_ISSUES } from './store/actions'
 
 const sort = [
-  { _id: '1', sort: 'code' },
-  { _id: '2', sort: 'name' }
+  { _id: 'code', sort: 'code' },
+  { _id: 'name', sort: 'name' }
 ]
 
 const Connect = ({ issues, fetchIssues }) => {
@@ -35,6 +36,8 @@ const Connect = ({ issues, fetchIssues }) => {
             fetch={fetchIssues}
             to={'/issues/add'}
             title={'Issue'}
+            sortName={SORT_ISSUES}
+            sort
           />
           <Table items={items} />
         </>

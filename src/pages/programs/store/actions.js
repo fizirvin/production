@@ -14,6 +14,8 @@ export const CLEAN_MESSAGE_PROGRAMS = 'CLEAN_MESSAGE_PROGRAMS'
 export const PAGE_TOTAL_PROGRAMS = 'PAGE_PROGRAMS'
 export const ADD_TOTAL_PROGRAMS = 'ADD_TOTAL_PROGRAMS'
 
+export const SORT_PROGRAMS = 'SORT_PROGRAMS'
+
 const request = () => {
   return {
     type: REQUEST_PROGRAMS

@@ -7,7 +7,8 @@ import {
   CLEAN_MESSAGE_ISSUES,
   ADD_SUCCESS_ISSUES,
   PAGE_TOTAL_ISSUES,
-  ADD_TOTAL_ISSUES
+  ADD_TOTAL_ISSUES,
+  SORT_ISSUES
 } from './actions'
 
 const initialState = {
@@ -90,6 +91,25 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         add: payload
+      }
+    case SORT_ISSUES:
+      let sortedItems = []
+      if (payload === 'name') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.name > b.name) return 1
+          if (a.name < b.name) return -1
+          return 0
+        })
+      } else if (payload === 'code') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.code > b.code) return 1
+          if (a.code < b.code) return -1
+          return 0
+        })
+      }
+      return {
+        ...state,
+        items: sortedItems
       }
     default:
       return state

@@ -14,6 +14,8 @@ export const CLEAN_MESSAGE_DEFECTS = 'CLEAN_MESSAGE_DEFECTS'
 export const PAGE_TOTAL_DEFECTS = 'PAGE_DEFECTS'
 export const ADD_TOTAL_DEFECTS = 'ADD_TOTAL_DEFECTS'
 
+export const SORT_DEFECTS = 'SORT_DEFECTS'
+
 const request = () => {
   return {
     type: REQUEST_DEFECTS
