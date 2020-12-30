@@ -35,6 +35,10 @@ export const ButtonsDiv = styled.div`
 
 export const SectionTwo = styled.div`
   display: flex;
+
+  @media (max-width: 850px) {
+    display: block;
+  }
 `
 
 export const SectionContainer = styled.div`
@@ -45,6 +49,11 @@ export const SectionContainer = styled.div`
   overflow-y: auto;
   max-height: 40vh;
   min-height: 40vh;
+
+  @media (max-width: 850px) {
+    width: 1;
+    width: auto;
+  }
 `
 
 export const DefectTable = styled.table`

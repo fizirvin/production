@@ -9,7 +9,7 @@ export default function SwitchSection({ onClick }) {
   ]
 
   const renderButtons = (items) => {
-    return items.map((item, index) => (
+    return items.map((item) => (
       <button type="button" {...item}>
         {item.title}
       </button>
