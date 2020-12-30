@@ -51,7 +51,7 @@ export const SectionContainer = styled.div`
   min-height: 40vh;
 
   @media (max-width: 850px) {
-    width: 100%;
+    width: 150%;
   }
 `
 
