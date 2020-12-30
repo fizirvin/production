@@ -11,10 +11,6 @@ export const Modal = styled.div`
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.3); /* Black w/ opacity */
-
-  @media (max-width: 850px) {
-    width: auto;
-  }
 `
 
 export const Content = styled.div`
@@ -24,4 +20,8 @@ export const Content = styled.div`
   border: 1px solid #888;
   width: 100%;
   border-radius: 4px;
+
+  @media (max-width: 850px) {
+    overflow-x: scroll;
+  }
 `
