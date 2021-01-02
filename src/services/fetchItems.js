@@ -6,8 +6,7 @@ export default async function fetchItems(query) {
   const res = await fetch(url, options).catch(() => {
     return false
   })
-  if (!res)
-    return { status: false, data: 'error, posiblemente no hay internet' }
+  if (!res) return { status: false, data: 'error, revisar conexión a internet' }
   const data = await res.json().catch(() => {
     return false
   })

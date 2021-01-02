@@ -6,6 +6,10 @@ export const Controls = styled.div`
   display: flex;
   color: whitesmoke;
   margin-top: 5px;
+
+  @media (max-width: 850px) {
+    width: 120%;
+  }
 `
 
 export const Label = styled.div`

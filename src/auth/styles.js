@@ -16,6 +16,10 @@ export const LoginFormDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 850px) {
+    height: 45vh;
+  }
 `
 
 export const LoginInput = styled.input`
@@ -61,5 +65,8 @@ export const LoginSubmit = styled.button`
     background-color: #000000;
     box-shadow: 0 0px #666;
     transform: translateY(2px);
+  }
+  @media (max-width: 850px) {
+    height: 5rem;
   }
 `
