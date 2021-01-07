@@ -96,6 +96,21 @@ export default function Nav({ logoutHandler, open, mobile, setOpen }) {
               </Item>
             </SubMenu>
           </Item>
+          <Item>
+            <Link to={'/spares'}>Inventory</Link>
+            <SubMenu>
+              <Item>
+                <Link onClick={() => setOpen(!open)} to={'/locations'}>
+                  Locations
+                </Link>
+              </Item>
+              <Item>
+                <Link onClick={() => setOpen(!open)} to={'/spares'}>
+                  Spares Inventory
+                </Link>
+              </Item>
+            </SubMenu>
+          </Item>
         </SubMenu>
       </Item>
       <Item>

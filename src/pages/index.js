@@ -16,7 +16,7 @@ import Reports, { AddReport, RemoveReport, UpdateReport } from './reports'
 import Shots, { AddShot, RemoveShot, UpdateShot, Cycles } from './shots'
 import Users, { AddUser, RemoveUser, UpdateUser } from './users'
 import Workers, { AddWorker, RemoveWorker, UpdateWorker } from './workers'
-
+import Locations, { AddLocation, UpdateLocation } from './locations'
 import Defects, { AddDefect, RemoveDefect, UpdateDefect } from './defects'
 
 export {
@@ -67,5 +67,8 @@ export {
   UpdateShot,
   UpdateUser,
   UpdateWorker,
-  Cycles
+  Cycles,
+  Locations,
+  AddLocation,
+  UpdateLocation
 }

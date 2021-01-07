@@ -23,7 +23,8 @@ import usersForm from 'pages/users/forms/formReducer'
 import user from './userReducer'
 import reports from 'pages/reports/store/reducers'
 import reportsForm from 'pages/reports/forms/formReducer'
-
+import locations from 'pages/locations/store/reducers'
+import locationsForm from 'pages/locations/forms/formReducer'
 import cycles from 'pages/shots/cycles/cyclesReducer'
 import production from 'pages/production/store/productionReducer'
 
@@ -55,7 +56,9 @@ const reducers = combineReducers({
   reportsForm,
   cycles,
   production,
-  calendar
+  calendar,
+  locations,
+  locationsForm
 })
 
 export default reducers
