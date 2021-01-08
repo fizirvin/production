@@ -17,6 +17,8 @@ import Shots, { AddShot, RemoveShot, UpdateShot, Cycles } from './shots'
 import Users, { AddUser, RemoveUser, UpdateUser } from './users'
 import Workers, { AddWorker, RemoveWorker, UpdateWorker } from './workers'
 import Locations, { AddLocation, UpdateLocation } from './locations'
+import Spares, { AddSpare, UpdateSpare } from './spares'
+import Ingoings, { AddIngoing, UpdateIngoing } from './ingoings'
 import Defects, { AddDefect, RemoveDefect, UpdateDefect } from './defects'
 
 export {
@@ -70,5 +72,11 @@ export {
   Cycles,
   Locations,
   AddLocation,
-  UpdateLocation
+  UpdateLocation,
+  Spares,
+  AddSpare,
+  UpdateSpare,
+  Ingoings,
+  AddIngoing,
+  UpdateIngoing
 }

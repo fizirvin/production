@@ -1,24 +1,25 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchLocations } from './store/actions'
+import { fetchSpares } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
 import { ControlComponent } from 'layouts'
-import { SORT_LOCATIONS } from './store/actions'
+import { SORT_SPARES } from './store/actions'
 
 const sort = [
   { _id: 'code', sort: 'code' },
-  { _id: 'name', sort: 'name' }
+  { _id: 'name', sort: 'name' },
+  { _id: 'part', sort: 'part' }
 ]
 
-const Connect = ({ locations, fetchLocations }) => {
-  const { loading, message, items, total, page } = locations
+const Connect = ({ spares, fetchSpares }) => {
+  const { loading, message, items, total, page } = spares
 
   useEffect(() => {
     if (items.length === 0) {
-      fetchLocations()
+      fetchSpares()
     }
-  }, [items, fetchLocations])
+  }, [items, fetchSpares])
 
   return (
     <>
@@ -33,10 +34,10 @@ const Connect = ({ locations, fetchLocations }) => {
             items={sort}
             k={'sort'}
             loading={loading}
-            fetch={fetchLocations}
-            to={'/locations/add'}
-            title={'Location'}
-            sortName={SORT_LOCATIONS}
+            fetch={fetchSpares}
+            to={'/spares/add'}
+            title={'Spare'}
+            sortName={SORT_SPARES}
             sort
           />
           <Table items={items} />
@@ -47,7 +48,7 @@ const Connect = ({ locations, fetchLocations }) => {
 }
 
 const mapStateToProps = (state) => ({
-  locations: state.locations
+  spares: state.spares
 })
 
-export default connect(mapStateToProps, { fetchLocations })(Connect)
+export default connect(mapStateToProps, { fetchSpares })(Connect)

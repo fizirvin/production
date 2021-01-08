@@ -1,14 +1,14 @@
 import {
-  REQUEST_LOCATIONS,
-  REQUEST_FAILURE_LOCATIONS,
-  FETCH_SUCCESS_LOCATIONS,
-  UPDATE_SUCCESS_LOCATIONS,
-  REMOVE_SUCCESS_LOCATIONS,
-  ADD_SUCCESS_LOCATIONS,
-  CLEAN_MESSAGE_LOCATIONS,
-  PAGE_TOTAL_LOCATIONS,
-  ADD_TOTAL_LOCATIONS,
-  SORT_LOCATIONS
+  REQUEST_INGOINGS,
+  REQUEST_FAILURE_INGOINGS,
+  FETCH_SUCCESS_INGOINGS,
+  UPDATE_SUCCESS_INGOINGS,
+  REMOVE_SUCCESS_INGOINGS,
+  ADD_SUCCESS_INGOINGS,
+  CLEAN_MESSAGE_INGOINGS,
+  PAGE_TOTAL_INGOINGS,
+  ADD_TOTAL_INGOINGS,
+  SORT_INGOINGS
 } from './actions'
 
 const initialState = {
@@ -25,18 +25,18 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
-    case REQUEST_LOCATIONS:
+    case REQUEST_INGOINGS:
       return {
         ...state,
         loading: true
       }
-    case REQUEST_FAILURE_LOCATIONS:
+    case REQUEST_FAILURE_INGOINGS:
       return {
         ...state,
         message: payload,
         loading: false
       }
-    case FETCH_SUCCESS_LOCATIONS:
+    case FETCH_SUCCESS_INGOINGS:
       return {
         ...state,
         message: '',
@@ -45,67 +45,79 @@ const reducer = (state = initialState, action) => {
         total: payload.total,
         fetched: true
       }
-    case ADD_SUCCESS_LOCATIONS:
+    case ADD_SUCCESS_INGOINGS:
       const newItem = payload
       const items = [...state.items, newItem]
       return {
         ...state,
-        message: 'New Injection Location added correctly',
+        message: 'New Injection Ingoing added correctly',
         loading: false,
         items: items,
         add: state.add + 1,
         total: state.total + 1
       }
-    case UPDATE_SUCCESS_LOCATIONS:
+    case UPDATE_SUCCESS_INGOINGS:
       const item = payload
       let updatedItems = [...state.items]
       updatedItems[updatedItems.findIndex((el) => el._id === item._id)] = item
       return {
         ...state,
-        message: 'Injection Location updated correctly',
+        message: 'Injection Ingoing updated correctly',
         loading: false,
         items: updatedItems
       }
-    case REMOVE_SUCCESS_LOCATIONS:
+    case REMOVE_SUCCESS_INGOINGS:
       const deletedItem = action.payload
       const removeItems = [...state.items].filter(
         (el) => el._id !== deletedItem._id
       )
       return {
         ...state,
-        message: 'Injection Location deleted correctly',
+        message: 'Injection Ingoing deleted correctly',
         loading: false,
         items: removeItems,
         deletes: state.deletes + 1,
         total: state.total - 1
       }
-    case CLEAN_MESSAGE_LOCATIONS:
+    case CLEAN_MESSAGE_INGOINGS:
       return {
         ...state,
         message: ''
       }
-    case PAGE_TOTAL_LOCATIONS:
+    case PAGE_TOTAL_INGOINGS:
       return {
         ...state,
         page: payload
       }
-    case ADD_TOTAL_LOCATIONS:
+    case ADD_TOTAL_INGOINGS:
       return {
         ...state,
         add: payload
       }
-    case SORT_LOCATIONS:
+    case SORT_INGOINGS:
       let sortedItems = []
-      if (payload === 'code') {
+      if (payload === 'date') {
         sortedItems = state.items.sort(function (a, b) {
-          if (a.code > b.code) return 1
-          if (a.code < b.code) return -1
+          if (a.date > b.date) return 1
+          if (a.date < b.date) return -1
           return 0
         })
-      } else if (payload === 'name') {
+      } else if (payload === 'spare') {
         sortedItems = state.items.sort(function (a, b) {
-          if (a.name > b.name) return -1
-          if (a.name < b.name) return 1
+          if (a.spCode > b.spCode) return 1
+          if (a.spCode < b.spCode) return -1
+          return 0
+        })
+      } else if (payload === 'origin') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.origin > b.origin) return 1
+          if (a.origin < b.origin) return -1
+          return 0
+        })
+      } else if (payload === 'provider') {
+        sortedItems = state.items.sort(function (a, b) {
+          if (a.provider > b.provider) return 1
+          if (a.provider < b.provider) return -1
           return 0
         })
       }

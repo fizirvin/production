@@ -1,24 +1,26 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { fetchLocations } from './store/actions'
+import { fetchIngoings } from './store/actions'
 import Spinner from 'components/spinner'
 import Table from './table'
 import { ControlComponent } from 'layouts'
-import { SORT_LOCATIONS } from './store/actions'
+import { SORT_INGOINGS } from './store/actions'
 
 const sort = [
-  { _id: 'code', sort: 'code' },
-  { _id: 'name', sort: 'name' }
+  { _id: 'date', sort: 'date' },
+  { _id: 'spare', sort: 'spare' },
+  { _id: 'provider', sort: 'provider' },
+  { _id: 'origin', sort: 'origin' }
 ]
 
-const Connect = ({ locations, fetchLocations }) => {
-  const { loading, message, items, total, page } = locations
+const Connect = ({ ingoings, fetchIngoings }) => {
+  const { loading, message, items, total, page } = ingoings
 
   useEffect(() => {
     if (items.length === 0) {
-      fetchLocations()
+      fetchIngoings()
     }
-  }, [items, fetchLocations])
+  }, [items, fetchIngoings])
 
   return (
     <>
@@ -33,10 +35,10 @@ const Connect = ({ locations, fetchLocations }) => {
             items={sort}
             k={'sort'}
             loading={loading}
-            fetch={fetchLocations}
-            to={'/locations/add'}
-            title={'Location'}
-            sortName={SORT_LOCATIONS}
+            fetch={fetchIngoings}
+            to={'/ingoings/add'}
+            title={'Ingoing'}
+            sortName={SORT_INGOINGS}
             sort
           />
           <Table items={items} />
@@ -47,7 +49,7 @@ const Connect = ({ locations, fetchLocations }) => {
 }
 
 const mapStateToProps = (state) => ({
-  locations: state.locations
+  ingoings: state.ingoings
 })
 
-export default connect(mapStateToProps, { fetchLocations })(Connect)
+export default connect(mapStateToProps, { fetchIngoings })(Connect)

@@ -20,6 +20,8 @@ import Report from './report'
 import ProgramTableComponent from './programsTable'
 import ShotsTableComponent from './shotsTable'
 import ReportTableComponent from './reportsTable'
+import SpareTableComponent from './sparesTable'
+import IngoingTableComponent from './ingoingsTable'
 
 export {
   Controls,
@@ -43,5 +45,7 @@ export {
   Report,
   ProgramTableComponent,
   ShotsTableComponent,
-  ReportTableComponent
+  ReportTableComponent,
+  SpareTableComponent,
+  IngoingTableComponent
 }

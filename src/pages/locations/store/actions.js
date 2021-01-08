@@ -14,6 +14,8 @@ export const CLEAN_MESSAGE_LOCATIONS = 'CLEAN_MESSAGE_LOCATIONS'
 export const PAGE_TOTAL_LOCATIONS = 'PAGE_LOCATIONS'
 export const ADD_TOTAL_LOCATIONS = 'ADD_TOTAL_LOCATIONS'
 
+export const SORT_LOCATIONS = 'SORT_LOCATIONS'
+
 const request = () => {
   return {
     type: REQUEST_LOCATIONS
