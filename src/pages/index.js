@@ -19,6 +19,7 @@ import Workers, { AddWorker, RemoveWorker, UpdateWorker } from './workers'
 import Locations, { AddLocation, UpdateLocation } from './locations'
 import Spares, { AddSpare, UpdateSpare } from './spares'
 import Ingoings, { AddIngoing, UpdateIngoing } from './ingoings'
+import Outgoings, { AddOutgoing, UpdateOutgoing } from './outgoings'
 import Defects, { AddDefect, RemoveDefect, UpdateDefect } from './defects'
 
 export {
@@ -78,5 +79,8 @@ export {
   UpdateSpare,
   Ingoings,
   AddIngoing,
-  UpdateIngoing
+  UpdateIngoing,
+  Outgoings,
+  AddOutgoing,
+  UpdateOutgoing
 }

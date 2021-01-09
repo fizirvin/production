@@ -27,6 +27,8 @@ import locations from 'pages/locations/store/reducers'
 import locationsForm from 'pages/locations/forms/formReducer'
 import ingoings from 'pages/ingoings/store/reducers'
 import ingoingsForm from 'pages/ingoings/forms/formReducer'
+import outgoings from 'pages/outgoings/store/reducers'
+import outgoingsForm from 'pages/outgoings/forms/formReducer'
 import spares from 'pages/spares/store/reducers'
 import sparesForm from 'pages/spares/forms/formReducer'
 import cycles from 'pages/shots/cycles/cyclesReducer'
@@ -66,7 +68,9 @@ const reducers = combineReducers({
   spares,
   sparesForm,
   ingoings,
-  ingoingsForm
+  ingoingsForm,
+  outgoings,
+  outgoingsForm
 })
 
 export default reducers

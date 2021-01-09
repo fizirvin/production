@@ -25,8 +25,11 @@ const query = {
                     name
                     code
                 }
+                spCode
+                rep
+                op
                 quantity
-                origin
+                
                 image
                 description
                 repairman{

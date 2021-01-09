@@ -1,26 +1,37 @@
 export const keys = [
   'date',
+  'shift',
+  'team',
+  ['machine', 'number'],
+  ['molde', 'number'],
+
   'spCode',
   'quantity',
-  'origin',
-  'provider',
-  'price'
+  'rep',
+  'user'
 ]
 
 export const header_keys = [
   'date',
+  'shift',
+  'team',
+  'machine',
+  'molde',
+
   'spCode',
   'quantity',
-  'origin',
-  'provider',
-  'price'
+  'rep',
+  'user'
 ]
 
 export const header_data = [
   'Date',
+  'Shift',
+  'Team',
+  'Machine',
+  'Molde',
   'Spare',
-  'Quantity',
-  'Origin',
-  'Provider',
-  'Price (Unit)'
+  'Qty',
+  'Repairman',
+  'User'
 ]

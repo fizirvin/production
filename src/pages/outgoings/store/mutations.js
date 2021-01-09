@@ -23,8 +23,11 @@ const newOutgoing = {
             name
             code
         }
+        spCode
+                rep
+                op
         quantity
-        origin
+        
         image
         description
         repairman{
@@ -65,8 +68,11 @@ const updateOutgoing = {
             name
             code
         }
+        spCode
+                rep
+                op
         quantity
-        origin
+        
         image
         description
         repairman{

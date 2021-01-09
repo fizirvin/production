@@ -114,6 +114,11 @@ export default function Nav({ logoutHandler, open, mobile, setOpen }) {
                   Spares Ingoings
                 </Link>
               </Item>
+              <Item>
+                <Link onClick={() => setOpen(!open)} to={'/outgoings'}>
+                  Spares Outgoings
+                </Link>
+              </Item>
             </SubMenu>
           </Item>
         </SubMenu>

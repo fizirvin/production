@@ -1,24 +1,33 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { fetchSpares } from '../../spares/store/actions'
-import {
-  FormComponent,
-  InputTextComponent,
-  InputSelectComponent,
-  InputNumberComponent,
-  InputDecimalComponent,
-  InputDateComponent,
-  Controls
-} from 'layouts'
+import { fetchMachines } from '../../machines/store/actions'
+import { fetchMoldes } from '../../moldes/store/actions'
+import { fetchProfiles } from '../../workers/store/actions'
 
 import {
-  DATE_INPUT_INGOING,
-  SPARE_INPUT_INGOING,
-  QUANTITY_INPUT_INGOING,
-  ORIGIN_INPUT_INGOING,
-  PROVIDER_INPUT_INGOING,
-  PRICE_INPUT_INGOING,
-  CLEAN_INPUTS_INGOING
+  FormComponent,
+  InputSelectComponent,
+  InputNumberComponent,
+  InputDateComponent,
+  InputTextAreaComponent,
+  Controls
+} from 'layouts'
+import TeamComponent from './team'
+import {
+  DATE_INPUT_OUTGOING,
+  SHIFT_INPUT_OUTGOING,
+  TEAM_INPUT_OUTGOING,
+  MACHINE_INPUT_OUTGOING,
+  MOLDE_INPUT_OUTGOING,
+  OPERATOR_INPUT_OUTGOING,
+  SPARE_INPUT_OUTGOING,
+  QUANTITY_INPUT_OUTGOING,
+  IMAGE_INPUT_OUTGOING,
+  DESCRIPTION_INPUT_OUTGOING,
+  REPAIRMAN_INPUT_OUTGOING,
+  METHOD_INPUT_OUTGOING,
+  CLEAN_INPUTS_OUTGOING
 } from './formActions'
 
 const Form = ({
@@ -28,29 +37,58 @@ const Form = ({
   onDelete,
   fetchSpares,
   spares,
-  sparesLoading
+  sparesLoading,
+  fetchMachines,
+  machines,
+  machinesLoading,
+  fetchMoldes,
+  moldes,
+  moldesLoading,
+  fetchProfiles,
+  profiles,
+  profilesLoading
 }) => {
-  const origins = [
-    { _id: 'Initial', origin: 'Initial' },
-    { _id: 'Inventory', origin: 'Inventory' },
-    { _id: 'PO', origin: 'PO' }
+  const shifts = [
+    { _id: '1', shift: '1' },
+    { _id: '2', shift: '2' }
   ]
+
   useEffect(() => {
     if (spares.length === 0) {
       fetchSpares()
     }
     return
   }, [spares, fetchSpares])
+
+  useEffect(() => {
+    if (machines.length === 0) {
+      fetchMachines()
+    }
+    return
+  }, [machines, fetchMachines])
+  useEffect(() => {
+    if (moldes.length === 0) {
+      fetchMoldes()
+    }
+    return
+  }, [moldes, fetchMoldes])
+  useEffect(() => {
+    if (profiles.length === 0) {
+      fetchProfiles()
+    }
+    return
+  }, [profiles, fetchProfiles])
+
   return (
     <FormComponent
-      title={edit ? 'Update Spare Ingoing' : 'Add New Spare Ingoing'}
-      to={'/spares'}
+      title={edit ? 'Update Spare Outgoing' : 'Add New Spare Outgoing'}
+      to={'/outgoings'}
       controls={
         <Controls
-          form={'ingoingsForm'}
-          load={'ingoings'}
-          to="/ingoings"
-          name={CLEAN_INPUTS_INGOING}
+          form={'outgoingsForm'}
+          load={'outgoings'}
+          to="/outgoings"
+          name={CLEAN_INPUTS_OUTGOING}
           onSubmit={edit ? onEdit : onSubmit}
           onDelete={onDelete}
           edit={edit}
@@ -58,46 +96,75 @@ const Form = ({
       }
     >
       <InputDateComponent
-        reducer={'ingoingsForm'}
+        reducer={'outgoingsForm'}
         input={'date'}
         label={'Date'}
-        name={DATE_INPUT_INGOING}
+        name={DATE_INPUT_OUTGOING}
+      />
+      <InputSelectComponent
+        reducer={'outgoingsForm'}
+        input={'shift'}
+        label={'Shift'}
+        name={SHIFT_INPUT_OUTGOING}
+        k={'shift'}
+        items={shifts}
+      />
+      <TeamComponent
+        profiles={profiles}
+        loading={profilesLoading}
+        onTeam={TEAM_INPUT_OUTGOING}
+        OperatorAction={OPERATOR_INPUT_OUTGOING}
+        RepairmanAction={REPAIRMAN_INPUT_OUTGOING}
       />
 
       <InputSelectComponent
-        reducer={'ingoingsForm'}
+        reducer={'outgoingsForm'}
+        input={'machine'}
+        label={'Machine'}
+        name={MACHINE_INPUT_OUTGOING}
+        k={'number'}
+        items={machines}
+        loading={machinesLoading}
+      />
+      <InputSelectComponent
+        reducer={'outgoingsForm'}
+        input={'molde'}
+        label={'Molde'}
+        name={MOLDE_INPUT_OUTGOING}
+        k={'number'}
+        items={moldes}
+        loading={moldesLoading}
+      />
+
+      <InputSelectComponent
+        reducer={'outgoingsForm'}
         input={'spare'}
         label={'Spare'}
-        name={SPARE_INPUT_INGOING}
+        name={SPARE_INPUT_OUTGOING}
         k={'name'}
         items={spares}
         loading={sparesLoading}
       />
       <InputNumberComponent
         label={'Quantity'}
-        name={QUANTITY_INPUT_INGOING}
-        reducer={'ingoingsForm'}
+        name={QUANTITY_INPUT_OUTGOING}
+        reducer={'outgoingsForm'}
         input={'quantity'}
       />
-      <InputSelectComponent
-        reducer={'ingoingsForm'}
-        input={'origin'}
-        label={'Origin'}
-        name={ORIGIN_INPUT_INGOING}
-        k={'origin'}
-        items={origins}
+      <InputTextAreaComponent
+        reducer={'outgoingsForm'}
+        input={'description'}
+        label={'Cause Description'}
+        name={DESCRIPTION_INPUT_OUTGOING}
+        length={'60'}
       />
-      <InputTextComponent
-        reducer={'ingoingsForm'}
-        input={'provider'}
-        label={'Provider'}
-        name={PROVIDER_INPUT_INGOING}
-      />
-      <InputDecimalComponent
-        label={'Price (Unit)'}
-        name={PRICE_INPUT_INGOING}
-        reducer={'ingoingsForm'}
-        input={'price'}
+
+      <InputTextAreaComponent
+        reducer={'outgoingsForm'}
+        input={'method'}
+        label={'Repair Description'}
+        name={METHOD_INPUT_OUTGOING}
+        length={'60'}
       />
     </FormComponent>
   )
@@ -105,9 +172,18 @@ const Form = ({
 
 const mapStateToProps = (state) => ({
   spares: state.spares.items,
-  sparesLoading: state.spares.loading
+  sparesLoading: state.spares.loading,
+  machines: state.machines.items,
+  machinesLoading: state.machines.loading,
+  moldes: state.moldes.items,
+  moldesLoading: state.moldes.loading,
+  profiles: state.profiles.items,
+  profilesLoading: state.profiles.loading
 })
 
 export default connect(mapStateToProps, {
-  fetchSpares
+  fetchSpares,
+  fetchMachines,
+  fetchMoldes,
+  fetchProfiles
 })(Form)

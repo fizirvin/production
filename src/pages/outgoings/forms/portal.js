@@ -1,29 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-  addIngoing,
-  modifyIngoing,
-  eraseIngoing,
-  CLEAN_MESSAGE_INGOINGS
+  addOutgoing,
+  modifyOutgoing,
+  eraseOutgoing,
+  CLEAN_MESSAGE_OUTGOINGS
 } from '../store/actions'
 import Form from './form'
 import { PortalComponent, Message } from 'layouts'
 
-const Portal = ({ message, addIngoing, modifyIngoing, edit, eraseIngoing }) => {
+const Portal = ({
+  message,
+  addOutgoing,
+  modifyOutgoing,
+  edit,
+  eraseOutgoing
+}) => {
   return (
     <PortalComponent>
       {message ? (
         <Message
           message={message}
-          to={'/ingoings'}
-          name={CLEAN_MESSAGE_INGOINGS}
+          to={'/outgoings'}
+          name={CLEAN_MESSAGE_OUTGOINGS}
         />
       ) : (
         <Form
-          onSubmit={addIngoing}
-          onEdit={modifyIngoing}
+          onSubmit={addOutgoing}
+          onEdit={modifyOutgoing}
           edit={edit}
-          onDelete={eraseIngoing}
+          onDelete={eraseOutgoing}
         />
       )}
     </PortalComponent>
@@ -31,11 +37,11 @@ const Portal = ({ message, addIngoing, modifyIngoing, edit, eraseIngoing }) => {
 }
 
 const mapStateToProps = (state) => ({
-  message: state.ingoings.message
+  message: state.outgoings.message
 })
 
 export default connect(mapStateToProps, {
-  addIngoing,
-  modifyIngoing,
-  eraseIngoing
+  addOutgoing,
+  modifyOutgoing,
+  eraseOutgoing
 })(Portal)

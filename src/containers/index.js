@@ -5,6 +5,7 @@ import RenderShotsRows from './renderShotsRows'
 import RenderReportsRows from './renderReportsRows'
 import RenderSparesRows from './renderSparesRows'
 import RenderIngoingsRows from './renderIngoingsRows'
+import RenderOutgoingsRows from './renderOutgoingsRows'
 import renderRoutes from './routes'
 
 export {
@@ -15,5 +16,6 @@ export {
   RenderShotsRows,
   RenderReportsRows,
   RenderSparesRows,
-  RenderIngoingsRows
+  RenderIngoingsRows,
+  RenderOutgoingsRows
 }

@@ -1,6 +1,11 @@
-import { AddIngoing, formReducer, RemoveIngoing, UpdateIngoing } from './forms'
-import Ingoings from './outgoings'
+import {
+  AddOutgoing,
+  formReducer,
+  RemoveOutgoing,
+  UpdateOutgoing
+} from './forms'
+import Outgoings from './outgoings'
 import reducer from './store/reducers'
 
-export default Ingoings
-export { AddIngoing, formReducer, reducer, RemoveIngoing, UpdateIngoing }
+export default Outgoings
+export { AddOutgoing, formReducer, reducer, RemoveOutgoing, UpdateOutgoing }

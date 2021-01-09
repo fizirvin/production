@@ -44,7 +44,7 @@ const Form = ({
   return (
     <FormComponent
       title={edit ? 'Update Spare Ingoing' : 'Add New Spare Ingoing'}
-      to={'/spares'}
+      to={'/ingoings'}
       controls={
         <Controls
           form={'ingoingsForm'}

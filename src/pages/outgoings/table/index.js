@@ -1,17 +1,17 @@
 import React from 'react'
-import { IngoingTableComponent } from 'layouts'
+import { OutgoingTableComponent } from 'layouts'
 import { keys, header_keys, header_data } from './tdata'
-import { SELECT_INPUTS_INGOING } from '../forms/formActions'
+import { SELECT_INPUTS_OUTGOING } from '../forms/formActions'
 
 export default function Table({ items }) {
   return (
-    <IngoingTableComponent
+    <OutgoingTableComponent
       items={items}
       keys={keys}
       header_data={header_data}
       header_keys={header_keys}
       to={'outgoings'}
-      name={SELECT_INPUTS_INGOING}
+      name={SELECT_INPUTS_OUTGOING}
     />
   )
 }
