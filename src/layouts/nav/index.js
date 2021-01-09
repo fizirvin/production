@@ -106,7 +106,7 @@ export default function Nav({ logoutHandler, open, mobile, setOpen }) {
               </Item>
               <Item>
                 <Link onClick={() => setOpen(!open)} to={'/spares'}>
-                  Spares Inventory
+                  Spares Stock
                 </Link>
               </Item>
               <Item>
