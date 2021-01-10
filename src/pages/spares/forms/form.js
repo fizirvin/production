@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { fetchLocations } from '../../locations/store/actions'
 import {
@@ -15,7 +15,8 @@ import {
   NUMBER_INPUT_SPARE,
   LOCATION_INPUT_SPARE,
   OPTIMAL_INPUT_SPARE,
-  CLEAN_INPUTS_SPARE
+  CLEAN_INPUTS_SPARE,
+  setFile
 } from './formActions'
 
 const Form = ({
@@ -25,15 +26,74 @@ const Form = ({
   onDelete,
   fetchLocations,
   locations,
-  locationsLoading
+  locationsLoading,
+  setFile,
+  image = ''
 }) => {
-  // const areas = [{ _id: 'Injection', area: 'Injection' }]
+  const [advice, setAdvice] = useState('')
+  const [imagePreviewUrl, setImagePreviewUrl] = useState('')
+  const [picture_URL] = useState(image)
+
   useEffect(() => {
     if (locations.length === 0) {
       fetchLocations()
     }
     return
   }, [locations, fetchLocations])
+
+  const fileChangedHandler = (e) => {
+    if (e.target.files.length === 1) {
+      const file = e.target.files[0]
+      if (file.size >= 50000) {
+        setAdvice('File is too big, please set a file smaller than 50 KB')
+        e.target.value = ''
+      } else {
+        const reader = new FileReader()
+        reader.onloadend = () => {
+          setImagePreviewUrl(reader.result)
+        }
+        reader.readAsDataURL(file)
+        setFile(file)
+      }
+    } else {
+      return
+    }
+  }
+
+  const imagePreview = () => {
+    if (advice) {
+      return (
+        <tr>
+          <td colSpan={'2'}>
+            <div>
+              {advice}
+              <button type="button" onClick={() => setAdvice('')}>
+                Ok
+              </button>
+            </div>
+          </td>
+        </tr>
+      )
+    }
+    if ((!advice && imagePreviewUrl) || (!advice && picture_URL)) {
+      return (
+        <tr>
+          <td colSpan={'2'}>
+            <div>
+              <img
+                src={imagePreviewUrl || picture_URL}
+                alt="icon"
+                width="250"
+                height="250"
+                objectfit={'contain'}
+              />{' '}
+            </div>
+          </td>
+        </tr>
+      )
+    }
+  }
+
   return (
     <FormComponent
       title={edit ? 'Update Injection Spare' : 'Add New Injection Spare'}
@@ -83,15 +143,32 @@ const Form = ({
         reducer={'sparesForm'}
         input={'optimal'}
       />
+      <tr>
+        <td>
+          <label htmlFor="image">Picture: </label>
+        </td>
+        <td>
+          <input
+            type="file"
+            name="image"
+            id="image"
+            accept=".png, .jpg, .jpeg"
+            onChange={fileChangedHandler}
+          ></input>
+        </td>
+      </tr>
+      {imagePreview()}
     </FormComponent>
   )
 }
 
 const mapStateToProps = (state) => ({
   locations: state.locations.items,
-  locationsLoading: state.locations.loading
+  locationsLoading: state.locations.loading,
+  image: state.sparesForm.image
 })
 
 export default connect(mapStateToProps, {
-  fetchLocations
+  fetchLocations,
+  setFile
 })(Form)

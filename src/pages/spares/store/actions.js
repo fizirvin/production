@@ -2,6 +2,7 @@ import query from './queries'
 import { newSpare, updateSpare, deleteSpare } from './mutations'
 import { fetchItems } from 'services'
 import { validateInput } from 'helpers'
+import { uploadImage } from '../../../firebase'
 
 export const REQUEST_SPARES = 'REQUEST_SPARES'
 export const REQUEST_FAILURE_SPARES = 'REQUEST_FAILURE_SPARES'
@@ -73,16 +74,52 @@ export const fetchSpares = (page) => async (dispatch) => {
 }
 
 export const addSpare = (input) => async (dispatch) => {
-  const { valid, message } = validateInput(input)
+  const spare = {
+    code: input.code,
+    name: input.name,
+    number: input.number,
+    optimal: input.optimal,
+    location: input.location,
+    user: input.user
+  }
+  const { valid, message } = validateInput(spare)
   if (valid) {
     dispatch(request())
-    newSpare.variables = { input }
+    newSpare.variables = { input: spare }
     const { status, data } = await fetchItems(newSpare)
     if (!status) {
       dispatch(requestFailure(data))
     } else {
       const { newSpare } = data
-      dispatch(addSuccess(newSpare))
+
+      if (input.file) {
+        const task = uploadImage(input.file)
+        const onProgress = () => {}
+        const onError = (err) => {
+          console.log(err)
+        }
+        const onComplete = () => {
+          console.log('onComplete')
+          task.snapshot.ref.getDownloadURL().then(async (url) => {
+            const spare = {
+              image: url
+            }
+
+            updateSpare.variables = { _id: newSpare._id, input: spare }
+            const { status, data } = await fetchItems(updateSpare)
+
+            if (!status) {
+              dispatch(requestFailure(data))
+            } else {
+              dispatch(addSuccess({ ...newSpare, image: url }))
+            }
+          })
+        }
+
+        task.on('state_changed', onProgress, onError, onComplete)
+      } else {
+        dispatch(addSuccess(newSpare))
+      }
     }
   } else {
     dispatch(requestFailure(message))

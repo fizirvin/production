@@ -4,6 +4,7 @@ import {
   NUMBER_INPUT_SPARE,
   OPTIMAL_INPUT_SPARE,
   LOCATION_INPUT_SPARE,
+  FILE_INPUT_SPARE,
   CLEAN_INPUTS_SPARE,
   SELECT_INPUTS_SPARE
 } from './formActions'
@@ -13,7 +14,9 @@ const initialState = {
   name: '',
   number: '',
   optimal: '',
-  location: ''
+  location: '',
+  image: '',
+  file: ''
 }
 
 const formReducer = (state = initialState, action) => {
@@ -42,6 +45,11 @@ const formReducer = (state = initialState, action) => {
       return {
         ...state,
         location: action.payload
+      }
+    case FILE_INPUT_SPARE:
+      return {
+        ...state,
+        file: action.payload
       }
     case CLEAN_INPUTS_SPARE:
       return initialState

@@ -94,11 +94,16 @@ export const modifyOutgoing = (input) => async (dispatch) => {
 
   const outgoing = {
     date: input.date,
+    shift: input.shift,
+    team: input.team,
+    machine: input.machine,
+    molde: input.molde,
+    operator: input.operator,
     spare: input.spare,
     quantity: input.quantity,
-    origin: input.origin,
-    provider: input.provider,
-    price: input.price
+    description: input.description,
+    repairman: input.repairman,
+    method: input.method
   }
 
   updateOutgoing.variables = { _id: input._id, input: outgoing }

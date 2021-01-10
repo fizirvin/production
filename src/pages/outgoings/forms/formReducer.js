@@ -24,7 +24,6 @@ const initialState = {
   operator: '',
   spare: '',
   quantity: '',
-  image: '',
   description: '',
   repairman: '',
   method: ''
