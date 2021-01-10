@@ -98,6 +98,7 @@ export const addSpare = (input) => async (dispatch) => {
         const onError = (err) => {
           console.log(err)
         }
+
         const onComplete = () => {
           console.log('onComplete')
           task.snapshot.ref.getDownloadURL().then(async (url) => {
