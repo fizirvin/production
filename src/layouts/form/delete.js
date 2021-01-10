@@ -9,10 +9,16 @@ export default function DeleteComponent({ form, load, onDelete, name }) {
   const dispatch = useDispatch()
 
   function submit() {
-    const inputRequest = {
-      _id: input._id,
-      user: user
-    }
+    const inputRequest = input.image
+      ? {
+          _id: input._id,
+          user: user,
+          image: input.image
+        }
+      : {
+          _id: input._id,
+          user: user
+        }
     onDelete(inputRequest).then(() => dispatch({ type: name }))
   }
 

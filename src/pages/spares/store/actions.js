@@ -2,7 +2,7 @@ import query from './queries'
 import { newSpare, updateSpare, deleteSpare } from './mutations'
 import { fetchItems } from 'services'
 import { validateInput } from 'helpers'
-import { uploadImage } from '../../../firebase'
+import { uploadImage, deleteImage } from '../../../firebase'
 
 export const REQUEST_SPARES = 'REQUEST_SPARES'
 export const REQUEST_FAILURE_SPARES = 'REQUEST_FAILURE_SPARES'
@@ -100,7 +100,6 @@ export const addSpare = (input) => async (dispatch) => {
         }
 
         const onComplete = () => {
-          console.log('onComplete')
           task.snapshot.ref.getDownloadURL().then(async (url) => {
             const spare = {
               image: url
@@ -144,8 +143,72 @@ export const modifySpare = (input) => async (dispatch) => {
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    const { updateSpare } = data
-    dispatch(updateSuccess(updateSpare))
+    if (input.file) {
+      if (!input.image) {
+        const task = uploadImage(input.file)
+        const onProgress = () => {}
+        const onError = (err) => {
+          console.log(err)
+        }
+
+        const onComplete = () => {
+          task.snapshot.ref.getDownloadURL().then(async (url) => {
+            const spareImage = {
+              image: url
+            }
+
+            updateSpare.variables = { _id: input._id, input: spareImage }
+            const { status, data } = await fetchItems(updateSpare)
+
+            if (!status) {
+              dispatch(requestFailure(data))
+            } else {
+              const { updateSpare } = data
+              dispatch(updateSuccess({ ...updateSpare, image: url }))
+            }
+          })
+        }
+
+        task.on('state_changed', onProgress, onError, onComplete)
+      }
+      if (input.image) {
+        const deleting = await deleteImage(input.image)
+
+        if (!deleting) {
+          const { updateSpare } = data
+          dispatch(updateSuccess(updateSpare))
+        } else {
+          const task = uploadImage(input.file)
+          const onProgress = () => {}
+          const onError = (err) => {
+            console.log(err)
+          }
+
+          const onComplete = () => {
+            task.snapshot.ref.getDownloadURL().then(async (url) => {
+              const spare = {
+                image: url
+              }
+
+              updateSpare.variables = { _id: input._id, input: spare }
+              const { status, data } = await fetchItems(updateSpare)
+
+              if (!status) {
+                dispatch(requestFailure(data))
+              } else {
+                const { updateSpare } = data
+                dispatch(updateSuccess({ ...updateSpare, image: url }))
+              }
+            })
+          }
+
+          task.on('state_changed', onProgress, onError, onComplete)
+        }
+      }
+    } else {
+      const { updateSpare } = data
+      dispatch(updateSuccess(updateSpare))
+    }
   }
 }
 
@@ -157,6 +220,15 @@ export const eraseSpare = (input) => async (dispatch) => {
   if (!status) {
     dispatch(requestFailure(data))
   } else {
-    dispatch(removeSuccess(data.deleteSpare))
+    if (input.image) {
+      const deleting = await deleteImage(input.image)
+      if (!deleting) {
+        dispatch(removeSuccess(data.deleteSpare))
+      } else {
+        dispatch(removeSuccess(data.deleteSpare))
+      }
+    } else {
+      dispatch(removeSuccess(data.deleteSpare))
+    }
   }
 }

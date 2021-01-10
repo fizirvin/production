@@ -12,9 +12,24 @@ const firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig)
+const date = Date.now().toString()
 
 export const uploadImage = (file) => {
-  const ref = firebase.storage().ref(`images/${file.name}`)
+  const ref = firebase.storage().ref(`images/${date}`)
   const task = ref.put(file)
   return task
+}
+
+export async function deleteImage(fileUrl) {
+  const fileRef = firebase.storage().refFromURL(fileUrl)
+  const deleting = await fileRef
+    .delete()
+    .then(function () {
+      return { deleting: true }
+    })
+    .catch(function () {
+      return { deleting: false }
+    })
+
+  return deleting
 }

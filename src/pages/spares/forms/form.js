@@ -44,8 +44,8 @@ const Form = ({
   const fileChangedHandler = (e) => {
     if (e.target.files.length === 1) {
       const file = e.target.files[0]
-      if (file.size >= 50000) {
-        setAdvice('File is too big, please set a file smaller than 50 KB')
+      if (file.size >= 500000) {
+        setAdvice('File is too big, please set a file smaller than 500 KB')
         e.target.value = ''
       } else {
         const reader = new FileReader()

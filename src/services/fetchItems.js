@@ -3,10 +3,12 @@ const { url, options } = database
 
 export default async function fetchItems(query) {
   options.body = JSON.stringify(query)
+
   const res = await fetch(url, options).catch(() => {
     return false
   })
   if (!res) return { status: false, data: 'error, conexión a internet' }
+
   const data = await res.json().catch(() => {
     return false
   })
