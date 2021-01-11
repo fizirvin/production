@@ -5,7 +5,7 @@ import {
   FormComponent,
   InputTextComponent,
   InputSelectComponent,
-  InputNumberComponent,
+  NegativeNumberComponent,
   InputDecimalComponent,
   InputDateComponent,
   Controls
@@ -73,7 +73,7 @@ const Form = ({
         items={spares}
         loading={sparesLoading}
       />
-      <InputNumberComponent
+      <NegativeNumberComponent
         label={'Quantity'}
         name={QUANTITY_INPUT_INGOING}
         reducer={'ingoingsForm'}

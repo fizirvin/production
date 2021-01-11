@@ -23,6 +23,7 @@ import ReportTableComponent from './reportsTable'
 import SpareTableComponent from './sparesTable'
 import IngoingTableComponent from './ingoingsTable'
 import OutgoingTableComponent from './outgoingsTable'
+import NegativeNumberComponent from './input/negative'
 
 export {
   Controls,
@@ -49,5 +50,6 @@ export {
   ReportTableComponent,
   SpareTableComponent,
   IngoingTableComponent,
-  OutgoingTableComponent
+  OutgoingTableComponent,
+  NegativeNumberComponent
 }

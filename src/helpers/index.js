@@ -7,6 +7,7 @@ import formatDate from './formatDate'
 import setFields from './setFields'
 import validateInput from './validateInput'
 import validateReportInput from './validateReportInput'
+import onNegativeKey from './negativeKey'
 
 export {
   onDecimal,
@@ -17,5 +18,6 @@ export {
   formatDate,
   setFields,
   validateInput,
-  validateReportInput
+  validateReportInput,
+  onNegativeKey
 }
