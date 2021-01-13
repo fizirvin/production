@@ -166,6 +166,19 @@ const Form = ({
         name={METHOD_INPUT_OUTGOING}
         length={'60'}
       />
+      <tr>
+        <td>
+          <label htmlFor="image">Picture: </label>
+        </td>
+        <td>
+          <input
+            type="file"
+            name="image"
+            id="image"
+            accept=".png, .jpg, .jpeg"
+          ></input>
+        </td>
+      </tr>
     </FormComponent>
   )
 }
