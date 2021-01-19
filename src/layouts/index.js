@@ -14,6 +14,7 @@ import InputDecimalComponent from './input/decimal'
 import InputDateComponent from './input/date'
 import InputTextAreaComponent from './input/textarea'
 import Controls from './form/controls'
+import ControlsReport from './form/controlsReport'
 import Message from './message'
 import ControlComponent from './control'
 import Report from './report'
@@ -51,5 +52,6 @@ export {
   SpareTableComponent,
   IngoingTableComponent,
   OutgoingTableComponent,
-  NegativeNumberComponent
+  NegativeNumberComponent,
+  ControlsReport
 }

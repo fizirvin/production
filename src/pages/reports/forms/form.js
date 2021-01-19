@@ -11,7 +11,7 @@ import {
   FormComponent,
   InputNumberComponent,
   InputDateComponent,
-  Controls,
+  ControlsReport,
   InputSelectComponent,
   Report
 } from 'layouts'
@@ -197,7 +197,7 @@ const Form = ({
       title={edit ? 'Update Injection Report' : 'Add New Injection Report'}
       to={'/reports'}
       controls={
-        <Controls
+        <ControlsReport
           form={'reportsForm'}
           load={'reports'}
           to="/reports"
