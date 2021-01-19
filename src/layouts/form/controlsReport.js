@@ -1,6 +1,6 @@
 import React from 'react'
 import CancelComponent from './cancel'
-import SubmitComponent from './submit'
+import SubmitReport from './submitReport'
 import DeleteComponent from './delete'
 
 export default function ControlsReport({
@@ -14,12 +14,7 @@ export default function ControlsReport({
 }) {
   return (
     <div>
-      <SubmitComponent
-        form={form}
-        load={load}
-        name={name}
-        onSubmit={onSubmit}
-      />
+      <SubmitReport form={form} load={load} name={name} onSubmit={onSubmit} />
 
       <CancelComponent to={to} name={name} />
       {edit && (

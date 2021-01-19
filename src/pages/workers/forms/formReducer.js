@@ -7,6 +7,7 @@ import {
   DEPARTMENT_INPUT_PROFILE,
   AREA_INPUT_PROFILE,
   POSITION_INPUT_PROFILE,
+  ACTIVE_INPUT_PROFILE,
   CLEAN_INPUTS_PROFILE,
   SELECT_INPUTS_PROFILE
 } from './formActions'
@@ -63,6 +64,11 @@ const formReducer = (state = initialState, action) => {
       return {
         ...state,
         position: action.payload
+      }
+    case ACTIVE_INPUT_PROFILE:
+      return {
+        ...state,
+        active: action.payload
       }
     case CLEAN_INPUTS_PROFILE:
       return initialState

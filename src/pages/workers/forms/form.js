@@ -5,6 +5,7 @@ import {
   InputSelectComponent,
   InputTextComponent,
   InputDateComponent,
+  InputRadioComponent,
   Controls
 } from 'layouts'
 
@@ -16,6 +17,7 @@ import {
   ENTRY_INPUT_PROFILE,
   DEPARTMENT_INPUT_PROFILE,
   AREA_INPUT_PROFILE,
+  ACTIVE_INPUT_PROFILE,
   POSITION_INPUT_PROFILE,
   CLEAN_INPUTS_PROFILE
 } from './formActions'
@@ -111,6 +113,14 @@ export default function Form({ onSubmit, onEdit, edit, onDelete }) {
         k={'pos'}
         items={positions}
       />
+      {edit && (
+        <InputRadioComponent
+          reducer={'profilesForm'}
+          input={'active'}
+          label={'Active'}
+          name={ACTIVE_INPUT_PROFILE}
+        />
+      )}
     </FormComponent>
   )
 }
