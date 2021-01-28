@@ -18,7 +18,8 @@ const initialState = {
   total: 0,
   page: 1,
   add: 0,
-  deletes: 0
+  deletes: 0,
+  actives: ''
 }
 const reducer = (state = initialState, action) => {
   const { type, payload } = action
